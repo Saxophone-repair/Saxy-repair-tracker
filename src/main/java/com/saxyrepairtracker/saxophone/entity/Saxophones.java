@@ -12,5 +12,5 @@ public class Saxophones {
   
   private String series;
   
-  private enum type;
+ // private enum type;
 }

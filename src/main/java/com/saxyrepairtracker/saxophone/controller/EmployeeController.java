@@ -1,5 +1,5 @@
 package com.saxyrepairtracker.saxophone.controller;
 
-public class employeecontroller {
+public class EmployeeController {
 
 }
