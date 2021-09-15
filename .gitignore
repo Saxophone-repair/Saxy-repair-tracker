@@ -1,1 +1,4 @@
 .classpath
+.project
+pom.properties
+pom.xml
