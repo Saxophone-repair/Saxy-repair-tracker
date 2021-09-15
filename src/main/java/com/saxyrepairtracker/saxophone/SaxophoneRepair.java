@@ -1,4 +1,4 @@
-package com.promineotech.saxophone;
+package com.saxyrepairtracker.saxophone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,3 +10,4 @@ public class SaxophoneRepair {
     SpringApplication.run(SaxophoneRepair.class, args);
   }
 }
+
