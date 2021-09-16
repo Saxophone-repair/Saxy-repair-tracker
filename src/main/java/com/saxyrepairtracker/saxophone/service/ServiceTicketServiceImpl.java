@@ -25,8 +25,8 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
     return new ArrayList<ServiceTicket>();
   }
 
-  public ServiceTicket get(int servicePk) {
-    ServiceTicket ticket = repository.get(servicePk);
+  public ServiceTicket get(int id) {
+    ServiceTicket ticket = repository.get(id);
     return(ticket);
   }
 
@@ -35,43 +35,43 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
    * @param input The title to validate
    * @return True if valid, false if otherwise.
    */
-//  protected boolean isValid(ServiceTicket input) {
-//    if (input.getId().isEmpty()) {
-//      return(false);
-//    }
+  protected boolean isValid(ServiceTicket input) {
+    if (input.getid().isEmpty()) {
+      return(false);
+    }
 //    if (input.getName().isEmpty()) {
 //      return(false);
 //    }
 //    if (input.getType() <= 0) {
 //      return(false);
 //    }
-//    return(true);
-//  }
+    return(true);
+  }
 
   public ServiceTicket create(ServiceTicket input) {
     if (input == null) return(null);
     
     if (isValid(input)) {
-      ServiceTicket existing = repository.get(input.getservicePk());
+      ServiceTicket existing = repository.get(input.getid());
       if (existing == null) {
         ServiceTicket ticket = repository.create(input);
         return(ticket);
       }
       
-      return(update(input.getservicePk(), input));
+      return(update(input.id(), input));
     }
     return(null);
   }
 
-  public ServiceTicket update(int servicePk, ServiceTicket input) {
-    if ((servicePk == null) || (servicePk.isEmpty())) {
-      servicePk = input.getservicePk();
+  public ServiceTicket update(int id, ServiceTicket input) {
+    if ((id == null) || (id.isEmpty())) {
+      id = input.getid();
     }
     
     if (isValid(input)) {
-      ServiceTicket existing = repository.get(servicePk);
+      ServiceTicket existing = repository.get(id);
       if (existing != null) {
-        ServiceTicket model = repository.update(servicePk, input);
+        ServiceTicket ticket = repository.update(id, input);
         return(ticket);
       }
       

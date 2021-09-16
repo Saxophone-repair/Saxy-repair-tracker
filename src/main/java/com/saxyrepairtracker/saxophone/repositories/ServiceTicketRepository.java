@@ -8,7 +8,7 @@ public interface ServiceTicketRepository {
    * @param id The unique id of the title.
    * @return The title if found, null if otherwise.
    */
-  ServiceTicket get(String id);
+  ServiceTicket get(int id);
 
   /**
    * Creates a new title.
@@ -23,12 +23,7 @@ public interface ServiceTicketRepository {
    * @param input The update title information
    * @return The updated / modified title.
    */
-  ServiceTicket update(String id, ServiceTicket input);
+  ServiceTicket update(int id, ServiceTicket input);
 
-  /**
-   * Deletes or removes the specified title.
-   * @param id The unique id of the title to remove.
-   * @return The removed title if removed, otherwise returns null
-   */
-  ServiceTicket delete(String id);
+
 }
