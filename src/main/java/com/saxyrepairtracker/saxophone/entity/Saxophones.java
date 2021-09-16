@@ -1,5 +1,10 @@
 package com.saxyrepairtracker.saxophone.entity;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class Saxophones {
 
   private int saxophonePK;
@@ -12,5 +17,5 @@ public class Saxophones {
   
   private String series;
   
- // private enum type;
+  private SaxophoneType saxophoneType;
 }
