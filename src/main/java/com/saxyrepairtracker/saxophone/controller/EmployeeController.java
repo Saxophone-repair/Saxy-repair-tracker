@@ -42,7 +42,7 @@ public interface EmployeeController {
               content = @Content(mediaType = "application/json")),
           @ApiResponse(
               responseCode = "404", 
-              description = "No Jeeps were found with the input criteria",  
+              description = "No Employees were found with the input criteria",  
               content = @Content(mediaType = "application/json")),
           @ApiResponse(
               responseCode = "500", 
