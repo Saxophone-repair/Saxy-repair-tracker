@@ -27,13 +27,13 @@ public class ServiceTicketController {
    * @param id The unique id of the title (i.e. tt234234)
    * @return A title if found, otherwise null.
    */
-  @Operation(summary = "Get a title by it's unique id",
+  @Operation(summary = "Get a service ticket by it's unique id",
              description = "Gets the title if found, otherwise returns null")
   @RequestMapping(value = "/serviceticket/{id}", method = RequestMethod.GET)
   public ServiceTicket getServiceTicketeById(@PathVariable int servicePk) {
     ServiceTicket title = service.get(servicePk);
-    if (ticket != null) {
-      return(ticket);
+    if (servicePk != null) {
+      return(servicePk);
     }
     
     throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
@@ -47,7 +47,7 @@ public class ServiceTicketController {
    */
   @Operation(summary = "Adds or creates a new ServiceTicket",
              description = "Creates a new title if successful, otherwise returns null.")
-  @RequestMapping(value = "/titles", method = RequestMethod.POST)
+  @RequestMapping(value = "/ServiceTicket", method = RequestMethod.POST)
   public ServiceTicket createTitle(@RequestBody ServiceTicket ticket) {
     if (ticket != null) {
       ServiceTicket createdServiceTicket = service.create(ticket);
@@ -73,9 +73,9 @@ public class ServiceTicketController {
           "Title was empty or missing");
     }
     
-    ServiceTicket model = service.update(ticket, input);
-    if (ticket != null) {
-      return(ticket);
+    ServiceTicket model = service.update(String description, input);
+    if (description != null) {
+      return(description);
     }
     
     throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
