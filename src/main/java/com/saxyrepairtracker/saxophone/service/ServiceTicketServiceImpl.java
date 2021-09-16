@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
+import com.saxyrepairtracker.saxophone.entity.Status;
 import com.saxyrepairtracker.saxophone.repositories.ServiceTicketRepository;
 
 @Service
@@ -20,13 +21,13 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
   }
 
   @Override
-  public List<ServiceTicket> search(String name) {
+  public List<ServiceTicket> search(Status status) {
     return new ArrayList<ServiceTicket>();
   }
 
-  public ServiceTicket get(String id) {
-    ServiceTicket model = repository.get(id);
-    return(model);
+  public ServiceTicket get(int servicePk) {
+    ServiceTicket ticket = repository.get(servicePk);
+    return(ticket);
   }
 
   /**
@@ -34,44 +35,44 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
    * @param input The title to validate
    * @return True if valid, false if otherwise.
    */
-  protected boolean isValid(ServiceTicket input) {
-    if (input.getId().isEmpty()) {
-      return(false);
-    }
-    if (input.getName().isEmpty()) {
-      return(false);
-    }
-    if (input.getType() <= 0) {
-      return(false);
-    }
-    return(true);
-  }
+//  protected boolean isValid(ServiceTicket input) {
+//    if (input.getId().isEmpty()) {
+//      return(false);
+//    }
+//    if (input.getName().isEmpty()) {
+//      return(false);
+//    }
+//    if (input.getType() <= 0) {
+//      return(false);
+//    }
+//    return(true);
+//  }
 
   public ServiceTicket create(ServiceTicket input) {
     if (input == null) return(null);
     
     if (isValid(input)) {
-      ServiceTicket existing = repository.get(input.getId());
+      ServiceTicket existing = repository.get(input.getservicePk());
       if (existing == null) {
-        ServiceTicket model = repository.create(input);
-        return(model);
+        ServiceTicket ticket = repository.create(input);
+        return(ticket);
       }
       
-      return(update(input.getId(), input));
+      return(update(input.getservicePk(), input));
     }
     return(null);
   }
 
-  public ServiceTicket update(String id, ServiceTicket input) {
-    if ((id == null) || (id.isEmpty())) {
-      id = input.getId();
+  public ServiceTicket update(int servicePk, ServiceTicket input) {
+    if ((servicePk == null) || (servicePk.isEmpty())) {
+      servicePk = input.getservicePk();
     }
     
     if (isValid(input)) {
-      ServiceTicket existing = repository.get(id);
+      ServiceTicket existing = repository.get(servicePk);
       if (existing != null) {
-        ServiceTicket model = repository.update(id, input);
-        return(model);
+        ServiceTicket model = repository.update(servicePk, input);
+        return(ticket);
       }
       
       return(create(input));
@@ -85,11 +86,13 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
       return(null);
     }
     
-    ServiceTicket existing = repository.get(id);
+    ServiceTicket existing = repository.get(servicePk);
     if (existing != null) {
-      ServiceTicket model = repository.delete(id);
-      return(model);
+      ServiceTicket ticket = repository.delete(servicePk);
+      return(ticket);
     }
     return(null);
   }
+
+
 }

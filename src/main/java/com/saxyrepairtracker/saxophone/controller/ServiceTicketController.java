@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
+import com.saxyrepairtracker.saxophone.entity.Status;
 import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,14 +30,14 @@ public class ServiceTicketController {
   @Operation(summary = "Get a title by it's unique id",
              description = "Gets the title if found, otherwise returns null")
   @RequestMapping(value = "/serviceticket/{id}", method = RequestMethod.GET)
-  public ServiceTicket getServiceTicketeById(@PathVariable String id) {
-    ServiceTicket title = service.get(id);
-    if (serviceTicket != null) {
-      return(serviceTicket);
+  public ServiceTicket getServiceTicketeById(@PathVariable int servicePk) {
+    ServiceTicket title = service.get(servicePk);
+    if (ticket != null) {
+      return(ticket);
     }
     
     throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-        String.format("ServiceTicket '%s' was not found", id));
+        String.format("ServiceTicket '%s' was not found", servicePk));
   }
   
   /**
@@ -47,9 +48,9 @@ public class ServiceTicketController {
   @Operation(summary = "Adds or creates a new ServiceTicket",
              description = "Creates a new title if successful, otherwise returns null.")
   @RequestMapping(value = "/titles", method = RequestMethod.POST)
-  public ServiceTicket createTitle(@RequestBody ServiceTicket title) {
-    if (serviceTicket != null) {
-      ServiceTicket createdServiceTicket = service.create(title);
+  public ServiceTicket createTitle(@RequestBody ServiceTicket ticket) {
+    if (ticket != null) {
+      ServiceTicket createdServiceTicket = service.create(ticket);
       if (createdServiceTicket == null) {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
             String.format("An unknown error occurred when creating a title. Please try again."));
@@ -62,8 +63,8 @@ public class ServiceTicketController {
   }
   
   @RequestMapping(value = "/titles/{title}", method = RequestMethod.PUT)
-  public ServiceTicket update(@PathVariable String title, @RequestBody TitleModel input) {
-    if ((title == null) || (title.isEmpty())) {
+  public ServiceTicket update(@PathVariable Status status, @RequestBody ServiceTicket input) {
+    if ((status == null) || (status.isEmpty())) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
           "Not title id was specified.");
     }
@@ -72,9 +73,9 @@ public class ServiceTicketController {
           "Title was empty or missing");
     }
     
-    ServiceTicket model = service.update(title, input);
-    if (model != null) {
-      return(model);
+    ServiceTicket model = service.update(ticket, input);
+    if (ticket != null) {
+      return(ticket);
     }
     
     throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
@@ -82,17 +83,17 @@ public class ServiceTicketController {
   }
   
   @RequestMapping(value = "/titles/{title}", method = RequestMethod.DELETE)
-  public ServiceTicket delete(@PathVariable String title) {
-    if ((title == null) || (title.isEmpty())) {
+  public ServiceTicket delete(@PathVariable ServiceTicket ticket) {
+    if ((ticket == null) || (ticket.isEmpty())) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
           "Not title id was specified.");
     }
 
-    ServiceTicket existing = service.get(title);
+    ServiceTicket existing = service.get(servicePk);
     if (existing != null) {
-      ServiceTicket model = service.delete(title);
-      if (model != null) {
-        return(model);
+      ServiceTicket model = service.delete(servicePk);
+      if (ticket != null) {
+        return(ticket);
       }
 
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 

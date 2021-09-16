@@ -9,8 +9,10 @@ public interface ServiceTicketService {
    * Searches the titles for any occurrences of the specified name.
    * @param name The regular expression or part of the name we want to search.4
    * @return Returns the matching titles if found, otherwise returns an empty list.
+   * List<ServiceTicket> search(String description, Status status);
    */
-  List<ServiceTicket> search(String description, Status status);
+  //It would be nice to add to search by status, or customer 
+  List<ServiceTicket> search(Status status);
   
   /**
    * Creates a new title.
@@ -24,7 +26,7 @@ public interface ServiceTicketService {
    * @param id The unique id of the title.
    * @return True if deleted, false if title doesn't exist or deletion failed.
    */
-  ServiceTicket delete(String description);
+  ServiceTicket delete(int servicePk);
   
   /**
    * Updates a title with new information.
@@ -32,13 +34,13 @@ public interface ServiceTicketService {
    * @param updatedTitle The updated or new title information. 
    * @return Returns the updated title information, or null if update fails.
    */
-  ServiceTicket update(String description, ServiceTicket updatedServiceTicket);
+  ServiceTicket update(int servicePk, ServiceTicket updatedServiceTicket);
   
   /**
    * Retrieves a single title by id.
    * @param id The unique id of the title.
    * @return The title if found, null if otherwise.
    */
-  ServiceTicket get(String description);
+  ServiceTicket get(int servicePk);
 }
-}
+
