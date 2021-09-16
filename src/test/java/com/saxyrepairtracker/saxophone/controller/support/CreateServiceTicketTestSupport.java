@@ -1,5 +1,5 @@
 package com.saxyrepairtracker.saxophone.controller.support;
 
-public class CreateServiceTicketTestSupport {
+public class CreateServiceTicketTestSupport extends BaseTest {
 
 }
