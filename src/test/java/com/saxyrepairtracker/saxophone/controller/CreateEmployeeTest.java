@@ -32,7 +32,7 @@ class CreateEmployeeTest extends CreateEmployeeTestSupport{
 
   //This is the POST method 
   @Test
-  void testCreateOrderReturnsSuccess201() {
+  void testCreateEmployeeReturnsSuccess201() {
     //Given: an order as JSON 
     String body = createEmployeeBody();
     String uri = getBaseUriForNewEmployee();
@@ -64,7 +64,7 @@ class CreateEmployeeTest extends CreateEmployeeTestSupport{
   }
 
 
-}
+
 
 
 
