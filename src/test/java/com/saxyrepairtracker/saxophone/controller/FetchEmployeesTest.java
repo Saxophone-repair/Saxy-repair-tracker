@@ -69,7 +69,7 @@ class FetchEmployeesTest {
     
        // And: an error message is returned
        List<Employee> actual = response.getBody();
-       //List<Employee> expected = buildExpected();
+       List<Employee> expected = buildExpected();
        
        assertThat(actual).isEqualTo(expected);
     }
