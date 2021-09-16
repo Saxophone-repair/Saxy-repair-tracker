@@ -23,6 +23,13 @@ public class BaseTest {
     return String.format("http://localhost:%d/employees", serverPort);
   }
   
+
+  //we want to return a String with this method 
+  protected String getBaseUriForNewEmployee() {
+    //this is the test that will be running in the background
+    return String.format("http://localhost:%d/newemployee", serverPort);
+  }
+  
   //He renames the top one but I think thats unneeded.
   protected String getBaseUriForOrders() {
     //this is the test that will be running in the background
