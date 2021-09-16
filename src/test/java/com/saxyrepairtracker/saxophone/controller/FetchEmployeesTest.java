@@ -78,26 +78,26 @@ class FetchEmployeesTest {
      * 
      */
     // Test for error message
-    @Test
-    void testThatAnErrorMessageIsReturnedWhenAnUnknownNamesAreSupplied() {
-       // Given: a valid first name, last name, and URI
-      String firstName = "Jojo";
-      String lastName = "Mel";
-      String uri = 
-          String.format("%s?firstName=%s&lastName=%s", getBaseUriForEmployees(), firstName, lastName);
-    
-       // When: a connection is made to the URI
-       ResponseEntity<Map<String, Object>> response = getRestTemplate().exchange(uri, 
-               HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-    
-       // Then: a not found (404) status code is returned
-       assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND); 
-    
-       // And: an error message is returned
-       Map<String, Object> error = response.getBody();
-       
-       assertErrorMessageValid(error, HttpStatus.NOT_FOUND);
-    }
+    //@Test
+//    void testThatAnErrorMessageIsReturnedWhenAnUnknownNamesAreSupplied() {
+//       // Given: a valid first name, last name, and URI
+//      String firstName = "Jojo";
+//      String lastName = "Mel";
+//      String uri = 
+//          String.format("%s?firstName=%s&lastName=%s", getBaseUriForEmployees(), firstName, lastName);
+//    
+//       // When: a connection is made to the URI
+//       ResponseEntity<Map<String, Object>> response = getRestTemplate().exchange(uri, 
+//               HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+//    
+//       // Then: a not found (404) status code is returned
+//       assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND); 
+//    
+//       // And: an error message is returned
+//       Map<String, Object> error = response.getBody();
+//       
+//       assertErrorMessageValid(error, HttpStatus.NOT_FOUND);
+//    }
 //
 //    /**
 //     * 
