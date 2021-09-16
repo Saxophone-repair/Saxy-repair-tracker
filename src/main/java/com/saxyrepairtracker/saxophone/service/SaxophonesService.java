@@ -32,7 +32,7 @@ public class SaxophonesService {
     * @param updatedTitle The updated or new title information. 
     * @return Returns the updated title information, or null if update fails.
     */
-   Saxophones update(String id, Saxophones updatedTitle);
+   Saxophones update(String id, Saxophones update);
    
    /**
     * Retrieves a single title by id.
