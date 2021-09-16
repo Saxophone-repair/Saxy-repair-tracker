@@ -82,27 +82,6 @@ public class ServiceTicketController {
         "An internal / unexpect error ocurred creating requested title.");
   }
   
-  @RequestMapping(value = "/titles/{title}", method = RequestMethod.DELETE)
-  public ServiceTicket delete(@PathVariable ServiceTicket ticket) {
-    if ((ticket == null) || (ticket.isEmpty())) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
-          "Not title id was specified.");
-    }
 
-    ServiceTicket existing = service.get(servicePk);
-    if (existing != null) {
-      ServiceTicket model = service.delete(servicePk);
-      if (ticket != null) {
-        return(ticket);
-      }
-
-      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
-          "An internal / unexpect error ocurred creating requested ServiceTicket.");
-    }
-    
-    throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-        "The requested ServiceTicket doesn't exist.");
-  }
 }
   
-}

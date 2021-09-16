@@ -81,18 +81,7 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
     return(null);
   }
 
-  public ServiceTicket delete(String id) {
-    if ((id == null) || (id.isEmpty())) {
-      return(null);
-    }
-    
-    ServiceTicket existing = repository.get(servicePk);
-    if (existing != null) {
-      ServiceTicket ticket = repository.delete(servicePk);
-      return(ticket);
-    }
-    return(null);
-  }
+
 
 
 }
