@@ -10,13 +10,16 @@ public class SaxophonesService {
     * @param name The regular expression or part of the name we want to search.4
     * @return Returns the matching titles if found, otherwise returns an empty list.
     */
-   List<Saxophones> search();
+   List<Saxophones> search(SaxophonesType type) {
+    return null;
+  }
    
    /**
     * Creates a new title.
     * @param newTitle The new title information.
     * @return The new title information that was created and/or validated, or returns null if operation failed.
     */
+   
    Saxophones create(Saxophones saxophonesPK);
    
 //   /**

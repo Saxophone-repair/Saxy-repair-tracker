@@ -23,7 +23,6 @@ public class BaseTest {
     return String.format("http://localhost:%d/employees", serverPort);
   }
   
-
   //we want to return a String with this method 
   protected String getBaseUriForNewEmployee() {
     //this is the test that will be running in the background
@@ -39,5 +38,9 @@ public class BaseTest {
   protected String getBaseUriForCustomer() {
     // this is the test that will be running in the background
     return String.format("http://localhost:%d/customer", serverPort);
+  }
+  
+  protected String getBaseUriForSaxophones() {
+    return String.format("http://localhost:%d/saxophones", serverPort);
   }
 }

@@ -17,6 +17,6 @@ public class Saxophones {
   
   private String series;
   
-  private SaxophoneType saxophoneType;
+  private SaxophonesType saxophoneType;
   
 }

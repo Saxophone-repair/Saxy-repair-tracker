@@ -116,7 +116,7 @@ public class FetchCustomerTest extends FetchCustomerTestSupport {
       // @formatter:off
       return Stream.of(
           arguments("WRANGLER", "@#$%^&&%", "Trim constains non-alpha-numeric chars"),
-          arguments("WRANGLER", "C".repeat(), "Trim length to long"),
+          arguments("WRANGLER", "C", "Trim length to long"),
           arguments("INVALID", "SPORT", "Model is not enum value")
       // @ formatter:on    
           );
