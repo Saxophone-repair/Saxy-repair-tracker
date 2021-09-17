@@ -21,7 +21,7 @@ public class FetchCustomerTestSupport extends BaseTest {
         .build());
     // @formatter:on
     
-    Collections.sort(list);
+//    Collections.sort(list);
     return list;
   }
     
