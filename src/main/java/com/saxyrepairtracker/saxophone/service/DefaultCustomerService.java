@@ -33,4 +33,22 @@ public class DefaultCustomerService implements CustomerService{
     return customer;
   }
 
+  @Override
+  public Customer updateCustomer(Customer customer) {
+    log.info("create Customers in service layer");
+    return customer;
+  }
+
+  @Override
+  public Customer getCustomerFirstName(String firstName) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+//  @Override
+//  public Customer getCustomerFirstName(String firstName) {
+//    log.info("pulls Customers in the service layer with a requested first name");
+//    return Customer;
+//  }
+
 }

@@ -36,39 +36,31 @@ public class DefaultCustomerController {
         return new ResponseEntity<Object>(service.createCustomer(customer), HttpStatus.CREATED);
     }
     
-    // UPDATE: Update a Gig by id 
-//    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-//    public ResponseEntity<Object> updateGig(@RequestBody Gig gig, @PathVariable Long id) throws Exception {
-//        try {
-//            return new ResponseEntity<Object>(service.updateGig(gig, id), HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        }
-//    }
+    // UPDATE: Update a Customer by customerPK 
+    @RequestMapping(value="/{customerPK}", method=RequestMethod.PUT)
+    public ResponseEntity<Object> updateCustomer(@RequestBody Customer customer, @PathVariable int customerPK) throws Exception {
+        try {
+            return new ResponseEntity<Object>(service.updateCustomer(customer), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 //    
-//    // UPDATE: Update a Gig by id 
-//        @RequestMapping(value="/{id}/status/{statusType}", method=RequestMethod.PUT)
-//        public ResponseEntity<Object> updateGig(@PathVariable Long id, @PathVariable StatusType statusType) throws Exception {
-//            try {
-//                return new ResponseEntity<Object>(service.updateGigStatusOnly(id,statusType), HttpStatus.OK);
-//            } catch (Exception e) {
-//                return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
-//            }
-//        }
+// 
 //    
 //    // READ:  Read INSTRUMENTS from GigStatus for an existing Gig by GigId
 //    @RequestMapping(value="/{id}",method=RequestMethod.GET)
 //    public ResponseEntity<Object> getGigandGigStatuses(@PathVariable Long id) throws Exception {
 //            return new ResponseEntity<Object>(service.getGigAndGigStatusesById(id), HttpStatus.OK);
 //    }
-//
-//    // READ:  Read all USERS from GigStatus that match a particular existing Gig by GigId
-//    //        Print out all User Information for the matching GigStatuses.
-//    @RequestMapping(value="/{id}/users",method=RequestMethod.GET)
-//    public ResponseEntity<Object> getGigStatusesWithMusicianInfo(@PathVariable Long id) throws Exception {
-//            return new ResponseEntity<Object>(service.getGigStatusesWithMusicianInfo(id), HttpStatus.OK);
-//    }   
-//    
+
+    // READ:  Read all Customers that have a requested first name
+    //        Print out all Customer info that have the same first name.
+    @RequestMapping(value="/{firstName}/customer",method=RequestMethod.GET)
+    public ResponseEntity<Object> getCustomerFirstName(@PathVariable String firstName) throws Exception {
+            return new ResponseEntity<Object>(service.getCustomerFirstName(firstName), HttpStatus.OK);
+    }   
+    
 //    // UPDATE: Update a Gig/GigStatus by id with a new Status ==> using new UserId
 //    @RequestMapping(value="/{id}/users/{userId}/request", method=RequestMethod.PUT)
 //    public ResponseEntity<Object> updateGigStatus(@RequestBody GigStatus gigStatus, @PathVariable Long id, @PathVariable Long userId) throws Exception {

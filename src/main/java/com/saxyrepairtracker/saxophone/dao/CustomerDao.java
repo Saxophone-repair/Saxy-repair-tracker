@@ -50,4 +50,14 @@ public class CustomerDao {
     log.info("In customer.dao.getCustomers");
     return customer;
   }
+  
+  public static Customer updateCustomer(Customer customer) {
+    log.info("create Customers in service layer");
+    return customer;
+  }
+  
+  public static String getCustomerFirstName(String firstName) { //?
+    log.info("Pull customers in service layer with certain name");
+    return firstName;
+  }
 }
