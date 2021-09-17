@@ -1,8 +1,13 @@
 package com.saxyrepairtracker.saxophone.service;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
+import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 
+
+@Service
 public class SaxophonesService {
 
    /**
@@ -20,7 +25,9 @@ public class SaxophonesService {
     * @return The new title information that was created and/or validated, or returns null if operation failed.
     */
    
-   Saxophones create(Saxophones saxophonesPK);
+   Saxophones create(Saxophones saxophonesPK) {
+    return null;
+  }
    
 //   /**
 //    * Deletes or removes a title.
@@ -35,12 +42,31 @@ public class SaxophonesService {
     * @param updatedTitle The updated or new title information. 
     * @return Returns the updated title information, or null if update fails.
     */
-   Saxophones update(String id, Saxophones update);
+   Saxophones update(String id, Saxophones update) {
+    return null;
+  }
    
    /**
     * Retrieves a single title by id.
     * @param id The unique id of the title.
     * @return The title if found, null if otherwise.
     */
-   Saxophones get(String id);
+   Saxophones get(String id) {
+    return null;
+  }
+
+  public MultiValueMap<String, String> createSaxophones(Saxophones saxophones) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  public MultiValueMap<String, String> getSaxophonesByManufacturer(String manufacturer) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  public MultiValueMap<String, String> getSaxophones() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

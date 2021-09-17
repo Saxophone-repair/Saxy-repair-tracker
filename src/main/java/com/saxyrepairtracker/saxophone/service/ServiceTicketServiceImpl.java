@@ -10,6 +10,7 @@ import com.saxyrepairtracker.saxophone.repositories.ServiceTicketRepository;
 
 @Service
 public class ServiceTicketServiceImpl implements ServiceTicketService{
+
   @Autowired
   private ServiceTicketRepository repository;
   
@@ -39,12 +40,12 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
     if (input.getid().isEmpty()) {
       return(false);
     }
-//    if (input.getName().isEmpty()) {
-//      return(false);
-//    }
-//    if (input.getType() <= 0) {
-//      return(false);
-//    }
+    if (input.getName().isEmpty()) {
+      return(false);
+    }
+    if (input.getType() <= 0) {
+      return(false);
+    }
     return(true);
   }
 
@@ -80,8 +81,5 @@ public class ServiceTicketServiceImpl implements ServiceTicketService{
     
     return(null);
   }
-
-
-
 
 }
