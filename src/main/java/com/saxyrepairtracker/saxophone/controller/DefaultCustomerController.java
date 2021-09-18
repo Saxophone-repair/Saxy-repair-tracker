@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.Customer;
 import com.saxyrepairtracker.saxophone.service.CustomerService;
@@ -36,8 +35,17 @@ public class DefaultCustomerController {
         return new ResponseEntity<Object>(service.createCustomer(customer), HttpStatus.CREATED);
     }
     
+
+    // READ:  Read all Customers that have a requested first name
+    //        Print out all Customer info that have the same first name.
+    @RequestMapping(value="/{firstName}/customer",method=RequestMethod.GET)
+    public ResponseEntity<Object> getCustomerFirstName(@PathVariable String firstName) throws Exception {
+            return new ResponseEntity<Object>(service.getCustomerFirstName(firstName), HttpStatus.OK);
+    }   
+    
+    
     // UPDATE: Update a Customer by customerPK 
-    @RequestMapping(value="/{customerPK}", method=RequestMethod.PUT)
+     @RequestMapping(value="/{customerPK}", method=RequestMethod.PUT)
     public ResponseEntity<Object> updateCustomer(@RequestBody Customer customer, @PathVariable int customerPK) throws Exception {
         try {
             return new ResponseEntity<Object>(service.updateCustomer(customer), HttpStatus.OK);
@@ -54,12 +62,6 @@ public class DefaultCustomerController {
 //            return new ResponseEntity<Object>(service.getGigAndGigStatusesById(id), HttpStatus.OK);
 //    }
 
-    // READ:  Read all Customers that have a requested first name
-    //        Print out all Customer info that have the same first name.
-    @RequestMapping(value="/{firstName}/customer",method=RequestMethod.GET)
-    public ResponseEntity<Object> getCustomerFirstName(@PathVariable String firstName) throws Exception {
-            return new ResponseEntity<Object>(service.getCustomerFirstName(firstName), HttpStatus.OK);
-    }   
     
 //    // UPDATE: Update a Gig/GigStatus by id with a new Status ==> using new UserId
 //    @RequestMapping(value="/{id}/users/{userId}/request", method=RequestMethod.PUT)
