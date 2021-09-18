@@ -30,14 +30,14 @@ public class ServiceTicketController {
   @Operation(summary = "Get a service ticket by it's unique id",
              description = "Gets the title if found, otherwise returns null")
   @RequestMapping(value = "/serviceticket/{id}", method = RequestMethod.GET)
-  public ServiceTicket getServiceTicketeById(@PathVariable int servicePk) {
-    ServiceTicket title = service.get(servicePk);
-    if (servicePk != null) {
-      return(servicePk);
+  public ServiceTicket getServiceTicketeById(@PathVariable int id) {
+    ServiceTicket title = service.get(id);
+    if (id != null) {
+      return(id);
     }
     
     throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-        String.format("ServiceTicket '%s' was not found", servicePk));
+        String.format("ServiceTicket '%s' was not found", id));
   }
   
   /**

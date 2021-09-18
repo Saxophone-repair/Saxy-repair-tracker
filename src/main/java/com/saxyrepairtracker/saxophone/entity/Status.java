@@ -8,4 +8,9 @@ public enum Status {
   READY_FOR_PICKUP,
   PICKED_UP;
 
+  public boolean isEmpty() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 }
