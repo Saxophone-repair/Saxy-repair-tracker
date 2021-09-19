@@ -16,7 +16,7 @@ public class DefaultCustomerDao implements CustomerDao {
   @Autowired
   private NamedParameterJdbcTemplate jdbcTemplate;
     // Retrieve data from database and return to service layer
-  public static List<Customer> fetchCustomer(String firstName, String lastName) {
+  public List<Customer> fetchCustomer(String firstName, String lastName) {
     log.info("In customer.dao.getCustomer");
     return null;
   }
@@ -62,8 +62,9 @@ public class DefaultCustomerDao implements CustomerDao {
   }
 
 
+  
   @Override
-  public List<Customer> fetchCustoemr(String firstName, String lastName) {
+  public List<Customer> fetchCustomers(String firstName, String lastName) {
     // TODO Auto-generated method stub
     return null;
   }

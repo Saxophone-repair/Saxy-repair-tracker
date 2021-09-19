@@ -40,7 +40,16 @@ public class BaseTest {
     return String.format("http://localhost:%d/customer", serverPort);
   }
   
+  protected String getBaseUriForNewCustomer() {
+    // this is the test that will be running in the background
+    return String.format("http://localhost:%d/newcustomer", serverPort);
+  }
+  
   protected String getBaseUriForSaxophones() {
     return String.format("http://localhost:%d/saxophones", serverPort);
+  }
+  
+  protected String getBaseUriForNewSaxophones() {
+    return String.format("http://localhost:%d/newsaxophones", serverPort);
   }
 }
