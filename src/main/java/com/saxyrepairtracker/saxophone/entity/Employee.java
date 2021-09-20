@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-  private int employeePk;
+  private int employeePK;
   private String firstName;
   private String lastName;
   private BigDecimal payRate;

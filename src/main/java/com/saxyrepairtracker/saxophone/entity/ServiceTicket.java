@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ServiceTicket {
 
-  private int servicePk;
-  private int customerFk;
+  private int servicePK;
+  private int customerFK;
   private String description;
   private Status status;
   private BigDecimal estimatedCost;
