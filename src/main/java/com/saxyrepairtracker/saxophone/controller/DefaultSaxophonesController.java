@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
+import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import com.saxyrepairtracker.saxophone.service.SaxophonesService;
 
 @RestController
@@ -43,20 +44,32 @@ public class DefaultSaxophonesController implements SaxophonesController {
   }
 
   @Override
-  public List<Saxophones> fetchSaxophones(Saxophones type,
-      @Length @Pattern(regexp = "[\\w\\s]*") String trim) {
+  public List<Saxophones> fetchSaxophones(SaxophonesType type,
+      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer) {
     // TODO Auto-generated method stub
     return null;
   }
 
+
+  
+
+
+
   // Update a saxophone by customer ID
-//  @RequestMapping(value="/{customer}", method=RequestMethod.PUT)
-//  public ResponseEntity<Object> updateSaxophone(@RequestBody Saxophones saxophones, @PathVariable int customer)
-//    throws Exception {
-//        try {
-//          return new ResponseEntity<Object>(customer.updateSaxophones(series , zzz), HttpStatus.OK);
-//        } catch (Exception e) {
-//          return new ResponseEntity<Object>("Unable to properly update Saxophone: " + zzz, HttpStatus.BAD_REQUEST);
-//        }
-//  }
+  @RequestMapping(value="/{saxophones}", method=RequestMethod.PUT)
+  public ResponseEntity<Object> updateSaxophone(@RequestBody Saxophones saxophones, @PathVariable int customerFK)
+    throws Exception {
+        try {
+          return new ResponseEntity<Object>(saxophones.updateSaxophones(customerFK), HttpStatus.OK);
+        } catch (Exception e) {
+          return new ResponseEntity<Object>("Unable to properly update Saxophone: " + customerFK, HttpStatus.BAD_REQUEST);
+        }
+  }
+
+  @Override
+  public List<Saxophones> fetchSaxophones(Saxophones type,
+      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

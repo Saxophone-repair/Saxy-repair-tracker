@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
+import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -64,10 +65,13 @@ public interface SaxophonesController {
   @ResponseStatus(code = HttpStatus.OK)
   List<Saxophones> fetchSaxophones(
       @RequestParam(required = false)
-        Saxophones type,
+        SaxophonesType type,
         @Length()
       @Pattern(regexp = "[\\w\\s]*")
       @RequestParam(required = false)
       String trim);
   //@formatter:on
+
+  List<Saxophones> fetchSaxophones(Saxophones type,
+      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
 }

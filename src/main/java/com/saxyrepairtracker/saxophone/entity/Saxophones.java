@@ -1,6 +1,7 @@
 package com.saxyrepairtracker.saxophone.entity;
 
 import java.util.List;
+import org.springframework.util.MultiValueMap;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
@@ -19,10 +20,20 @@ public class Saxophones {
   
   private String series;
   
-  private SaxophonesType saxophoneType;
+  private SaxophonesType saxophonesType;
   
   @JsonIgnore
   private List<Customer> customer;
+
+  public List<String> updateSaxophones(int customerFK) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+//  public MultiValueMap<String, String> updateSaxophones(int customer) {
+//    // TODO Auto-generated method stub
+//    return null;
+//  }
 
 //
 //  public MultiValueMap<String, String> createSaxophones(Saxophones saxophones) {
