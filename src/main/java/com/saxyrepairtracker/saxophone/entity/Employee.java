@@ -19,6 +19,6 @@ public class Employee {
 //So Json ignore the PK in it
 @JsonIgnore
 public int getEmployeePK() {
-  return employeePk;
+  return employeePK;
 }
 }
