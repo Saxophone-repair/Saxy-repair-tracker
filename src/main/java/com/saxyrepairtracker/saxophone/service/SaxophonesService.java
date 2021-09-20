@@ -2,7 +2,6 @@ package com.saxyrepairtracker.saxophone.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 
@@ -55,17 +54,22 @@ public class SaxophonesService {
     return null;
   }
 
-  public MultiValueMap<String, String> createSaxophones(Saxophones saxophones) {
+  public List<Saxophones> createSaxophones(Saxophones saxophones) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  public MultiValueMap<String, String> getSaxophonesByManufacturer(String manufacturer) {
+  public List<Saxophones> getSaxophonesByManufacturer(String manufacturer) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  public MultiValueMap<String, String> getSaxophones() {
+  public List<Saxophones> getSaxophones() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  public List<SaxophonesType> getSaxophonesBySaxophoneType(SaxophonesType type) {
     // TODO Auto-generated method stub
     return null;
   }

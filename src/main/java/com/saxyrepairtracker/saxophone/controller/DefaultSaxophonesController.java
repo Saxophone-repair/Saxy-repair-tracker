@@ -33,8 +33,8 @@ public class DefaultSaxophonesController implements SaxophonesController {
   
   // To get a saxophone by its manufacturer
   @RequestMapping(value = "/{manufacturer}", method=RequestMethod.GET)
-  public ResponseEntity<Object> getSaxophonesByManufacturer(@PathVariable String manufacturer) {
-                return new ResponseEntity<Object>(saxophonesService.getSaxophonesByManufacturer(manufacturer), HttpStatus.OK);
+  public ResponseEntity<Object> getSaxophonesByManufacturer(@PathVariable SaxophonesType type) {
+                return new ResponseEntity<Object>(saxophonesService.getSaxophonesBySaxophoneType(type), HttpStatus.OK);
   }
   
   // Create a new Saxophone for the database
@@ -49,18 +49,15 @@ public class DefaultSaxophonesController implements SaxophonesController {
     // TODO Auto-generated method stub
     return null;
   }
-
-
   
-
-
 
   // Update a saxophone by customer ID
   @RequestMapping(value="/{saxophones}", method=RequestMethod.PUT)
-  public ResponseEntity<Object> updateSaxophone(@RequestBody Saxophones saxophones, @PathVariable int customerFK)
+  public ResponseEntity<Object> updateSaxophone(@RequestBody Saxophones saxophones, @PathVariable int customerFK, 
+                                                             String series, String manufacturer)
     throws Exception {
         try {
-          return new ResponseEntity<Object>(saxophones.updateSaxophones(customerFK), HttpStatus.OK);
+          return new ResponseEntity<Object>(saxophones.updateSaxophones(customerFK, series, manufacturer), HttpStatus.OK);
         } catch (Exception e) {
           return new ResponseEntity<Object>("Unable to properly update Saxophone: " + customerFK, HttpStatus.BAD_REQUEST);
         }
