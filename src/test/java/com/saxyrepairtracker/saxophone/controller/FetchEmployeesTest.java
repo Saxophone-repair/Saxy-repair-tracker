@@ -23,11 +23,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-//import com.promineotech.jeep.Constants;
-//import com.promineotech.jeep.controller.support.FetchJeepTestSupport;
-//import com.promineotech.jeep.entity.Jeep;
-//import com.promineotech.jeep.entity.JeepModel;
-//import com.promineotech.jeep.service.JeepSalesService;
 import com.saxyrepairtracker.saxophone.controller.support.FetchEmployeesTestSupport;
 import com.saxyrepairtracker.saxophone.entity.Employee;
 
@@ -53,7 +48,7 @@ class FetchEmployeesTest {
      * 
      */
     @Test
-    void testThatEmployeesAreReturnedWhenAValidFirstNameAndLastNameAreSupplied() {
+    void testThatAnEmployeeAreReturnedWhenAValidFirstNameAndLastNameAreSupplied() {
    // Given: a valid first name, last name, and URI
       String firstName = "Jojo";
       String lastName = "Mel";
@@ -78,7 +73,7 @@ class FetchEmployeesTest {
      * 
      */
     // Test for error message
-    //@Test
+//    @Test
 //    void testThatAnErrorMessageIsReturnedWhenAnUnknownNamesAreSupplied() {
 //       // Given: a valid first name, last name, and URI
 //      String firstName = "Jojo";
@@ -98,7 +93,7 @@ class FetchEmployeesTest {
 //       
 //       assertErrorMessageValid(error, HttpStatus.NOT_FOUND);
 //    }
-//
+
 //    /**
 //     * 
 //     */

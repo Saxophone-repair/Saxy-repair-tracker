@@ -32,7 +32,7 @@ public interface EmployeeController {
       responses = {
           @ApiResponse(
               responseCode = "200",
-              description = "A list of Employees is returned",
+              description = "An Employees is returned",
               content = @Content(
                   mediaType = "application/json", 
                   schema = @Schema(implementation = Employee.class))),
