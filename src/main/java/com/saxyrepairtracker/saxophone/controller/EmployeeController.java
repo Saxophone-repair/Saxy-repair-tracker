@@ -100,16 +100,20 @@ public interface EmployeeController {
 //            description = "An unplanned error occurred.",  
 //            content = @Content(mediaType = "application/json"))
 //    },
-//    parameters = {
-//        @Parameter(name = "firstName", 
-//            allowEmptyValue = false, 
-//            required = false, 
-//            description = "The first name (i.e., 'Jojo')"),
-//        @Parameter(name = "lastName", 
-//        allowEmptyValue = false, 
-//        required = false, 
-//        description = "The last name (i.e., 'Mel')")
-//    }
+          //parameters = {
+          //@Parameter(name = "firstName", 
+          //  allowEmptyValue = false, 
+          //  required = false, 
+          //  description = "The first name (i.e., 'Jojo')"),
+          //@Parameter(name = "lastName", 
+          //allowEmptyValue = false, 
+          //required = false, 
+          //description = "The last name (i.e., 'Mel')")
+          //@Parameter(name = "payRate", 
+          //allowEmptyValue = false, 
+          //required = false, 
+          //description = "Pay rate (i.e., '15')")
+          //}
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
 //@GetMapping("/all")
@@ -161,7 +165,7 @@ public interface EmployeeController {
 //    }
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
-//@PostMapping
+//@PostMapping("/{id}")
 //@ResponseStatus(code = HttpStatus.CREATED)
 //Employee createEmployee(@Valid @RequestBody Employee newEmployee)
 ////@formatter:on
@@ -173,12 +177,12 @@ public interface EmployeeController {
 //updateEmployee
 //// @formatter:off
 //@Operation(
-//    summary = "Returns a Employee",
-//    description = "Returns a Employee given a first and last name",
+//    summary = "Returns an updated Employee",
+//    description = "Returns a Employee to update given an id",
 //    responses = {
 //        @ApiResponse(
 //            responseCode = "200",
-//            description = "An Employee is returned",
+//            description = "An updated Employee is returned",
 //            content = @Content(
 //                mediaType = "application/json", 
 //                schema = @Schema(implementation = Employee.class))),
@@ -195,21 +199,26 @@ public interface EmployeeController {
 //            description = "An unplanned error occurred.",  
 //            content = @Content(mediaType = "application/json"))
 //    },
-//    parameters = {
-//        @Parameter(name = "firstName", 
-//            allowEmptyValue = false, 
-//            required = false, 
-//            description = "The first name (i.e., 'Jojo')"),
-//        @Parameter(name = "lastName", 
-//        allowEmptyValue = false, 
-//        required = false, 
-//        description = "The last name (i.e., 'Mel')")
+          //parameters = {
+          //@Parameter(name = "firstName", 
+          //  allowEmptyValue = false, 
+          //  required = false, 
+          //  description = "The first name (i.e., 'Jojo')"),
+          //@Parameter(name = "lastName", 
+          //allowEmptyValue = false, 
+          //required = false, 
+          //description = "The last name (i.e., 'Mel')")
+          //@Parameter(name = "payRate", 
+          //allowEmptyValue = false, 
+          //required = false, 
+          //description = "Pay rate (i.e., '15')")
+          //}
 //    }
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
-//@GetMapping
-//@ResponseStatus(code = HttpStatus.OK)
-//List<Employee> fetchEmployees(
+//@PutMapping
+//@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
+//List<Employee> updateEmployees(
 //    @RequestParam(required = false)
 //    String firstName, 
 //    //@Pattern(regexp = "[\\w\\s]*")
@@ -223,12 +232,12 @@ public interface EmployeeController {
 //deleteEmployee
 //// @formatter:off
 //@Operation(
-//    summary = "Returns a Employee",
-//    description = "Returns a Employee given a first and last name",
+//    summary = "Deletes an Employee",
+//    description = "Deletes an Employee given an id",
 //    responses = {
 //        @ApiResponse(
 //            responseCode = "200",
-//            description = "An Employee is returned",
+//            description = "Employee was deleted",
 //            content = @Content(
 //                mediaType = "application/json", 
 //                schema = @Schema(implementation = Employee.class))),
@@ -257,13 +266,8 @@ public interface EmployeeController {
 //    }
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
-//@GetMapping
+//@DeleteMapping("/{employeePK}")
 //@ResponseStatus(code = HttpStatus.OK)
-//List<Employee> fetchEmployees(
-//    @RequestParam(required = false)
-//    String firstName, 
-//    //@Pattern(regexp = "[\\w\\s]*")
-//    @RequestParam(required = false)
-//    String lastName);
-////@formatter:on
+//void deleteEmployee(@PathVariable int employeePK); 
+// @formatter:on
 //}
