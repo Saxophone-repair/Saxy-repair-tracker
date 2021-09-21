@@ -45,8 +45,8 @@ class FetchEmployeesTest {
   @Sql(
 //      scripts = {"classpath:flyway/migrations/V1.0__Jeep_Schema.sql", 
 //                  "classpath:flyway/migrations/V1.1__Jeep_Data.sql"}, 
-          scripts = {"Saxopone repair.sql", 
-                      "Saxopone repair data.sql"}, 
+          scripts = {"Saxophone repair.sql", 
+                      "Saxophone repair data.sql"}, 
             config = @SqlConfig(encoding = "utf-8"))
   class TestThatDoNotPolluteTheApplicationContext extends FetchEmployeesTestSupport {
     /**

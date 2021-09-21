@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
-@RequestMapping("/jeeps")
+@RequestMapping("/saxophones")
 @OpenAPIDefinition(info = @Info(title = "Saxophones Service"), servers = {
     @Server(url = "http://localhost:8080", description = "Local server.")})
 
@@ -72,6 +72,6 @@ public interface SaxophonesController {
       String trim);
   //@formatter:on
 
-  List<Saxophones> fetchSaxophones(Saxophones type,
-      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
+//  List<Saxophones> fetchSaxophones(Saxophones type,
+//      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
 }

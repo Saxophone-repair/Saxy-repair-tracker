@@ -17,7 +17,7 @@ import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import com.saxyrepairtracker.saxophone.service.SaxophonesService;
 
 @RestController
-@RequestMapping("/saxophone/saxophone") //?
+//@RequestMapping("/saxophone/saxophone") //?
 
 public class DefaultSaxophonesController implements SaxophonesController {
 
@@ -26,16 +26,16 @@ public class DefaultSaxophonesController implements SaxophonesController {
   private SaxophonesService saxophonesService;
   
   // To get all saxophones
-  @RequestMapping(method=RequestMethod.GET)
+  @RequestMapping(path="/all", method =RequestMethod.GET)
   public ResponseEntity<Object> getSaxophones () {
       return new ResponseEntity<Object>(saxophonesService.getSaxophones(), HttpStatus.OK);
   }
   
-  // To get a saxophone by its manufacturer
-  @RequestMapping(value = "/{manufacturer}", method=RequestMethod.GET)
-  public ResponseEntity<Object> getSaxophonesByManufacturer(@PathVariable SaxophonesType type) {
-                return new ResponseEntity<Object>(saxophonesService.getSaxophonesBySaxophoneType(type), HttpStatus.OK);
-  }
+//  // To get a saxophone by its manufacturer
+//  @RequestMapping(value = "/{manufacturer}", method=RequestMethod.GET)
+//  public ResponseEntity<Object> getSaxophonesByManufacturer(@PathVariable SaxophonesType type) {
+//                return new ResponseEntity<Object>(saxophonesService.getSaxophonesBySaxophoneType(type), HttpStatus.OK);
+//  }
   
   // Create a new Saxophone for the database
   @RequestMapping(method=RequestMethod.POST)
@@ -47,7 +47,7 @@ public class DefaultSaxophonesController implements SaxophonesController {
   public List<Saxophones> fetchSaxophones(SaxophonesType type,
       @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer) {
     // TODO Auto-generated method stub
-    return null;
+    return saxophonesService.getSaxophonesBySaxophoneType(type, manufacturer);
   }
   
 
@@ -63,10 +63,4 @@ public class DefaultSaxophonesController implements SaxophonesController {
         }
   }
 
-  @Override
-  public List<Saxophones> fetchSaxophones(Saxophones type,
-      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer) {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }

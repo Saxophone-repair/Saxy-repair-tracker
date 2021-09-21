@@ -25,7 +25,7 @@ public class DefaultEmployeeDao implements EmployeeDao{
  // @formatter:off
     String sql = ""
         + "SELECT * "
-        + "FROM employees "
+        + "FROM employee "
         + "WHERE first_name = :first_name AND last_name = :last_name";
     // @formatter:on
     

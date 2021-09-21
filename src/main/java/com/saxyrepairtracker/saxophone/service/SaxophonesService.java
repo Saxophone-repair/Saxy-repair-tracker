@@ -1,6 +1,8 @@
 package com.saxyrepairtracker.saxophone.service;
 
 import java.util.List;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
@@ -69,7 +71,7 @@ public class SaxophonesService {
     return null;
   }
 
-  public List<SaxophonesType> getSaxophonesBySaxophoneType(SaxophonesType type) {
+  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type, String manufacturer) {
     // TODO Auto-generated method stub
     return null;
   }
