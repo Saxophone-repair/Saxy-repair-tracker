@@ -1,9 +1,11 @@
 package com.saxyrepairtracker.saxophone.controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -78,12 +80,12 @@ public interface EmployeeController {
 //createEmployee
 //// @formatter:off
 //@Operation(
-//    summary = "Returns a Employee",
+//    summary = "Returns a new Employee",
 //    description = "Returns a Employee given a first and last name",
 //    responses = {
 //        @ApiResponse(
-//            responseCode = "200",
-//            description = "An Employee is returned",
+//            responseCode = "201", 
+//            description = "A new Employee has been created",
 //            content = @Content(
 //                mediaType = "application/json", 
 //                schema = @Schema(implementation = Employee.class))),
@@ -93,8 +95,8 @@ public interface EmployeeController {
 //            content = @Content(mediaType = "application/json")),
 //        @ApiResponse(
 //            responseCode = "404", 
-//            description = "No Employees were found with the input criteria",  
-//            content = @Content(mediaType = "application/json")),
+//            description = "No Employees component was not found with the input criteria",  
+//            content = @Content(mediaType = "application/json")),//maybe reword
 //        @ApiResponse(
 //            responseCode = "500", 
 //            description = "An unplanned error occurred.",  
@@ -109,17 +111,16 @@ public interface EmployeeController {
 //        allowEmptyValue = false, 
 //        required = false, 
 //        description = "The last name (i.e., 'Mel')")
+//         @Parameter(name = "payRate", 
+//          allowEmptyValue = false, 
+//          required = false, 
+//          description = "Pay rate (i.e., '15')")
 //    }
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
-//@GetMapping
-//@ResponseStatus(code = HttpStatus.OK)
-//List<Employee> fetchEmployees(
-//    @RequestParam(required = false)
-//    String firstName, 
-//    //@Pattern(regexp = "[\\w\\s]*")
-//    @RequestParam(required = false)
-//    String lastName);
+//@PostMapping
+//@ResponseStatus(code = HttpStatus.CREATED)
+//Employee createEmployee(@Valid @RequestBody newEmployee) //?
 ////@formatter:on
 //}
 //
