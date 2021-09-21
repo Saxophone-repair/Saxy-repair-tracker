@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import lombok.Getter;
-
+//THIS IS USED ONLY IN TESTING
 //Now here is where we get the random port, we are putting it within here so all the test classes can use it 
 public class BaseTest {
   @LocalServerPort
@@ -23,11 +23,12 @@ public class BaseTest {
     return String.format("http://localhost:%d/employees", serverPort);
   }
   
+  //This should be an extension of employees 
   //we want to return a String with this method 
-  protected String getBaseUriForNewEmployee() {
+  //protected String getBaseUriForNewEmployee() {
     //this is the test that will be running in the background
-    return String.format("http://localhost:%d/newemployee", serverPort);
-  }
+//    return String.format("http://localhost:%d/newemployee", serverPort);
+//  }
   
   //He renames the top one but I think thats unneeded.
   protected String getBaseUriForOrders() {

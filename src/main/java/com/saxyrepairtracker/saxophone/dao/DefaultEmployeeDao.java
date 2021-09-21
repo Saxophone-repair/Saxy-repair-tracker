@@ -45,5 +45,8 @@ public class DefaultEmployeeDao implements EmployeeDao{
                 .build();
          // @formatter:on
           }});
+//this is where the sql is implemented
   }
+//new functions implemented in here 
+  //May not always need a rowmapper i.e. in delete 
 }

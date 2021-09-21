@@ -2,13 +2,16 @@ package com.saxyrepairtracker.saxophone.dao;
 
 import java.util.List;
 import com.saxyrepairtracker.saxophone.entity.Employee;
-
+//Last version of functions to access database 
+//Controller calls Service 
+//inturn calls Dao
+//interfaces need unimplemented methods that will 
 public interface EmployeeDao {
   //Should be fetchAnEmployee fix/rename later
   List<Employee> fetchEmployees(String firstName, String lastName);
   //fetchEmployees orangize by order
   //List<Employees> fetchEmployeesInOrder() 
-  //Does it need parameters if it will just fetch the name 
+  //Does it need parameters if it will just fetch the name -no 
   //maybe have a option to have what order they would like i.e. payrate, first name, lastname, 
   //all can be organized by A first or Z first for last or first name? 
   //Payrate option having the option low or highest option of list 
@@ -22,6 +25,8 @@ public interface EmployeeDao {
   
   //FetchEmployeesByPayRate
   //2keys like before but by payrate value asc and desc 
+  //DeleteEmployee 
+  //CreateEmployee
 
 }
 
