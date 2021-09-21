@@ -255,14 +255,10 @@ public interface EmployeeController {
 //            content = @Content(mediaType = "application/json"))
 //    },
 //    parameters = {
-//        @Parameter(name = "firstName", 
+//        @Parameter(name = "employeePK", 
 //            allowEmptyValue = false, 
 //            required = false, 
-//            description = "The first name (i.e., 'Jojo')"),
-//        @Parameter(name = "lastName", 
-//        allowEmptyValue = false, 
-//        required = false, 
-//        description = "The last name (i.e., 'Mel')")
+//            description = "employeePK (i.e., '3')"),
 //    }
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
