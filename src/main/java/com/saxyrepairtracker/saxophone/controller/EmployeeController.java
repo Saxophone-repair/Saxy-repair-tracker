@@ -24,15 +24,16 @@ import io.swagger.v3.oas.annotations.servers.Server;
     @Server(url = "http://localhost:8080", description = "Local server.")})
 public interface EmployeeController {
 
-
+//need one of these for the different functions 
+  //i.e. Deleting, Creating, etc.
   // @formatter:off
   @Operation(
-      summary = "Returns a list of Employees",
-      description = "Returns a list of Employees given an optional first and last name",
+      summary = "Returns a Employee",
+      description = "Returns a Employee given a first and last name",
       responses = {
           @ApiResponse(
               responseCode = "200",
-              description = "An Employees is returned",
+              description = "An Employee is returned",
               content = @Content(
                   mediaType = "application/json", 
                   schema = @Schema(implementation = Employee.class))),
@@ -60,6 +61,7 @@ public interface EmployeeController {
           description = "The last name (i.e., 'Mel')")
       }
   )
+  //this is for gets not deletes, postmapping, deletemapping etc for the methods 
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Employee> fetchEmployees(

@@ -42,13 +42,14 @@ public class DefaultEmployeeController implements EmployeeController{
 //private JeepSalesService jeepSalesService;
   @Autowired 
   private EmployeesService employeesService;
-  
+  //this is what swagger sees this is how 
  // @Override
 //public List<Jeep> fetchJeeps(JeepModel model, String trim) {
 //  //by default Spring logs by info not debug 
 //  log.debug("model={}, trim={}", model, trim);
 //  return jeepSalesService.fetchJeeps(model, trim);
   
+  //change to employee not fetchemployee 
   @Override
   public List<Employee> fetchEmployees(String firstName, String lastName) {
     log.debug("firstName={}, lastName={}", firstName, lastName);

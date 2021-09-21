@@ -7,15 +7,15 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.doThrow;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
+//import java.util.stream.Stream;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.params.ParameterizedTest;
+//import org.junit.jupiter.params.provider.Arguments;
+//import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.mock.mockito.MockBean;
+//import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -54,7 +54,7 @@ class FetchEmployeesTest {
       String lastName = "Mel";
       String uri = 
           //Update Uri name to an employee not list 
-          //Add payrate 
+          //Add payrate
           String.format("%s?firstName=%s&lastName=%s", getBaseUriForEmployees(), firstName, lastName);
     
        // When: a connection is made to the URI
@@ -95,19 +95,18 @@ class FetchEmployeesTest {
 //       
 //       assertErrorMessageValid(error, HttpStatus.NOT_FOUND);
 //    }
-
-//    /**
-//     * 
-//     */
-//    // Test for invalid value message
+//
+////    /**
+////     * 
+////     */
+////    // Test for invalid value message
 //    @ParameterizedTest
 //    @MethodSource("com.promineotech.jeep.controller.FetchJeepTest#parametersForInvalidInput")
 //    void testThatAnErrorMessageIsReturnedWhenAnInvalidValueIsSupplied(
-//        String model, String trim, String reason) {
+//        String firstName, String lastName, String reason) {
 //       // Given: a valid model, trim, and URI
 //      String uri = 
-//          String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
-//    
+//          String.format("%s?firstName=%s&lastName=%s", getBaseUriForEmployees(), firstName, lastName);
 //       // When: a connection is made to the URI
 //       ResponseEntity<Map<String, Object>> response = getRestTemplate().exchange(uri, 
 //               HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
@@ -172,7 +171,7 @@ class FetchEmployeesTest {
 //       assertErrorMessageValid(error, HttpStatus.INTERNAL_SERVER_ERROR);
 //    }
 //  }
-// 
+ 
   }
 
 }
