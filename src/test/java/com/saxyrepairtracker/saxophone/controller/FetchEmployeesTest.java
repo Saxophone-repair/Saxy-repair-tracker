@@ -53,6 +53,8 @@ class FetchEmployeesTest {
       String firstName = "Jojo";
       String lastName = "Mel";
       String uri = 
+          //Update Uri name to an employee not list 
+          //Add payrate 
           String.format("%s?firstName=%s&lastName=%s", getBaseUriForEmployees(), firstName, lastName);
     
        // When: a connection is made to the URI
