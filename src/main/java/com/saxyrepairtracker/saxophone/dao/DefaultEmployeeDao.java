@@ -39,7 +39,7 @@ public class DefaultEmployeeDao implements EmployeeDao{
           public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
          // @formatter:off
             return Employee.builder()
-                .employeePk(rs.getInt("employee_Pk"))
+                .employeePK(rs.getInt("employee_pk"))
                 .firstName(rs.getString("first_name"))
                 .lastName(rs.getString("last_name"))
                 .build();

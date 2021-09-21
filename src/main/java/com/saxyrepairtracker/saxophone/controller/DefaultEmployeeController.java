@@ -31,7 +31,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.Employee;
-import com.saxyrepairtracker.saxophone.service.EmployeeService;
+import com.saxyrepairtracker.saxophone.service.EmployeesService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -41,9 +41,9 @@ public class DefaultEmployeeController implements EmployeeController{
 //@Autowired
 //private JeepSalesService jeepSalesService;
   @Autowired 
-  private EmployeeService employeeService;
+  private EmployeesService employeesService;
   
-  @Override
+ // @Override
 //public List<Jeep> fetchJeeps(JeepModel model, String trim) {
 //  //by default Spring logs by info not debug 
 //  log.debug("model={}, trim={}", model, trim);
@@ -52,7 +52,7 @@ public class DefaultEmployeeController implements EmployeeController{
   @Override
   public List<Employee> fetchEmployees(String firstName, String lastName) {
     log.debug("firstName={}, lastName={}", firstName, lastName);
-    return employeeService.fetchEmployees(firstName, lastName);
+    return employeesService.fetchEmployees(firstName, lastName);
   }
 
 }

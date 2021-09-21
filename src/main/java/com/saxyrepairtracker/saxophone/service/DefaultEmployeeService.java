@@ -30,9 +30,8 @@ public class DefaultEmployeeService implements EmployeesService{
         String msg = String.format("No jeeeps found with firstName=%s and lastName=%s", firstName, lastName);
             throw new NoSuchElementException(msg);
       }
-      //will sort said list 
-      //It is a good way to sort this by a sort method due to the unknown of how it will auto sort 
-      Collections.sort(employees);
+      
+     // Collections.sort((List<Employee>) employees);
       return employees;
     }
 
