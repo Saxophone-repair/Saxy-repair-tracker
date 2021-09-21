@@ -14,7 +14,7 @@ import com.saxyrepairtracker.saxophone.entity.Customer;
 import com.saxyrepairtracker.saxophone.service.CustomerService;
 
 @RestController
-@RequestMapping("/saxophone/customer") //?
+//@RequestMapping("/saxophone/customer") //?
 public class DefaultCustomerController {
 
 //public class GigController {

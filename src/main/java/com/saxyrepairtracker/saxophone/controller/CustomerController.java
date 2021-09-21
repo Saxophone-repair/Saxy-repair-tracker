@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 
 @Validated
-@RequestMapping("/customers")
+@RequestMapping("/customer")
 @OpenAPIDefinition(info = @Info(title = "Customer"), servers = {
     @Server(url = "http://localhost:8080", description = "Local server.")})
 public interface CustomerController {
