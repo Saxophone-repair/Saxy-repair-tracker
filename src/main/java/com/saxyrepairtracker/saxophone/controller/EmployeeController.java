@@ -75,6 +75,49 @@ public interface EmployeeController {
   //@formatter:on
 }
 
+// /all 
+//// @formatter:off
+//@Operation(
+//    summary = "Returns all Employees",
+//    description = "Returns a List of Employees",
+//    responses = {
+//        @ApiResponse(
+//            responseCode = "200",
+//            description = "A List of all Employees is returned",
+//            content = @Content(
+//                mediaType = "application/json", 
+//                schema = @Schema(implementation = Employee.class))),
+//        @ApiResponse(
+//            responseCode = "400", 
+//            description = "The request parameters are invalid",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "404", 
+//            description = "No Employees were found with the input criteria",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "500", 
+//            description = "An unplanned error occurred.",  
+//            content = @Content(mediaType = "application/json"))
+//    },
+//    parameters = {
+//        @Parameter(name = "firstName", 
+//            allowEmptyValue = false, 
+//            required = false, 
+//            description = "The first name (i.e., 'Jojo')"),
+//        @Parameter(name = "lastName", 
+//        allowEmptyValue = false, 
+//        required = false, 
+//        description = "The last name (i.e., 'Mel')")
+//    }
+//)
+////this is for gets not deletes, postmapping, deletemapping etc for the methods 
+//@GetMapping("/all")
+//@ResponseStatus(code = HttpStatus.OK) 
+//List<Jeep> fetchAllEmployees();  
+// @formatter:on
+//}
+
 //POST
 //Create Method CreateEmployees
 //createEmployee
@@ -120,7 +163,7 @@ public interface EmployeeController {
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
 //@PostMapping
 //@ResponseStatus(code = HttpStatus.CREATED)
-//Employee createEmployee(@Valid @RequestBody newEmployee) //?
+//Employee createEmployee(@Valid @RequestBody Employee newEmployee)
 ////@formatter:on
 //}
 //
