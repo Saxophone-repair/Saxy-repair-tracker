@@ -73,3 +73,153 @@ public interface EmployeeController {
   //@formatter:on
 }
 
+//POST
+//Create Method CreateEmployees
+//createEmployee
+//// @formatter:off
+//@Operation(
+//    summary = "Returns a Employee",
+//    description = "Returns a Employee given a first and last name",
+//    responses = {
+//        @ApiResponse(
+//            responseCode = "200",
+//            description = "An Employee is returned",
+//            content = @Content(
+//                mediaType = "application/json", 
+//                schema = @Schema(implementation = Employee.class))),
+//        @ApiResponse(
+//            responseCode = "400", 
+//            description = "The request parameters are invalid",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "404", 
+//            description = "No Employees were found with the input criteria",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "500", 
+//            description = "An unplanned error occurred.",  
+//            content = @Content(mediaType = "application/json"))
+//    },
+//    parameters = {
+//        @Parameter(name = "firstName", 
+//            allowEmptyValue = false, 
+//            required = false, 
+//            description = "The first name (i.e., 'Jojo')"),
+//        @Parameter(name = "lastName", 
+//        allowEmptyValue = false, 
+//        required = false, 
+//        description = "The last name (i.e., 'Mel')")
+//    }
+//)
+////this is for gets not deletes, postmapping, deletemapping etc for the methods 
+//@GetMapping
+//@ResponseStatus(code = HttpStatus.OK)
+//List<Employee> fetchEmployees(
+//    @RequestParam(required = false)
+//    String firstName, 
+//    //@Pattern(regexp = "[\\w\\s]*")
+//    @RequestParam(required = false)
+//    String lastName);
+////@formatter:on
+//}
+//
+
+//PUT Update 
+//EmployeeUpdate
+//updateEmployee
+//// @formatter:off
+//@Operation(
+//    summary = "Returns a Employee",
+//    description = "Returns a Employee given a first and last name",
+//    responses = {
+//        @ApiResponse(
+//            responseCode = "200",
+//            description = "An Employee is returned",
+//            content = @Content(
+//                mediaType = "application/json", 
+//                schema = @Schema(implementation = Employee.class))),
+//        @ApiResponse(
+//            responseCode = "400", 
+//            description = "The request parameters are invalid",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "404", 
+//            description = "No Employees were found with the input criteria",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "500", 
+//            description = "An unplanned error occurred.",  
+//            content = @Content(mediaType = "application/json"))
+//    },
+//    parameters = {
+//        @Parameter(name = "firstName", 
+//            allowEmptyValue = false, 
+//            required = false, 
+//            description = "The first name (i.e., 'Jojo')"),
+//        @Parameter(name = "lastName", 
+//        allowEmptyValue = false, 
+//        required = false, 
+//        description = "The last name (i.e., 'Mel')")
+//    }
+//)
+////this is for gets not deletes, postmapping, deletemapping etc for the methods 
+//@GetMapping
+//@ResponseStatus(code = HttpStatus.OK)
+//List<Employee> fetchEmployees(
+//    @RequestParam(required = false)
+//    String firstName, 
+//    //@Pattern(regexp = "[\\w\\s]*")
+//    @RequestParam(required = false)
+//    String lastName);
+////@formatter:on
+//}
+//
+
+//Deletes Employee 
+//deleteEmployee
+//// @formatter:off
+//@Operation(
+//    summary = "Returns a Employee",
+//    description = "Returns a Employee given a first and last name",
+//    responses = {
+//        @ApiResponse(
+//            responseCode = "200",
+//            description = "An Employee is returned",
+//            content = @Content(
+//                mediaType = "application/json", 
+//                schema = @Schema(implementation = Employee.class))),
+//        @ApiResponse(
+//            responseCode = "400", 
+//            description = "The request parameters are invalid",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "404", 
+//            description = "No Employees were found with the input criteria",  
+//            content = @Content(mediaType = "application/json")),
+//        @ApiResponse(
+//            responseCode = "500", 
+//            description = "An unplanned error occurred.",  
+//            content = @Content(mediaType = "application/json"))
+//    },
+//    parameters = {
+//        @Parameter(name = "firstName", 
+//            allowEmptyValue = false, 
+//            required = false, 
+//            description = "The first name (i.e., 'Jojo')"),
+//        @Parameter(name = "lastName", 
+//        allowEmptyValue = false, 
+//        required = false, 
+//        description = "The last name (i.e., 'Mel')")
+//    }
+//)
+////this is for gets not deletes, postmapping, deletemapping etc for the methods 
+//@GetMapping
+//@ResponseStatus(code = HttpStatus.OK)
+//List<Employee> fetchEmployees(
+//    @RequestParam(required = false)
+//    String firstName, 
+//    //@Pattern(regexp = "[\\w\\s]*")
+//    @RequestParam(required = false)
+//    String lastName);
+////@formatter:on
+//}
