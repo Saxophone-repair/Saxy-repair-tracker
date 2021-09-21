@@ -57,7 +57,7 @@ public interface EmployeeController {
           @Parameter(name = "lastName", 
           allowEmptyValue = false, 
           required = false, 
-          description = "The last name (i.e., 'Mel'")
+          description = "The last name (i.e., 'Mel')")
       }
   )
   @GetMapping
