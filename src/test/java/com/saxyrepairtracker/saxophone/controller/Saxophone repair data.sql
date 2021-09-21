@@ -35,4 +35,5 @@ INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost) V
 INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost, actual_cost) VALUES (7, 'cleaning', 'PICKED-UP', '25', '25'); 
 INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost, actual_cost) VALUES (1, 'key bent fell off', 'READY FOR PICK-UP', '85', '115'); 
 
+
 -- SELECT * FROM saxophones;
