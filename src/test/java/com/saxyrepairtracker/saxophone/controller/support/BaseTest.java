@@ -25,10 +25,10 @@ public class BaseTest {
   
   //This should be an extension of employees 
   //we want to return a String with this method 
-  //protected String getBaseUriForNewEmployee() {
+  protected String getBaseUriForNewEmployee() {
     //this is the test that will be running in the background
-//    return String.format("http://localhost:%d/newemployee", serverPort);
-//  }
+    return String.format("http://localhost:%d/newemployee", serverPort);
+  }
   
   //He renames the top one but I think thats unneeded.
   protected String getBaseUriForOrders() {
