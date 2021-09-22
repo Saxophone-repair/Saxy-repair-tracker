@@ -46,25 +46,29 @@ public class DefaultCustomerDao implements CustomerDao {
             }});
     }
 
-  public static Customer createCustomer(Customer customer) {
+  public Customer createCustomer(Customer customer) {
     log.info("In customer.dao.getCustomers");
     return customer;
   }
   
-  public static Customer updateCustomer(Customer customer) {
+  public Customer updateCustomer(Customer customer) {
     log.info("create Customers in service layer");
     return customer;
   }
   
-  public static String getCustomerFirstName(String firstName) { //?
+  public Customer getCustomerFirstName(Customer firstName) { //?
     log.info("Pull customers in service layer with certain name");
     return firstName;
   }
 
-
-  
-  @Override
   public List<Customer> fetchCustomers(String firstName, String lastName) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
+  @Override
+  public Customer getCustomerFirstName(String firstName) {
     // TODO Auto-generated method stub
     return null;
   }

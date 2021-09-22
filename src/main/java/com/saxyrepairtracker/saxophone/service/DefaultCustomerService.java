@@ -18,7 +18,7 @@ public class DefaultCustomerService implements CustomerService{
   @Override
   public List<Customer> fetchCustomer(String firstName, String lastName) {
     log.info("Fetch Customer in service layer");
-    return null;
+    return customerDao.fetchCustomer(firstName, lastName);
   }
 
   @Override
@@ -30,19 +30,19 @@ public class DefaultCustomerService implements CustomerService{
   @Override
   public Customer createCustomer(Customer customer) {
     log.info("create Customers in service layer");
-    return customer;
+    return customerDao.createCustomer(customer);
   }
 
   @Override
   public Customer updateCustomer(Customer customer) {
     log.info("create Customers in service layer");
-    return customer;
+    return customerDao.updateCustomer(customer);
   }
 
   @Override
   public Customer getCustomerFirstName(String firstName) {
     // TODO Auto-generated method stub
-    return null;
+    return customerDao.getCustomerFirstName(firstName);
   }
 
 //  @Override

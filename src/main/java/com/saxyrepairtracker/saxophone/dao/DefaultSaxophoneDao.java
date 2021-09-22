@@ -1,6 +1,5 @@
 package com.saxyrepairtracker.saxophone.dao;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -12,12 +11,10 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import com.saxyrepairtracker.saxophone.entity.Customer;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
+import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -27,7 +24,7 @@ public class DefaultSaxophoneDao {
   private static NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
   
-  public Optional<Customer> fetchSaxophones(int customerFK) {
+  public Optional<Customer> fetchAllSaxophones(int customerFK) {
     
 //    log.info("In saxophones.dao.getSaxophones");
     // @formatter:off
@@ -44,6 +41,16 @@ public class DefaultSaxophoneDao {
         jdbcTemplate.query(sql,  params, new CustomerResultSetExtractor()));
   }
   
+  public static SaxophonesType getSaxophoneByType(SaxophonesType type) {
+    log.info("Pulls Saxophones in service layer with the specified SaxophonesType");
+      return type;
+  }
+
+  public static String getSaxophoneManufacturer(String manufacturer) {
+     log.info("Pulls Saxophones in service layer with certain manufacturer's");
+      return manufacturer;
+    }
+    
   
   public List<Saxophones> getSaxophones() {
     log.info("In saxophones.dao.getCustomers");
@@ -72,56 +79,48 @@ public class DefaultSaxophoneDao {
         });
   }
   
-//  @Override
-//  public static <SqlParams> Saxophones createSaxophones(int saxophonesPK, int customerFK, int serialNumber, String manufacturer, 
-//      String series, String type) {
-//    log.info("In saxophones.dao.getSaxophones");
-////    return saxophones;
-////    public Saxophones createSaxophones
-//      SqlParams params = 
-//          generateInsertSql(saxophonesPK, customerFK, serialNumber, manufacturer, 
-//              series, type) {
-//      
-//      KeyHolder keyHolder = new GeneratedKeyHolder();
-//      jdbcTemplate.update(params.sql, params.source, keyHolder);
-//      
-//      Long orderPK = keyHolder.getKey().longValue();
-//      saveOptions(options,orderPK);
-//      
-//      // @formatter:off
-//      return Saxophones.builder()
-//          .saxophonesPK(saxophonesPK)
-//          .customerFK(customerFK)
-//          .serialNumber(serialNumber)
-//          .manufacturer(manufacturer)
-//          .series(series)
-//          .type(type)
-//          .build();
-//      // @formatter:on
-//    }
-//  }
-//  
-  private static SqlParams generateInsertSql(int saxophonesPK, int customerFK, int serialNumber,
-    String manufacturer, String series, String type) {
-  // TODO Auto-generated method stub
-  return null;
-}
-
-
   public static Saxophones updateSaxophones(Saxophones saxophones) {
     log.info("create Saxophones in service layer");
     return saxophones;
   }
   
-  public static String getSaxophoneManufacturer(String manufacturer) {
-    log.info("Pulls Saxophones in service layer with certain manufacturer's");
-    return manufacturer;
-  }
+//  private void saveSaxophones(List<Saxophones> saxophones, int saxophonesPK) {
+//    for(Saxophones saxophones : saxophones) {
+//      SqlParams params = generateInsertSql(saxophones, saxophonesPK);
+//      jdbcTemplate.update(params.sql, params.source);
+//    }
+//  }
+//  
+//private SqlParams generateInsertSql(Saxophones saxophones, int saxophonesPK) {
+//  SqlParams params = new SqlParams();
+//  
+//  // @formatter:off
+//  params.sql = ""
+//      + "INSERT INTO saxophones ("
+//      + "saxophones_pk :saxophones_pk"
+//      + ") VALUES ("
+//      + ":saxophones_pk, :saxophones_pk"
+//      + ")";
+//  // @formatter:on
+//  
+//        //?
+//  params.source.addValue("option_fk", saxophones.getSaxophonesPK());
+//  params.source.addValue("order_fk", SaxophonesPK);
+//  
+//  return params;
+//}
+
+
+
+
+
+
   
-  public List<Saxophones> fetchSaxophones(int customerFK, String manufacturer, String series, SaxophonesType type) {
-    
-    return null;
-  }
+
+//  public List<Saxophones> fetchSaxophones(int customerFK, String manufacturer, String series, SaxophonesType type) {
+//    
+//    return null;
+//  }
   
   class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
     @Override

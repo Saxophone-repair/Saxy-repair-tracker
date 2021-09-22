@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -55,13 +57,21 @@ public interface SaxophonesController {
   @ResponseStatus(code = HttpStatus.OK)
   List<Saxophones> fetchSaxophones(
       @RequestParam(required = false)
-        SaxophonesType type,
-        @Length()
-      @Pattern(regexp = "[\\w\\s]*")
-      @RequestParam(required = false)
-      String trim);
+        SaxophonesType type
+      );
   //@formatter:on
-
-  List<Saxophones> fetchSaxophones(Saxophones type,
-      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
+  @GetMapping
+  List<Saxophones> getSaxophones();
+  
+  @GetMapping
+  List<Saxophones> fetchAllSaxophones(int customerId);
+  
+  @PutMapping
+  List<Saxophones> updateSaxophones(Saxophones updatedSaxophone);
+  
+  @GetMapping
+  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
+  
+  @PostMapping
+  List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series, SaxophonesType type);
 }
