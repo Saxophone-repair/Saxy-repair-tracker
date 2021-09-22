@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 //import java.util.List;
@@ -64,8 +65,7 @@ public class DefaultEmployeeController implements EmployeeController{
   
   //createEmployee
 
-  @Override
-  public List<Employee> createEmployee(String firstName, String lastName, int payRate) {
+  public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
     log.debug("firstName={}, lastName={}", firstName, lastName, payRate);
     return employeesService.createEmployee(firstName, lastName, payRate);
   }
@@ -78,9 +78,9 @@ public class DefaultEmployeeController implements EmployeeController{
 //  }
   
   //deleteEmployee
-//    @Override
-//    public List<Employee> deleteEmployee(int employeePK) {
-//    log.debug("employeePK={}", employeePK);
-//    return employeesService.deleteEmployee(employeePK);
-//    }
+    @Override
+    public void deleteEmployee(int employeePK) {
+    log.debug("employeePK={}", employeePK);
+    return;
+    }
 }

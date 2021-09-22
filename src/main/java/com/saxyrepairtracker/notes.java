@@ -5,7 +5,7 @@ public class notes {
 //Controller interface first -api swagger, url looks like etc 
   //Employees (X)
   //controller class 
-//Employees ( )
+//Employees (X)
   //service interface - list of functions, "business logic" (minimal in here tho) 
 //Employees ( )
   //service class -passes methods to dao 
