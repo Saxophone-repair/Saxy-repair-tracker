@@ -63,4 +63,11 @@ public class DefaultSaxophonesController implements SaxophonesController {
         }
   }
 
+  @Override
+  public List<Saxophones> fetchSaxophones(Saxophones type,
+      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }

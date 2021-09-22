@@ -49,17 +49,7 @@ public interface SaxophonesController {
               responseCode = "500", 
               description = "An unplanned error occurred.",  
               content = @Content(mediaType = "application/json")),
-      }//,
-//      parameters = {
-//          @Parameter(name = "model", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "The Saxophone name (i.e., 'WRANGLER')"),
-//          @Parameter(name = "trim", 
-//          allowEmptyValue = false, 
-//          required = false, 
-//          description = "The trim level (i.e., 'Sport'")
-//      }
+      }
   )
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
@@ -72,6 +62,6 @@ public interface SaxophonesController {
       String trim);
   //@formatter:on
 
-//  List<Saxophones> fetchSaxophones(Saxophones type,
-//      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
+  List<Saxophones> fetchSaxophones(Saxophones type,
+      @Length @Pattern(regexp = "[\\w\\s]*") String manufacturer);
 }

@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.dao;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -9,7 +10,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import com.saxyrepairtracker.saxophone.entity.Customer;
@@ -20,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultSaxophoneDao {
   @Autowired
-  private NamedParameterJdbcTemplate jdbcTemplate;
+  private static NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
   
   public Optional<Customer> fetchSaxophones(int customerFK) {
@@ -68,11 +72,42 @@ public class DefaultSaxophoneDao {
         });
   }
   
-  public static Saxophones createSaxophones(Saxophones saxophones) {
-    log.info("In saxophones.dao.getSaxophones");
-    return saxophones;
-  }
-  
+//  @Override
+//  public static <SqlParams> Saxophones createSaxophones(int saxophonesPK, int customerFK, int serialNumber, String manufacturer, 
+//      String series, String type) {
+//    log.info("In saxophones.dao.getSaxophones");
+////    return saxophones;
+////    public Saxophones createSaxophones
+//      SqlParams params = 
+//          generateInsertSql(saxophonesPK, customerFK, serialNumber, manufacturer, 
+//              series, type) {
+//      
+//      KeyHolder keyHolder = new GeneratedKeyHolder();
+//      jdbcTemplate.update(params.sql, params.source, keyHolder);
+//      
+//      Long orderPK = keyHolder.getKey().longValue();
+//      saveOptions(options,orderPK);
+//      
+//      // @formatter:off
+//      return Saxophones.builder()
+//          .saxophonesPK(saxophonesPK)
+//          .customerFK(customerFK)
+//          .serialNumber(serialNumber)
+//          .manufacturer(manufacturer)
+//          .series(series)
+//          .type(type)
+//          .build();
+//      // @formatter:on
+//    }
+//  }
+//  
+  private static SqlParams generateInsertSql(int saxophonesPK, int customerFK, int serialNumber,
+    String manufacturer, String series, String type) {
+  // TODO Auto-generated method stub
+  return null;
+}
+
+
   public static Saxophones updateSaxophones(Saxophones saxophones) {
     log.info("create Saxophones in service layer");
     return saxophones;
@@ -104,4 +139,10 @@ public class DefaultSaxophoneDao {
 
     }
   }
+  
+  class SqlParams {
+    String sql;
+    MapSqlParameterSource source = new MapSqlParameterSource();
+  }
+
 }
