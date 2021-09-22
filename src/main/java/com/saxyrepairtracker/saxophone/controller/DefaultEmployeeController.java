@@ -79,8 +79,8 @@ public class DefaultEmployeeController implements EmployeeController{
   
   //deleteEmployee
     @Override
-    public void deleteEmployee(int employeePK) {
+    public List<Employee> deleteEmployee(int employeePK) {
     log.debug("employeePK={}", employeePK);
-    return;
+    return employeeService.deleteEmployee(employeePK);
     }
 }

@@ -158,7 +158,7 @@ public interface EmployeeController {
       @ResponseStatus(code = HttpStatus.CREATED)
       List<Employee> createEmployee(@Valid @RequestBody Employee newEmployee);
 //@formatter:on
-}
+
 //
 
 //PUT Update 
@@ -249,10 +249,10 @@ public interface EmployeeController {
             required = false, 
             description = "employeePK (i.e., 3)"),
     }
-))
+)
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
     @DeleteMapping("/{employeePK}")
     @ResponseStatus(code = HttpStatus.OK)
-    void deleteEmployee(@PathVariable int employeePK); 
+    List<Employee> deleteEmployee(@PathVariable int employeePK); 
  //@formatter:on
 }
