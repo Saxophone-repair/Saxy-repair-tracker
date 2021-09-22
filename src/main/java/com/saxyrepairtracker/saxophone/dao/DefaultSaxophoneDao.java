@@ -2,45 +2,39 @@ package com.saxyrepairtracker.saxophone.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
-import com.saxyrepairtracker.saxophone.entity.Customer;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class DefaultSaxophoneDao {
+public class DefaultSaxophoneDao implements SaxophonesDao {
   @Autowired
   private static NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
   
-  public Optional<Customer> fetchAllSaxophones(int customerFK) {
-    
-//    log.info("In saxophones.dao.getSaxophones");
-    // @formatter:off
-    String sql = ""
-        + "SELECT * "
-        + "FROM customer "
-        + "WHERE customer_id = :customer_id";
-    // @formatter:on
-    
-    Map<String, Object> params = new HashMap<>();
-    params.put("customer_id", customerFK);
-    // return null
-    return Optional.ofNullable(
-        jdbcTemplate.query(sql,  params, new CustomerResultSetExtractor()));
-  }
-  
+//  public Optional<Customer> fetchAllSaxophones(int customerFK) {
+//    
+////    log.info("In saxophones.dao.getSaxophones");
+//    // @formatter:off
+//    String sql = ""
+//        + "SELECT * "
+//        + "FROM customer "
+//        + "WHERE customer_pk = :customer_fk";
+//    // @formatter:on
+//    
+//    Map<String, Object> params = new HashMap<>();
+//    params.put("customer_fk", customerFK);
+//    // return null
+//    return Optional.ofNullable(
+//        jdbcTemplate.query(sql,  params, new CustomerResultSetExtractor()));
+//  }
+//  
   public static SaxophonesType getSaxophoneByType(SaxophonesType type) {
     log.info("Pulls Saxophones in service layer with the specified SaxophonesType");
       return type;
@@ -77,11 +71,6 @@ public class DefaultSaxophoneDao {
                 // @formatter:on
               }
         });
-  }
-  
-  public static Saxophones updateSaxophones(Saxophones saxophones) {
-    log.info("create Saxophones in service layer");
-    return saxophones;
   }
   
 //  private void saveSaxophones(List<Saxophones> saxophones, int saxophonesPK) {
@@ -122,26 +111,65 @@ public class DefaultSaxophoneDao {
 //    return null;
 //  }
   
-  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
-    @Override
-    public Customer extractData(ResultSet rs) throws SQLException {
-      rs.next();
+//  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+//    @Override
+//    public Customer extractData(ResultSet rs) throws SQLException {
+//      rs.next();
+//
+//      // @formatter:off
+//      return Customer.builder()
+//          .customerPK(rs.getInt("customer_pk"))
+//          .firstName(rs.getString("first_name"))
+//          .lastName(rs.getString("last_name"))
+//          .phone(rs.getString("phone"))
+//          .build();
+//      // @formatter:on
+//
+//    }
+//  }
+//  
+//  class SqlParams {
+//    String sql;
+//    MapSqlParameterSource source = new MapSqlParameterSource();
+//  }
 
-      // @formatter:off
-      return Customer.builder()
-          .customerPK(rs.getInt("customer_pk"))
-          .firstName(rs.getString("first_name"))
-          .lastName(rs.getString("last_name"))
-          .phone(rs.getString("phone"))
-          .build();
-      // @formatter:on
+  @Override
+  public List<Saxophones> getSaxophonesByManufacturer(String manufacturer, int customerFK) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-    }
+  @Override
+  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
+    // TODO Auto-generated method stub
+    return null;
   }
-  
-  class SqlParams {
-    String sql;
-    MapSqlParameterSource source = new MapSqlParameterSource();
+
+  @Override
+  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
+      SaxophonesType type) {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  @Override
+  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Saxophones> fetchAllSaxophones(int customerFK) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophone) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
 
 }

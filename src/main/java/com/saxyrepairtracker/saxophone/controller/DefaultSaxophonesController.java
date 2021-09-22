@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
-import com.saxyrepairtracker.saxophone.service.DefaultSaxophonesService;
+import com.saxyrepairtracker.saxophone.service.SaxophonesService;
 
 @RestController
 //@RequestMapping("/saxophone/saxophone") //?
@@ -14,7 +14,7 @@ public class DefaultSaxophonesController implements SaxophonesController {
 
 
   @Autowired
-  private DefaultSaxophonesService saxophonesService;
+  private SaxophonesService saxophonesService;
   
   // To get all saxophones
 //  @RequestMapping(path="/all", method =RequestMethod.GET)
@@ -68,15 +68,15 @@ public class DefaultSaxophonesController implements SaxophonesController {
   }
   
   @Override
-  public List<Saxophones> fetchAllSaxophones(int customerId) {
+  public List<Saxophones> fetchAllSaxophones(int customerFK) {
     // TODO Auto-generated method stub
-    return saxophonesService.fetchAllSaxophones(customerId);
+    return saxophonesService.fetchAllSaxophones(customerFK);
   }
-
+  
   @Override
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophone) {
+  public List<Saxophones> updateSaxophones(int saxophonePK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
-    return saxophonesService.updateSaxophones(updatedSaxophone);
+    return saxophonesService.updateSaxophones(updatedSaxophones);
 
   }
 
@@ -97,7 +97,5 @@ public class DefaultSaxophonesController implements SaxophonesController {
       SaxophonesType type) {
     // TODO Auto-generated method stub
     return saxophonesService.createSaxophones(customerFK, manufacturer, series, type);
-       
-  }
-
+    }
 }

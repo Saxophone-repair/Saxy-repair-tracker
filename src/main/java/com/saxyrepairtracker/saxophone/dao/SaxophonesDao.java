@@ -5,6 +5,7 @@ import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 
 public interface SaxophonesDao {
+  
   List<Saxophones> fetchAllSaxophones(int customerFK); 
   
 //  List<Saxophones> getSaxophonesByType(SaxophonesType type, int customerFK);
@@ -17,11 +18,9 @@ public interface SaxophonesDao {
 
   List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type);
 
-  static List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
-                                              SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
+                                              SaxophonesType type);
+  
 
   List<Saxophones> getSaxophonesManufacturer(String manufacturer);
 
