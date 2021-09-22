@@ -66,10 +66,10 @@ public class DefaultEmployeeController implements EmployeeController{
   
   //createEmployee
 
-  public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
-    log.debug("firstName={}, lastName={}", firstName, lastName, payRate);
-    return employeesService.createEmployee(firstName, lastName, payRate);
-  }
+//  public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+//    log.debug("firstName={}, lastName={}", firstName, lastName, payRate);
+//    return employeesService.createEmployee(firstName, lastName, payRate);
+//  }
   
   //updateEmployee //may need to alter due the fact gets id then updates?
 //  @Override
@@ -87,6 +87,12 @@ public class DefaultEmployeeController implements EmployeeController{
 
     @Override
     public List<Employee> createEmployee(@Valid Employee newEmployee) {
+      // TODO Auto-generated method stub
+      return null;
+    }
+
+    @Override
+    public List<Employee> updateEmployee(String firstName, String lastName, BigDecimal payRate) {
       // TODO Auto-generated method stub
       return null;
     }

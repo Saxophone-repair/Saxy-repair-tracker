@@ -1,17 +1,18 @@
 package com.saxyrepairtracker.saxophone.dao;
 
-import com.saxyrepairtracker.saxophone.entity.Employee;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import com.saxyrepairtracker.saxophone.entity.Employee;
 import lombok.extern.slf4j.Slf4j;
 @Service
 @Component
@@ -115,6 +116,6 @@ public class DefaultEmployeeDao implements EmployeeDao{
     Map<String, Object> params = new HashMap<>();
     
     params.put("employee_pk", deleteId);    
-    jdbcTemplate.update(sql,  params);
+    if (jdbcTemplate.update(sql,  params) == 0) throw new NoSuchElementException();
   }
 }

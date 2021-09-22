@@ -1,13 +1,14 @@
 package com.saxyrepairtracker.saxophone.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,7 +77,7 @@ public interface EmployeeController {
       @RequestParam(required = false)
       String lastName);
   //@formatter:on
-}
+
 
 // /all 
 // @formatter:off
@@ -109,7 +110,7 @@ public interface EmployeeController {
       @ResponseStatus(code = HttpStatus.OK)
       List<Employee> fetchAllEmployees();  
  //@formatter:on
-}
+
 
 //POST
 //Create Method CreateEmployees
@@ -137,7 +138,8 @@ public interface EmployeeController {
             responseCode = "500", 
             description = "An unplanned error occurred.",  
             content = @Content(mediaType = "application/json"))
-    },
+    }
+    /*,
     parameters = {
         @Parameter(name = "firstName", 
             allowEmptyValue = false, 
@@ -151,7 +153,8 @@ public interface EmployeeController {
           allowEmptyValue = false, 
           required = false, 
           description = "Pay rate (i.e., '15')")
-    }
+    }*/
+    
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
       @PostMapping("/id")
@@ -202,62 +205,63 @@ public interface EmployeeController {
 //    int employeePK, 
 
  //@formatter:on
-}
+
 
 //
 
 //PUT Update 
 //EmployeeUpdate
 //updateEmployee
-////@formatter:off
-//@Operation(
-//  summary = "Returns an updated Employee",
-//  description = "Returns a Employee to update given an id",
-//  responses = {
-//      @ApiResponse(
-//          responseCode = "200",
-//          description = "An updated Employee is returned",
-//          content = @Content(
-//              mediaType = "application/json", 
-//              schema = @Schema(implementation = Employee.class))),
-//      @ApiResponse(
-//          responseCode = "400", 
-//          description = "The request parameters are invalid",  
-//          content = @Content(mediaType = "application/json")),
-//      @ApiResponse(
-//          responseCode = "404", 
-//          description = "No Employees were found with the input criteria",  
-//          content = @Content(mediaType = "application/json")),
-//      @ApiResponse(
-//          responseCode = "500", 
-//          description = "An unplanned error occurred.",  
-//          content = @Content(mediaType = "application/json"))
-//  },
-        //parameters = {
-        //@Parameter(name = "firstName", 
-        //  allowEmptyValue = false, 
-        //  required = false, 
-        //  description = "The first name (i.e., 'Jojo')"),
-        //@Parameter(name = "lastName", 
-        //allowEmptyValue = false, 
-        //required = false, 
-        //description = "The last name (i.e., 'Mel')")
-        //@Parameter(name = "payRate", 
-        //allowEmptyValue = false, 
-        //required = false, 
-        //description = "Pay rate (i.e., '15')")
-        //}
-//  }
-//)
-////this is for gets not deletes, postmapping, deletemapping etc for the methods 
-//@PutMapping
-//@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
-//List<Employee> updateEmployee(
-//  @RequestParam(required = false)
-//  String firstName, 
-//  //@Pattern(regexp = "[\\w\\s]*")
-//  @RequestParam(required = false)
-//  String lastName);
-////@formatter:on
-//}
+//@formatter:off
+@Operation(
+  summary = "Returns an updated Employee",
+  description = "Returns a Employee to update given an id",
+  responses = {
+      @ApiResponse(
+          responseCode = "200",
+          description = "An updated Employee is returned",
+          content = @Content(
+              mediaType = "application/json", 
+              schema = @Schema(implementation = Employee.class))),
+      @ApiResponse(
+          responseCode = "400", 
+          description = "The request parameters are invalid",  
+          content = @Content(mediaType = "application/json")),
+      @ApiResponse(
+          responseCode = "404", 
+          description = "No Employees were found with the input criteria",  
+          content = @Content(mediaType = "application/json")),
+      @ApiResponse(
+          responseCode = "500", 
+          description = "An unplanned error occurred.",  
+          content = @Content(mediaType = "application/json"))
+  },
+        parameters = {
+        @Parameter(name = "firstName", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The first name (i.e., 'Jojo')"),
+        @Parameter(name = "lastName", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "The last name (i.e., 'Mel')"),
+        @Parameter(name = "payRate", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "Pay rate (i.e., '15')")
+  }
+)
+//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+@PutMapping
+@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
+List<Employee> updateEmployee(
+  @RequestParam(required = false)
+  String firstName, 
+  //@Pattern(regexp = "[\\w\\s]*")
+  @RequestParam(required = false)
+  String lastName,
+  @RequestParam(required = false)
+  BigDecimal payRate);
+//@formatter:on
+}
 //

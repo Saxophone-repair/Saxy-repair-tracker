@@ -78,13 +78,9 @@ public class DefaultEmployeeService implements EmployeesService{
         log.info("The deleteEmployee method was called with employeePK={}",
             deleteId);
         
-        List<Employee> employees = employeeDao.deleteEmployee(deleteId);
-        
-        
-        if(employees.isEmpty()) {
-          String msg = String.format("No employees found with deleteId=%s", deleteId);
-              throw new NoSuchElementException(msg);
-        }
+       employeeDao.deleteEmployee(deleteId);
+       //In future business logic is done within the service layer and could be checked here 
+       //change method to be public int deleteEmployee
         
        // Collections.sort((List<Employee>) employees);
         return;
