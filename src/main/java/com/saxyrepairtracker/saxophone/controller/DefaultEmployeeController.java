@@ -82,18 +82,21 @@ public class DefaultEmployeeController implements EmployeeController{
     @Override
     public void deleteEmployee(int deleteId) {
     log.debug("employeePK={}", deleteId);
-    return;
+    employeesService.deleteEmployee(deleteId);
     }
 
     @Override
     public List<Employee> createEmployee(@Valid Employee newEmployee) {
-      // TODO Auto-generated method stub
-      return null;
+      return employeesService.createEmployee(newEmployee);
     }
 
+//    @Override
+//    public List<Employee> updateEmployee(String firstName, String lastName, BigDecimal payRate) {
+//      return employeesService.updateEmployee(firstName, lastName, payRate);
+//    }
+//    
     @Override
-    public List<Employee> updateEmployee(String firstName, String lastName, BigDecimal payRate) {
-      // TODO Auto-generated method stub
-      return null;
+    public List<Employee> updateEmployee(int id, @Valid Employee updatedEmployee) {
+      return employeesService.updateEmployee(id, updatedEmployee);
     }
 }

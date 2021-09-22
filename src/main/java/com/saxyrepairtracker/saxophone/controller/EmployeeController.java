@@ -1,12 +1,12 @@
 package com.saxyrepairtracker.saxophone.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -235,7 +235,8 @@ public interface EmployeeController {
           responseCode = "500", 
           description = "An unplanned error occurred.",  
           content = @Content(mediaType = "application/json"))
-  },
+  }
+  /*
         parameters = {
         @Parameter(name = "firstName", 
           allowEmptyValue = false, 
@@ -249,12 +250,16 @@ public interface EmployeeController {
         allowEmptyValue = false, 
         required = false, 
         description = "Pay rate (i.e., '15')")
-  }
+        */
+  
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
-@PutMapping
+@PutMapping("/{id}")
 @ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
 List<Employee> updateEmployee(
+  @PathVariable int id, 
+  @Valid @RequestBody Employee updatedEmployee);
+  /*
   @RequestParam(required = false)
   String firstName, 
   //@Pattern(regexp = "[\\w\\s]*")
@@ -262,6 +267,7 @@ List<Employee> updateEmployee(
   String lastName,
   @RequestParam(required = false)
   BigDecimal payRate);
+  */
 //@formatter:on
 }
 //

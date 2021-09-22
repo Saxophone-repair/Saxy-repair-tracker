@@ -55,11 +55,11 @@ public class DefaultEmployeeService implements EmployeesService{
 
     @Transactional(readOnly = true)
     @Override
-    public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+    public List<Employee> createEmployee(Employee newEmployee) {
         log.info("The createEmployee method was called with firstName={}, lastName={} and payRate={}",
-            firstName, lastName, payRate);
+            newEmployee.getFirstName(), newEmployee.getLastName(), newEmployee.getPayRate());
         
-        List<Employee> newEmployee = employeeDao.createEmployee(firstName, lastName, payRate);
+        //List<Employee> newEmployee = employeeDao.createEmployee(newEmployee);
         
         
 //        if(employees.isEmpty()) {
@@ -68,7 +68,7 @@ public class DefaultEmployeeService implements EmployeesService{
         
         
        // Collections.sort((List<Employee>) employees);
-        return newEmployee;
+        return employeeDao.createEmployee(newEmployee);
       }
 
 
@@ -80,11 +80,15 @@ public class DefaultEmployeeService implements EmployeesService{
         
        employeeDao.deleteEmployee(deleteId);
        //In future business logic is done within the service layer and could be checked here 
-       //change method to be public int deleteEmployee
+       //change method to be public int deleteEmployee and check like above(like in the dao)S
         
-       // Collections.sort((List<Employee>) employees);
-        return;
       }
+
+    //This could mimic the create method 
+    @Override
+    public List<Employee> updateEmployee(int id, Employee updatedEmployee) {
+      return employeeDao.updateEmployee(id, updatedEmployee);
+    }
 
   }
 
