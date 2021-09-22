@@ -57,17 +57,18 @@ public class DefaultEmployeeController implements EmployeeController{
   }
  
   //Get All Employees 
-//  @Override
-//  public List<Employee> fetchAllEmployees() {
-//    return employeesService.fetchAllEmployees();
-//  }
+  @Override
+  public List<Employee> fetchAllEmployees() {
+    return employeesService.fetchAllEmployees();
+  }
   
   //createEmployee
-//  @Override
-//  public List<Employee> createEmployee(String firstName, String lastName, int payRate) {
-//    log.debug("firstName={}, lastName={}", firstName, lastName, payRate);
-//    return employeesService.createEmployee(firstName, lastName, payRate);
-//  }
+
+  @Override
+  public List<Employee> createEmployee(String firstName, String lastName, int payRate) {
+    log.debug("firstName={}, lastName={}", firstName, lastName, payRate);
+    return employeesService.createEmployee(firstName, lastName, payRate);
+  }
   
   //updateEmployee //may need to alter due the fact gets id then updates?
 //  @Override
