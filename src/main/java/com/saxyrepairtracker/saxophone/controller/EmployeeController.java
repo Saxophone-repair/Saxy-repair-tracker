@@ -100,20 +100,6 @@ public interface EmployeeController {
 //            description = "An unplanned error occurred.",  
 //            content = @Content(mediaType = "application/json"))
 //    },
-          //parameters = {
-          //@Parameter(name = "firstName", 
-          //  allowEmptyValue = false, 
-          //  required = false, 
-          //  description = "The first name (i.e., 'Jojo')"),
-          //@Parameter(name = "lastName", 
-          //allowEmptyValue = false, 
-          //required = false, 
-          //description = "The last name (i.e., 'Mel')")
-          //@Parameter(name = "payRate", 
-          //allowEmptyValue = false, 
-          //required = false, 
-          //description = "Pay rate (i.e., '15')")
-          //}
 //)
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
 //@GetMapping("/all")
@@ -218,7 +204,7 @@ public interface EmployeeController {
 ////this is for gets not deletes, postmapping, deletemapping etc for the methods 
 //@PutMapping
 //@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
-//List<Employee> updateEmployees(
+//List<Employee> updateEmployee(
 //    @RequestParam(required = false)
 //    String firstName, 
 //    //@Pattern(regexp = "[\\w\\s]*")
