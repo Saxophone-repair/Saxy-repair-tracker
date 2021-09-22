@@ -1,6 +1,7 @@
 package com.saxyrepairtracker.saxophone.dao;
 
 import com.saxyrepairtracker.saxophone.entity.Employee;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -45,8 +46,75 @@ public class DefaultEmployeeDao implements EmployeeDao{
                 .build();
          // @formatter:on
           }});
-//this is where the sql is implemented
+
   }
 //new functions implemented in here 
   //May not always need a rowmapper i.e. in delete 
+  
+  @Override
+  public List<Employee> fetchAllEmployees() {
+    // @formatter:off
+    String sql = ""
+        + "SELECT * "
+        + "FROM employee ";
+    // @formatter:on
+    
+    Map<String, Object> params = new HashMap<>();
+    
+    
+    return jdbcTemplate.query(sql, params, 
+        new RowMapper<>() {
+          @Override
+          public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+         // @formatter:off
+            return Employee.builder()
+                .employeePK(rs.getInt("employee_pk"))
+                .firstName(rs.getString("first_name"))
+                .lastName(rs.getString("last_name"))
+                .payRate(rs.getBigDecimal("pay_rate"))
+                .build();
+         // @formatter:on
+          }});
+  }
+  @Override
+  public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+    // @formatter:off
+    String sql = ""
+        + "INSERT "
+        + "INTO employee ";
+    // @formatter:on
+    
+    Map<String, Object> params = new HashMap<>();
+    params.put("first_name", firstName);
+    params.put("last_name", lastName);
+    params.put("pay_rate", payRate);
+    
+    return jdbcTemplate.query(sql, params, 
+        new RowMapper<>() {
+          @Override
+          public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+         // @formatter:off
+            return Employee.builder()
+                .employeePK(rs.getInt("employee_pk"))
+                .firstName(rs.getString("first_name"))
+                .lastName(rs.getString("last_name"))
+                .payRate(rs.getBigDecimal("pay_rate"))
+                .build();
+         // @formatter:on
+          }});
+
+  }
+  @Override
+  public void deleteEmployee(int deleteId) {
+    // @formatter:off
+    String sql = ""
+        + "DELETE FROM employee "
+        + "WHERE employee_pk = :employee_pk;";
+    // @formatter:on    
+       
+    Map<String, Object> params = new HashMap<>();
+    
+    params.put("employee_pk", deleteId);    
+    jdbcTemplate.update(sql,  params);
+  }
 }

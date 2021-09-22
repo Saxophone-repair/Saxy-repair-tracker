@@ -11,6 +11,6 @@ public interface EmployeesService {
 
     List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
 
-    List<Employee> deleteEmployee(int employeePK);
+    void deleteEmployee(int deleteId);
 
 }

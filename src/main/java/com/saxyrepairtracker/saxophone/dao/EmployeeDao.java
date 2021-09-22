@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 import com.saxyrepairtracker.saxophone.entity.Employee;
 //Last version of functions to access database 
@@ -17,6 +18,14 @@ public interface EmployeeDao {
   //Payrate option having the option low or highest option of list 
   //Enums seem to be the only ways to do that so the service ticket can be access by the status 
   //enum list with ease but there may be multiple ways to sort this...
+
+  List<Employee> fetchAllEmployees();
+
+  List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
+
+  void deleteEmployee(int deleteId);
+
+  //List<Employee> fetchAllEmployees();
   
   //Need 2 more get fetchemployees 
   

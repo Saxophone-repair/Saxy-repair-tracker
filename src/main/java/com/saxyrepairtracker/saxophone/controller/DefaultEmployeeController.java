@@ -2,6 +2,7 @@ package com.saxyrepairtracker.saxophone.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import javax.validation.Valid;
 
 //import java.util.List;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -79,8 +80,14 @@ public class DefaultEmployeeController implements EmployeeController{
   
   //deleteEmployee
     @Override
-    public List<Employee> deleteEmployee(int employeePK) {
-    log.debug("employeePK={}", employeePK);
-    return employeeService.deleteEmployee(employeePK);
+    public void deleteEmployee(int deleteId) {
+    log.debug("employeePK={}", deleteId);
+    return;
+    }
+
+    @Override
+    public List<Employee> createEmployee(@Valid Employee newEmployee) {
+      // TODO Auto-generated method stub
+      return null;
     }
 }
