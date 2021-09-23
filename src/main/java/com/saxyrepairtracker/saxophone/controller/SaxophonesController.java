@@ -94,7 +94,7 @@ public interface SaxophonesController {
               content = @Content(mediaType = "application/json")),
       }
   )
-  @GetMapping("/fetch all saxophones")
+  @GetMapping("/all")
   @ResponseStatus(code = HttpStatus.OK)
   List<Saxophones> fetchAllSaxophones();
   

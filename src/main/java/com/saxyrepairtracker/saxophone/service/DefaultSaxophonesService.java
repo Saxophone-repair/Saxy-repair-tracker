@@ -1,8 +1,10 @@
 package com.saxyrepairtracker.saxophone.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 //import com.saxyrepairtracker.saxophone.controller.DefaultEmployeeController;
 import com.saxyrepairtracker.saxophone.dao.SaxophonesDao;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
@@ -17,11 +19,17 @@ public class DefaultSaxophonesService implements SaxophonesService {
   @Autowired
   private SaxophonesDao saxophonesDao;
  
+  @Transactional(readOnly = true)
   @Override
   public List<Saxophones> fetchAllSaxophones() {
-    log.debug("STOP REBUILDING ");
-    return saxophonesDao.fetchAllSaxophones();
-  }
+        List<Saxophones> saxophones = saxophonesDao.fetchAllSaxophones();
+        if(saxophones.isEmpty()) {
+          String msg = String.format("We have no saxophones");
+              throw new NoSuchElementException(msg);
+        }
+       // Collections.sort((List<Employee>) employees);
+        return saxophones;
+      }
 
 //  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
 //    // TODO Auto-generated method stub
@@ -58,7 +66,7 @@ public class DefaultSaxophonesService implements SaxophonesService {
   @Override
   public List<Saxophones> fetchSaxophones(SaxophonesType type) {
     // TODO Auto-generated method stub
-    return null;
+    return saxophonesDao.fetchSaxophones(type);
   }
   
   /**

@@ -15,9 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class DefaultSaxophoneDao implements SaxophonesDao {
+public class DefaultSaxophonesDao implements SaxophonesDao {
   @Autowired
-  private static NamedParameterJdbcTemplate jdbcTemplate;
+  private NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
   
 //  public Optional<Customer> fetchAllSaxophones(int customerFK) {
@@ -49,12 +49,12 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
     
 @Override
   public List<Saxophones> fetchAllSaxophones() {
-    log.info("In saxophones.dao.getCustomers");
+    log.info("In saxophones.dao.fetchAllSaxophones");
     
         // @formatter:off
         String sql = ""
             + "SELECT * "
-            + "FROM saxophones; ";
+            + "FROM saxophones ";
         // @formatter:on
         
         Map<String, Object> params = new HashMap<>();
@@ -69,7 +69,7 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
                     .serialNumber(rs.getInt("serial_number"))
                     .manufacturer(rs.getString("manufacturer"))
                     .series(rs.getString("series"))
-                    .saxophonesType(SaxophonesType.valueOf(rs.getString("saxophones_type")))
+                    .saxophonesType(SaxophonesType.valueOf(rs.getString("type")))
                     .build();
                 // @formatter:on
               }
@@ -169,6 +169,12 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
 
   @Override
   public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
     // TODO Auto-generated method stub
     return null;
   }

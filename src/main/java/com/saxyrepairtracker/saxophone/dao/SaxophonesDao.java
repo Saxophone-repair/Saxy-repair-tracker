@@ -24,5 +24,7 @@ public interface SaxophonesDao {
 //  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
 
   List<Saxophones> updateSaxophones(Saxophones updatedSaxophones);
+
+  List<Saxophones> fetchSaxophones(SaxophonesType type);
   }
   
