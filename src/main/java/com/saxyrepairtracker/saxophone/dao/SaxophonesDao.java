@@ -6,7 +6,7 @@ import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 
 public interface SaxophonesDao {
   
-  List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK); 
+  List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);                        //!!!
   
 //  List<Saxophones> getSaxophonesByType(SaxophonesType type, int customerFK);
   
@@ -14,7 +14,7 @@ public interface SaxophonesDao {
 
 //  List<Saxophones> createSaxophones(Saxophones saxophones);
 
-  List<Saxophones> fetchAllSaxophones();
+  List<Saxophones> fetchAllSaxophones();                                                //!!!
 
 //  List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type);
 
@@ -25,6 +25,6 @@ public interface SaxophonesDao {
 
   List<Saxophones> updateSaxophones(Saxophones updatedSaxophones);
 
-  List<Saxophones> fetchSaxophones(SaxophonesType type);
+  List<Saxophones> fetchSaxophones(SaxophonesType type);                                 //!!!
   }
   

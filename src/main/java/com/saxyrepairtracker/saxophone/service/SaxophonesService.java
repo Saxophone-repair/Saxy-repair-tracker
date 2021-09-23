@@ -8,7 +8,7 @@ public interface SaxophonesService {
   
   public List<Saxophones> createSaxophones(Saxophones saxophones); 
 
-  public List<Saxophones> fetchAllSaxophones(); 
+  public List<Saxophones> fetchAllSaxophones(); //!!! 
   
 //  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type); 
   
@@ -19,7 +19,7 @@ public interface SaxophonesService {
 
   public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones); 
 
-  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);   //!!!
 
-  public List<Saxophones> fetchSaxophones(SaxophonesType type); 
+  public List<Saxophones> fetchSaxophones(SaxophonesType type);    //!!!
 }

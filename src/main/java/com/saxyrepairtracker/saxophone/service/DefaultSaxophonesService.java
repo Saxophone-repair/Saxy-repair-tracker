@@ -21,7 +21,7 @@ public class DefaultSaxophonesService implements SaxophonesService {
  
   @Transactional(readOnly = true)
   @Override
-  public List<Saxophones> fetchAllSaxophones() {
+  public List<Saxophones> fetchAllSaxophones() {                                            //!!!
         List<Saxophones> saxophones = saxophonesDao.fetchAllSaxophones();
         if(saxophones.isEmpty()) {
           String msg = String.format("We have no saxophones");
@@ -52,8 +52,13 @@ public class DefaultSaxophonesService implements SaxophonesService {
     return saxophonesDao.updateSaxophones(updatedSaxophones);
   }
 
-  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
-    // TODO Auto-generated method stub
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {         //!!!
+    log.info("The fetchAllSaxophonesByCustomer method was called with customerFK", customerFK);
+    List<Saxophones> saxophones = saxophonesDao.fetchAllSaxophonesByCustomer(customerFK);
+    if(saxophones.isEmpty()) {
+      String msg = String.format("We have no saxophones for this customer");
+          throw new NoSuchElementException(msg);
+    }
     return saxophonesDao.fetchAllSaxophonesByCustomer(customerFK);
   }
 
@@ -63,65 +68,31 @@ public class DefaultSaxophonesService implements SaxophonesService {
     return null;
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return saxophonesDao.fetchSaxophones(type);
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                     //!!!
+    log.info("The fetchSaxophones method was called with 'type={}'", type);
+         List<Saxophones> saxophones = saxophonesDao.fetchSaxophones(type);
+          if(saxophones.isEmpty()) {
+            String msg = String.format("We have no saxophones in this type");
+                throw new NoSuchElementException(msg);
+          }
+         // Collections.sort((List<Employee>) employees);
+          return saxophones;
   }
   
-  /**
-   * Searches the titles for any occurrences of the specified name.
-   * @param name The regular expression or part of the name we want to search.4
-   * @return Returns the matching titles if found, otherwise returns an empty list.
-   */
-//  List<Saxophones> search(SaxophonesType type) {
-//   return null;
-// }
-  
-  /**
-   * Creates a new title.
-   * @param newTitle The new title information.
-   * @return The new title information that was created and/or validated, or returns null if operation failed.
-   */
-//  
-//  Saxophones create(Saxophones saxophonesPK) {
-//   return null;
-// }
-  
-//  /**
-//   * Deletes or removes a title.
-//   * @param id The unique id of the title.
-//   * @return True if deleted, false if title doesn't exist or deletion failed.
-//   */
-//  Saxophones delete(String id);
-  
-//  /**
-//   * Updates a title with new information.
-//   * @param id The unique id of the title.
-//   * @param updatedTitle The updated or new title information. 
-//   * @return Returns the updated title information, or null if update fails.
-//   */
-//  Saxophones update(String id, Saxophones update) {
-//   return null;
-// }
-  
-//  /**
-//   * Retrieves a single title by id.
-//   * @param id The unique id of the title.
-//   * @return The title if found, null if otherwise.
-//   */
-//  Saxophones get(String id) {
-//   return null;
-// }
-
-// public List<Saxophones> createSaxophones(Saxophones saxophones) {
-//   // TODO Auto-generated method stub
-//   return saxophonesDao.createSaxophones(saxophones);
-// }
-
-
-//public List<Saxophones> getSaxophonesByManufacturer(String manufacturer) {
-//// TODO Auto-generated method stub
-//return null;
-//}
+//  @Transactional(readOnly = true)
+//  @Override
+//  public List<Employee> fetchEmployees(String firstName, String lastName) {
+//    log.info("The fetchEmployees method was called with firstName={} and lastName={}",
+//        firstName, lastName);
+//    List<Employee> employees = employeeDao.fetchEmployees(firstName, lastName);
+//    if(employees.isEmpty()) {
+//      String msg = String.format("No employees found with firstName=%s and lastName=%s", firstName, lastName);
+//          throw new NoSuchElementException(msg);
+//    }
+//   // Collections.sort((List<Employee>) employees);
+//    return employees;
+//  }
+ 
 }

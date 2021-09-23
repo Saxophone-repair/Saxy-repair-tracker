@@ -19,36 +19,9 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   @Autowired
   private NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
-  
-//  public Optional<Customer> fetchAllSaxophones(int customerFK) {
-//    
-////    log.info("In saxophones.dao.getSaxophones");
-//    // @formatter:off
-//    String sql = ""
-//        + "SELECT * "
-//        + "FROM customer "
-//        + "WHERE customer_pk = :customer_fk";
-//    // @formatter:on
-//    
-//    Map<String, Object> params = new HashMap<>();
-//    params.put("customer_fk", customerFK);
-//    // return null
-//    return Optional.ofNullable(
-//        jdbcTemplate.query(sql,  params, new CustomerResultSetExtractor()));
-//  }
-//  
-//  public SaxophonesType getSaxophoneByType(SaxophonesType type) {
-//    log.info("Pulls Saxophones in service layer with the specified SaxophonesType");
-//      return type;
-//  }
-//
-//  public String getSaxophoneManufacturer(String manufacturer) {
-//     log.info("Pulls Saxophones in service layer with certain manufacturer's");
-//      return manufacturer;
-//    }
     
-@Override
-  public List<Saxophones> fetchAllSaxophones() {
+@Override //!!!
+  public List<Saxophones> fetchAllSaxophones() {                                              //!!!
     log.info("In saxophones.dao.fetchAllSaxophones");
     
         // @formatter:off
@@ -75,78 +48,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
               }
         });
   }
-  
-//  private void saveSaxophones(List<Saxophones> saxophones, int saxophonesPK) {
-//    for(Saxophones saxophones : saxophones) {
-//      SqlParams params = generateInsertSql(saxophones, saxophonesPK);
-//      jdbcTemplate.update(params.sql, params.source);
-//    }
-//  }
-//  
-//private SqlParams generateInsertSql(Saxophones saxophones, int saxophonesPK) {
-//  SqlParams params = new SqlParams();
-//  
-//  // @formatter:off
-//  params.sql = ""
-//      + "INSERT INTO saxophones ("
-//      + "saxophones_pk :saxophones_pk"
-//      + ") VALUES ("
-//      + ":saxophones_pk, :saxophones_pk"
-//      + ")";
-//  // @formatter:on
-//  
-//        //?
-//  params.source.addValue("option_fk", saxophones.getSaxophonesPK());
-//  params.source.addValue("order_fk", SaxophonesPK);
-//  
-//  return params;
-//}
 
-
-
-
-
-
-  
-
-//  public List<Saxophones> fetchSaxophones(int customerFK, String manufacturer, String series, SaxophonesType type) {
-//    
-//    return null;
-//  }
-  
-//  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
-//    @Override
-//    public Customer extractData(ResultSet rs) throws SQLException {
-//      rs.next();
-//
-//      // @formatter:off
-//      return Customer.builder()
-//          .customerPK(rs.getInt("customer_pk"))
-//          .firstName(rs.getString("first_name"))
-//          .lastName(rs.getString("last_name"))
-//          .phone(rs.getString("phone"))
-//          .build();
-//      // @formatter:on
-//
-//    }
-//  }
-//  
-//  class SqlParams {
-//    String sql;
-//    MapSqlParameterSource source = new MapSqlParameterSource();
-//  }
-
-//  @Override
-//  public List<Saxophones> getSaxophonesByManufacturer(String manufacturer, int customerFK) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-
-//  @Override
-//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
 
   @Override
   public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
@@ -162,9 +64,33 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
 //  }
 
   @Override
-  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       //!!!
+    // @formatter:off
+    String sql = ""
+        + "SELECT * "
+        + "FROM saxophones "
+        + "WHERE customer_fk = :customer_fk ";
+    // @formatter:on
+    
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_fk", customerFK);
+    
+    return jdbcTemplate.query(sql, params,
+        new RowMapper<>() {
+          @Override
+          public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
+            // @formatter:off
+            return Saxophones.builder()
+                .saxophonePK(rs.getInt("saxophones_pk"))
+                .customerFK(rs.getInt("customer_fk"))
+                .serialNumber(rs.getInt("serial_number"))
+                .manufacturer(rs.getString("manufacturer"))
+                .series(rs.getString("series"))
+                .saxophonesType(SaxophonesType.valueOf(rs.getString("type")))
+                .build();
+            // @formatter:on
+          }
+    });    
   }
 
   @Override
@@ -174,11 +100,32 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   }
 
   @Override
-  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                               //!!!
+    // @formatter:off
+    String sql = ""
+        + "SELECT * "
+        + "FROM saxophones "
+        + "WHERE type = :type ";
+    // @formatter:on
+    
+    Map<String, Object> params = new HashMap<>();
+    params.put("type", type.toString());
+    
+    return jdbcTemplate.query(sql, params,
+        new RowMapper<>() {
+          @Override
+          public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
+            // @formatter:off
+            return Saxophones.builder()
+                .saxophonePK(rs.getInt("saxophones_pk"))
+                .customerFK(rs.getInt("customer_fk"))
+                .serialNumber(rs.getInt("serial_number"))
+                .manufacturer(rs.getString("manufacturer"))
+                .series(rs.getString("series"))
+                .saxophonesType(SaxophonesType.valueOf(rs.getString("type")))
+                .build();
+            // @formatter:on
+          }
+    });    
   }
-
-
-
 }
