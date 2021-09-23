@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,19 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
 import com.saxyrepairtracker.saxophone.entity.Status;
 import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 
 @Validated
 @RequestMapping("/serviceTickets")
@@ -132,7 +124,7 @@ private ServiceTicketService serviceTicketService;
             description = "A new Employee has been created",
             content = @Content(
                 mediaType = "application/json", 
-                schema = @Schema(implementation = Employee.class))),
+                schema = @Schema(implementation = ServiceTicket.class))),
         @ApiResponse(
             responseCode = "400", 
             description = "The request parameters are invalid",  
@@ -146,27 +138,11 @@ private ServiceTicketService serviceTicketService;
             description = "An unplanned error occurred.",  
             content = @Content(mediaType = "application/json"))
     }
-    /*,
-    parameters = {
-        @Parameter(name = "firstName", 
-            allowEmptyValue = false, 
-            required = false, 
-            description = "The first name (i.e., 'Jojo')"),
-        @Parameter(name = "lastName", 
-        allowEmptyValue = false, 
-        required = false, 
-        description = "The last name (i.e., 'Mel')"),
-         @Parameter(name = "payRate", 
-          allowEmptyValue = false, 
-          required = false, 
-          description = "Pay rate (i.e., '15')")
-    }*/
     
 )
-//this is for gets not deletes, postmapping, deletemapping etc for the methods 
       @PostMapping("/id")
       @ResponseStatus(code = HttpStatus.CREATED)
-      List<ServiceTicket> createEmployee(@Valid @RequestBody ServiceTicket newServiceTicket);
+      List<ServiceTicket> createServiceTicket(@Valid @RequestBody ServiceTicket newServiceTicket);
 //@formatter:on
 
 
@@ -198,27 +174,22 @@ private ServiceTicketService serviceTicketService;
             content = @Content(mediaType = "application/json"))
     },
     parameters = {
-        @Parameter(name = "employeePK", 
+        @Parameter(name = "servicePK", 
             allowEmptyValue = false, 
             required = false, 
             description = "employeePK (i.e., 3)"),
     }
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
-    @DeleteMapping("/serviceTicketPK")
+    @DeleteMapping("/servicePK")
     @ResponseStatus(code = HttpStatus.OK)
     void deleteServiceTicket(int deleteId); 
-//    @RequestParam(required = false)
-//    int employeePK, 
 
  //@formatter:on
 
 
-//
-
 //PUT Update 
-//EmployeeUpdate
-//updateEmployee
+//updateServiceTicket
 //@formatter:off
 @Operation(
   summary = "Returns an updated ServiceTicket",
@@ -226,7 +197,7 @@ private ServiceTicketService serviceTicketService;
   responses = {
       @ApiResponse(
           responseCode = "200",
-          description = "An updated Employee is returned",
+          description = "An updated Service Ticket is returned",
           content = @Content(
               mediaType = "application/json", 
               schema = @Schema(implementation = ServiceTicket.class))),
@@ -243,38 +214,14 @@ private ServiceTicketService serviceTicketService;
           description = "An unplanned error occurred.",  
           content = @Content(mediaType = "application/json"))
   }
-  /*
-        parameters = {
-        @Parameter(name = "firstName", 
-          allowEmptyValue = false, 
-          required = false, 
-          description = "The first name (i.e., 'Jojo')"),
-        @Parameter(name = "lastName", 
-        allowEmptyValue = false, 
-        required = false, 
-        description = "The last name (i.e., 'Mel')"),
-        @Parameter(name = "payRate", 
-        allowEmptyValue = false, 
-        required = false, 
-        description = "Pay rate (i.e., '15')")
-        */
-  
 )
-//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+
 @PutMapping("/{id}")
-@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
-List<ServiceTicket> updateEmployee(
+@ResponseStatus(code = HttpStatus.OK) 
+List<ServiceTicket> updateServiceTicket(
   @PathVariable int id, 
   @Valid @RequestBody ServiceTicket updatedServiceTicket);
-  /*
-  @RequestParam(required = false)
-  String firstName, 
-  //@Pattern(regexp = "[\\w\\s]*")
-  @RequestParam(required = false)
-  String lastName,
-  @RequestParam(required = false)
-  BigDecimal payRate);
-  */
+
 //@formatter:on
 
 
