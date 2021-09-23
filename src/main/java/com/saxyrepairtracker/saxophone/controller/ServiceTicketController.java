@@ -1,87 +1,285 @@
-//package com.saxyrepairtracker.saxophone.controller;
+package com.saxyrepairtracker.saxophone.controller;
+
+import java.util.List;
+import javax.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
+import com.saxyrepairtracker.saxophone.entity.Status;
+import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+
+@Validated
+@RequestMapping("/serviceTickets")
+@OpenAPIDefinition(info = @Info(title = "Service Ticket"), servers = {
+@Server(url = "http://localhost:8080", description = "Local server.")})
+public interface ServiceTicketController {
+
+@Autowired
+private ServiceTicketService serviceTicketService;
+
+  // @formatter:off
+  @Operation(
+      summary = "Returns a Service Ticket By Status",
+      description = "Returns a Employee given a first and last name",
+      responses = {
+          @ApiResponse(
+              responseCode = "200",
+              description = "An Service Ticket is returned",
+              content = @Content(
+                  mediaType = "application/json", 
+                  schema = @Schema(implementation = ServiceTicket.class))),
+          @ApiResponse(
+              responseCode = "400", 
+              description = "The request parameters are invalid",  
+              content = @Content(mediaType = "application/json")),
+          @ApiResponse(
+              responseCode = "404", 
+              description = "No Employees were found with the input criteria",  
+              content = @Content(mediaType = "application/json")),
+          @ApiResponse(
+              responseCode = "500", 
+              description = "An unplanned error occurred.",  
+              content = @Content(mediaType = "application/json"))
+      },
+      parameters = {
+          @Parameter(name = "Status", 
+              allowEmptyValue = false, 
+              required = false, 
+              description = "The first name (i.e., 'Jojo')")
+      }
+  )
+  //this is for gets not deletes, postmapping, deletemapping etc for the methods 
+  @GetMapping
+  @ResponseStatus(code = HttpStatus.OK)
+  List<ServiceTicket> fetchServiceTicketByStatus(
+      @RequestParam(required = false)
+      Status Status
+    );
+  //@formatter:on
+
+
+// /all 
+// @formatter:off
+@Operation(
+    summary = "Returns all Service Tickets",
+    description = "Returns a List of Service Tickets",
+    responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "A List of all Employees is returned",
+            content = @Content(
+                mediaType = "application/json", 
+                schema = @Schema(implementation = ServiceTicket.class))),
+        @ApiResponse(
+            responseCode = "400", 
+            description = "The request parameters are invalid",  
+            content = @Content(mediaType = "application/json")),
+        @ApiResponse(
+            responseCode = "404", 
+            description = "No Employees were found with the input criteria",  
+            content = @Content(mediaType = "application/json")),
+        @ApiResponse(
+            responseCode = "500", 
+            description = "An unplanned error occurred.",  
+            content = @Content(mediaType = "application/json"))
+    }
+)
+//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+      @GetMapping("/all")
+      @ResponseStatus(code = HttpStatus.OK)
+      List<ServiceTicket> fetchAllServiceTickets();  
+ //@formatter:on
+
+
+//POST
+//Create Method CreateEmployees
+//createEmployee
+// @formatter:off
+@Operation(
+    summary = "Returns a new Employee",
+    description = "Returns a Employee given a first and last name",
+    responses = {
+        @ApiResponse(
+            responseCode = "201", 
+            description = "A new Employee has been created",
+            content = @Content(
+                mediaType = "application/json", 
+                schema = @Schema(implementation = Employee.class))),
+        @ApiResponse(
+            responseCode = "400", 
+            description = "The request parameters are invalid",  
+            content = @Content(mediaType = "application/json")),
+        @ApiResponse(
+            responseCode = "404", 
+            description = "No Employees component was not found with the input criteria",  
+            content = @Content(mediaType = "application/json")),//maybe reword
+        @ApiResponse(
+            responseCode = "500", 
+            description = "An unplanned error occurred.",  
+            content = @Content(mediaType = "application/json"))
+    }
+    /*,
+    parameters = {
+        @Parameter(name = "firstName", 
+            allowEmptyValue = false, 
+            required = false, 
+            description = "The first name (i.e., 'Jojo')"),
+        @Parameter(name = "lastName", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "The last name (i.e., 'Mel')"),
+         @Parameter(name = "payRate", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "Pay rate (i.e., '15')")
+    }*/
+    
+)
+//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+      @PostMapping("/id")
+      @ResponseStatus(code = HttpStatus.CREATED)
+      List<Employee> createEmployee(@Valid @RequestBody Employee newEmployee);
+//@formatter:on
+
+
+
+//Deletes Employee 
+//deleteEmployee
+// @formatter:off
+@Operation(
+    summary = "Deletes an Employee",
+    description = "Deletes an Employee given an id",
+    responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Employee was deleted",
+            content = @Content(
+                mediaType = "application/json", 
+                schema = @Schema(implementation = Employee.class))),
+        @ApiResponse(
+            responseCode = "400", 
+            description = "The request parameters are invalid",  
+            content = @Content(mediaType = "application/json")),
+        @ApiResponse(
+            responseCode = "404", 
+            description = "No Employees were found with the input criteria",  
+            content = @Content(mediaType = "application/json")),
+        @ApiResponse(
+            responseCode = "500", 
+            description = "An unplanned error occurred.",  
+            content = @Content(mediaType = "application/json"))
+    },
+    parameters = {
+        @Parameter(name = "employeePK", 
+            allowEmptyValue = false, 
+            required = false, 
+            description = "employeePK (i.e., 3)"),
+    }
+)
+//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+    @DeleteMapping("/employeePK")
+    @ResponseStatus(code = HttpStatus.OK)
+    void deleteEmployee(int deleteId); 
+//    @RequestParam(required = false)
+//    int employeePK, 
+
+ //@formatter:on
+
+
 //
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.server.ResponseStatusException;
-//import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
-//import com.saxyrepairtracker.saxophone.entity.Status;
-//import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
-//import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.info.Info;
+
+//PUT Update 
+//EmployeeUpdate
+//updateEmployee
+//@formatter:off
+@Operation(
+  summary = "Returns an updated Employee",
+  description = "Returns a Employee to update given an id",
+  responses = {
+      @ApiResponse(
+          responseCode = "200",
+          description = "An updated Employee is returned",
+          content = @Content(
+              mediaType = "application/json", 
+              schema = @Schema(implementation = Employee.class))),
+      @ApiResponse(
+          responseCode = "400", 
+          description = "The request parameters are invalid",  
+          content = @Content(mediaType = "application/json")),
+      @ApiResponse(
+          responseCode = "404", 
+          description = "No Employees were found with the input criteria",  
+          content = @Content(mediaType = "application/json")),
+      @ApiResponse(
+          responseCode = "500", 
+          description = "An unplanned error occurred.",  
+          content = @Content(mediaType = "application/json"))
+  }
+  /*
+        parameters = {
+        @Parameter(name = "firstName", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The first name (i.e., 'Jojo')"),
+        @Parameter(name = "lastName", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "The last name (i.e., 'Mel')"),
+        @Parameter(name = "payRate", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "Pay rate (i.e., '15')")
+        */
+  
+)
+//this is for gets not deletes, postmapping, deletemapping etc for the methods 
+@PutMapping("/{id}")
+@ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
+List<Employee> updateEmployee(
+  @PathVariable int id, 
+  @Valid @RequestBody Employee updatedEmployee);
+  /*
+  @RequestParam(required = false)
+  String firstName, 
+  //@Pattern(regexp = "[\\w\\s]*")
+  @RequestParam(required = false)
+  String lastName,
+  @RequestParam(required = false)
+  BigDecimal payRate);
+  */
+//@formatter:on
+
+
+}
 //
-//@RestController
-//@OpenAPIDefinition(info = @Info(title = "Service Ticket Tracker"))
-//public class ServiceTicketController {
-//
-//  @Autowired
-//  private ServiceTicketService service;
-//  
-//  /**
-//   * Get a specific title by it's id.
-//   * @param id The unique id of the title (i.e. tt234234)
-//   * @return A title if found, otherwise null.
-//   */
-//  @Operation(summary = "Get a service ticket by it's unique id",
-//             description = "Gets the title if found, otherwise returns null")
-//  @RequestMapping(value = "/serviceticket/{id}", method = RequestMethod.GET)
-//  public ServiceTicket getServiceTicketeById(@PathVariable int id) {
-//    ServiceTicket title = service.get(id);
-//    if (id != null) {
-//      return(id);
-//    }
-//    
-//    throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-//        String.format("ServiceTicket '%s' was not found", id));
-//  }
-//  
-//  /**
-//   * Adds or creates a new title.
-//   * @param title The new title information.
-//   * @return The newly created if successful, otherwise return null
-//   */
-//  @Operation(summary = "Adds or creates a new ServiceTicket",
-//             description = "Creates a new title if successful, otherwise returns null.")
-//  @RequestMapping(value = "/ServiceTicket", method = RequestMethod.POST)
-//  public ServiceTicket createTitle(@RequestBody ServiceTicket ticket) {
-//    if (ticket != null) {
-//      ServiceTicket createdServiceTicket = service.create(ticket);
-//      if (createdServiceTicket == null) {
-//        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
-//            String.format("An unknown error occurred when creating a title. Please try again."));
-//      }
-//      
-//      return(createdServiceTicket);
-//    }
-//    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
-//        String.format("No title was provided. Title is required"));
-//  }
-//  
-//  @RequestMapping(value = "/titles/{title}", method = RequestMethod.PUT)
-//  public ServiceTicket update(@PathVariable Status status, @RequestBody ServiceTicket input) {
-//    if ((status == null) || (status.isEmpty())) {
-//      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
-//          "Not title id was specified.");
-//    }
-//    if (input == null) {
-//      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
-//          "Title was empty or missing");
-//    }
-//    
-//    ServiceTicket model = service.update(String description, input);
-//    if (description != null) {
-//      return(description);
-//    }
-//    
-//    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, 
-//        "An internal / unexpect error ocurred creating requested title.");
-//  }
-//  
-//
-//}
-//  
+
+}
