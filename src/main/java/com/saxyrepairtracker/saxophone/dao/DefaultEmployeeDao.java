@@ -70,6 +70,7 @@ public class DefaultEmployeeDao implements EmployeeDao{
          // @formatter:off
             return Employee.builder()
                 .employeePK(rs.getInt("employee_pk"))
+                //.employeePK(((Employee) rs.getEmployeePK("employee_pk"))
                 .firstName(rs.getString("first_name"))
                 .lastName(rs.getString("last_name"))
                 .payRate(rs.getBigDecimal("pay_rate"))

@@ -53,7 +53,7 @@ public class DefaultEmployeeService implements EmployeesService{
         return employees;
       }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     @Override
     public List<Employee> createEmployee(Employee newEmployee) {
         log.info("The createEmployee method was called with firstName={}, lastName={} and payRate={}",
@@ -72,7 +72,7 @@ public class DefaultEmployeeService implements EmployeesService{
       }
 
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     @Override
     public void deleteEmployee(int deleteId) {
         log.info("The deleteEmployee method was called with employeePK={}",
@@ -85,6 +85,7 @@ public class DefaultEmployeeService implements EmployeesService{
       }
 
     //This could mimic the create method 
+    @Transactional(readOnly = false)
     @Override
     public List<Employee> updateEmployee(int id, Employee updatedEmployee) {
       return employeeDao.updateEmployee(id, updatedEmployee);
