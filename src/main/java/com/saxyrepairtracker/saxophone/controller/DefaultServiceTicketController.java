@@ -30,7 +30,7 @@ public class DefaultServiceTicketController implements ServiceTicketController{
 
   @Override
   public List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket) {
-    return serviceTicketService.createServiceTicket;
+    return serviceTicketService.createServiceTicket(newServiceTicket);
   }
 
   @Override
