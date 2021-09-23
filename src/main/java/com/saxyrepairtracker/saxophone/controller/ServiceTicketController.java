@@ -121,12 +121,11 @@ private ServiceTicketService serviceTicketService;
 
 
 //POST
-//Create Method CreateEmployees
-//createEmployee
+//Create Method ServiceTickets
 // @formatter:off
 @Operation(
-    summary = "Returns a new Employee",
-    description = "Returns a Employee given a first and last name",
+    summary = "Returns a new Service Ticket",
+    description = "Returns a Service Ticket given a first and last name",
     responses = {
         @ApiResponse(
             responseCode = "201", 
@@ -167,7 +166,7 @@ private ServiceTicketService serviceTicketService;
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
       @PostMapping("/id")
       @ResponseStatus(code = HttpStatus.CREATED)
-      List<Employee> createEmployee(@Valid @RequestBody Employee newEmployee);
+      List<ServiceTicket> createEmployee(@Valid @RequestBody ServiceTicket newServiceTicket);
 //@formatter:on
 
 
@@ -176,15 +175,15 @@ private ServiceTicketService serviceTicketService;
 //deleteEmployee
 // @formatter:off
 @Operation(
-    summary = "Deletes an Employee",
+    summary = "Deletes an Service Ticket",
     description = "Deletes an Employee given an id",
     responses = {
         @ApiResponse(
             responseCode = "200",
-            description = "Employee was deleted",
+            description = "Service Ticket was deleted",
             content = @Content(
                 mediaType = "application/json", 
-                schema = @Schema(implementation = Employee.class))),
+                schema = @Schema(implementation = ServiceTicket.class))),
         @ApiResponse(
             responseCode = "400", 
             description = "The request parameters are invalid",  
@@ -206,9 +205,9 @@ private ServiceTicketService serviceTicketService;
     }
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
-    @DeleteMapping("/employeePK")
+    @DeleteMapping("/serviceTicketPK")
     @ResponseStatus(code = HttpStatus.OK)
-    void deleteEmployee(int deleteId); 
+    void deleteServiceTicket(int deleteId); 
 //    @RequestParam(required = false)
 //    int employeePK, 
 
@@ -222,7 +221,7 @@ private ServiceTicketService serviceTicketService;
 //updateEmployee
 //@formatter:off
 @Operation(
-  summary = "Returns an updated Employee",
+  summary = "Returns an updated ServiceTicket",
   description = "Returns a Employee to update given an id",
   responses = {
       @ApiResponse(
@@ -230,7 +229,7 @@ private ServiceTicketService serviceTicketService;
           description = "An updated Employee is returned",
           content = @Content(
               mediaType = "application/json", 
-              schema = @Schema(implementation = Employee.class))),
+              schema = @Schema(implementation = ServiceTicket.class))),
       @ApiResponse(
           responseCode = "400", 
           description = "The request parameters are invalid",  
@@ -264,9 +263,9 @@ private ServiceTicketService serviceTicketService;
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
 @PutMapping("/{id}")
 @ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
-List<Employee> updateEmployee(
+List<ServiceTicket> updateEmployee(
   @PathVariable int id, 
-  @Valid @RequestBody Employee updatedEmployee);
+  @Valid @RequestBody ServiceTicket updatedServiceTicket);
   /*
   @RequestParam(required = false)
   String firstName, 
@@ -280,6 +279,5 @@ List<Employee> updateEmployee(
 
 
 }
-//
 
-}
+
