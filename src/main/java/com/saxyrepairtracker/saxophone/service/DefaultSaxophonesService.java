@@ -1,119 +1,119 @@
-//package com.saxyrepairtracker.saxophone.service;
-//
-//import java.util.List;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-////import com.saxyrepairtracker.saxophone.controller.DefaultEmployeeController;
-//import com.saxyrepairtracker.saxophone.dao.SaxophonesDao;
-//import com.saxyrepairtracker.saxophone.entity.Saxophones;
-//import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
-//import lombok.extern.slf4j.Slf4j;
-//
-////@Component
-//@Service
-//@Slf4j
-//public class DefaultSaxophonesService implements SaxophonesService {
-//
-//  @Autowired
-//  private SaxophonesDao saxophonesDao;
-// 
-//  @Override
-//  public List<Saxophones> fetchAllSaxophones() {
-//    log.debug("STOP REBUILDING ");
-//    return saxophonesDao.fetchAllSaxophones();
-//  }
-//
-////  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
-////    // TODO Auto-generated method stub
-////    return saxophonesDao.getSaxophonesBySaxophoneType(type);
-////  }
-//
-//  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
-//      SaxophonesType type) {
-//    
-//    return saxophonesDao.createSaxophones(customerFK, manufacturer, series, type);
-//  }
-//
-////  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
-////    // TODO Auto-generated method stub
-////    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
-////  }
-//
-//  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
+package com.saxyrepairtracker.saxophone.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+//import com.saxyrepairtracker.saxophone.controller.DefaultEmployeeController;
+import com.saxyrepairtracker.saxophone.dao.SaxophonesDao;
+import com.saxyrepairtracker.saxophone.entity.Saxophones;
+import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
+import lombok.extern.slf4j.Slf4j;
+
+//@Component
+@Service
+@Slf4j
+public class DefaultSaxophonesService implements SaxophonesService {
+
+  @Autowired
+  private SaxophonesDao saxophonesDao;
+ 
+  @Override
+  public List<Saxophones> fetchAllSaxophones() {
+    log.debug("STOP REBUILDING ");
+    return saxophonesDao.fetchAllSaxophones();
+  }
+
+//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
 //    // TODO Auto-generated method stub
-//    return saxophonesDao.updateSaxophones(updatedSaxophones);
+//    return saxophonesDao.getSaxophonesBySaxophoneType(type);
 //  }
-//
-//  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
+
+  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
+      SaxophonesType type) {
+    
+    return saxophonesDao.createSaxophones(customerFK, manufacturer, series, type);
+  }
+
+//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
 //    // TODO Auto-generated method stub
-//    return saxophonesDao.fetchAllSaxophonesByCustomer(customerFK);
+//    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
 //  }
-//
-//  @Override
-//  public List<Saxophones> createSaxophones(Saxophones saxophones) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-//
-//  @Override
-//  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
+
+  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
+    // TODO Auto-generated method stub
+    return saxophonesDao.updateSaxophones(updatedSaxophones);
+  }
+
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
+    // TODO Auto-generated method stub
+    return saxophonesDao.fetchAllSaxophonesByCustomer(customerFK);
+  }
+
+  @Override
+  public List<Saxophones> createSaxophones(Saxophones saxophones) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+  
+  /**
+   * Searches the titles for any occurrences of the specified name.
+   * @param name The regular expression or part of the name we want to search.4
+   * @return Returns the matching titles if found, otherwise returns an empty list.
+   */
+//  List<Saxophones> search(SaxophonesType type) {
+//   return null;
+// }
+  
+  /**
+   * Creates a new title.
+   * @param newTitle The new title information.
+   * @return The new title information that was created and/or validated, or returns null if operation failed.
+   */
 //  
+//  Saxophones create(Saxophones saxophonesPK) {
+//   return null;
+// }
+  
 //  /**
-//   * Searches the titles for any occurrences of the specified name.
-//   * @param name The regular expression or part of the name we want to search.4
-//   * @return Returns the matching titles if found, otherwise returns an empty list.
+//   * Deletes or removes a title.
+//   * @param id The unique id of the title.
+//   * @return True if deleted, false if title doesn't exist or deletion failed.
 //   */
-////  List<Saxophones> search(SaxophonesType type) {
-////   return null;
-//// }
-//  
+//  Saxophones delete(String id);
+  
 //  /**
-//   * Creates a new title.
-//   * @param newTitle The new title information.
-//   * @return The new title information that was created and/or validated, or returns null if operation failed.
+//   * Updates a title with new information.
+//   * @param id The unique id of the title.
+//   * @param updatedTitle The updated or new title information. 
+//   * @return Returns the updated title information, or null if update fails.
 //   */
-////  
-////  Saxophones create(Saxophones saxophonesPK) {
-////   return null;
-//// }
-//  
-////  /**
-////   * Deletes or removes a title.
-////   * @param id The unique id of the title.
-////   * @return True if deleted, false if title doesn't exist or deletion failed.
-////   */
-////  Saxophones delete(String id);
-//  
-////  /**
-////   * Updates a title with new information.
-////   * @param id The unique id of the title.
-////   * @param updatedTitle The updated or new title information. 
-////   * @return Returns the updated title information, or null if update fails.
-////   */
-////  Saxophones update(String id, Saxophones update) {
-////   return null;
-//// }
-//  
-////  /**
-////   * Retrieves a single title by id.
-////   * @param id The unique id of the title.
-////   * @return The title if found, null if otherwise.
-////   */
-////  Saxophones get(String id) {
-////   return null;
-//// }
-//
-//// public List<Saxophones> createSaxophones(Saxophones saxophones) {
-////   // TODO Auto-generated method stub
-////   return saxophonesDao.createSaxophones(saxophones);
-//// }
-//
-//
-////public List<Saxophones> getSaxophonesByManufacturer(String manufacturer) {
-////// TODO Auto-generated method stub
-////return null;
-////}
+//  Saxophones update(String id, Saxophones update) {
+//   return null;
+// }
+  
+//  /**
+//   * Retrieves a single title by id.
+//   * @param id The unique id of the title.
+//   * @return The title if found, null if otherwise.
+//   */
+//  Saxophones get(String id) {
+//   return null;
+// }
+
+// public List<Saxophones> createSaxophones(Saxophones saxophones) {
+//   // TODO Auto-generated method stub
+//   return saxophonesDao.createSaxophones(saxophones);
+// }
+
+
+//public List<Saxophones> getSaxophonesByManufacturer(String manufacturer) {
+//// TODO Auto-generated method stub
+//return null;
 //}
+}
