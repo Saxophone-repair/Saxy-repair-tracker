@@ -2,7 +2,9 @@ package com.saxyrepairtracker.saxophone.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -35,18 +37,18 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
 //        jdbcTemplate.query(sql,  params, new CustomerResultSetExtractor()));
 //  }
 //  
-  public static SaxophonesType getSaxophoneByType(SaxophonesType type) {
-    log.info("Pulls Saxophones in service layer with the specified SaxophonesType");
-      return type;
-  }
-
-  public static String getSaxophoneManufacturer(String manufacturer) {
-     log.info("Pulls Saxophones in service layer with certain manufacturer's");
-      return manufacturer;
-    }
+//  public SaxophonesType getSaxophoneByType(SaxophonesType type) {
+//    log.info("Pulls Saxophones in service layer with the specified SaxophonesType");
+//      return type;
+//  }
+//
+//  public String getSaxophoneManufacturer(String manufacturer) {
+//     log.info("Pulls Saxophones in service layer with certain manufacturer's");
+//      return manufacturer;
+//    }
     
-  
-  public List<Saxophones> getSaxophones() {
+@Override
+  public List<Saxophones> fetchAllSaxophones() {
     log.info("In saxophones.dao.getCustomers");
     
         // @formatter:off
@@ -55,7 +57,8 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
             + "FROM saxophones; ";
         // @formatter:on
         
-        return jdbcTemplate.query(sql,
+        Map<String, Object> params = new HashMap<>();
+        return jdbcTemplate.query(sql, params,
             new RowMapper<Saxophones>() {
               @Override
               public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -133,17 +136,17 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
 //    MapSqlParameterSource source = new MapSqlParameterSource();
 //  }
 
-  @Override
-  public List<Saxophones> getSaxophonesByManufacturer(String manufacturer, int customerFK) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+//  @Override
+//  public List<Saxophones> getSaxophonesByManufacturer(String manufacturer, int customerFK) {
+//    // TODO Auto-generated method stub
+//    return null;
+//  }
 
-  @Override
-  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+//  @Override
+//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
+//    // TODO Auto-generated method stub
+//    return null;
+//  }
 
   @Override
   public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
@@ -152,20 +155,20 @@ public class DefaultSaxophoneDao implements SaxophonesDao {
     return null;
   }
 
+//  @Override
+//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
+//    // TODO Auto-generated method stub
+//    return null;
+//  }
+
   @Override
-  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public List<Saxophones> fetchAllSaxophones(int customerFK) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophone) {
+  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
     return null;
   }

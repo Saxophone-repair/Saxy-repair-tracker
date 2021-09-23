@@ -8,16 +8,18 @@ public interface SaxophonesService {
   
   public List<Saxophones> createSaxophones(Saxophones saxophones); 
 
-  public List<Saxophones> getSaxophones(); 
+  public List<Saxophones> fetchAllSaxophones(); 
   
-  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type); 
+//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type); 
   
   public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
                                             SaxophonesType type);
 
-  public List<Saxophones> getSaxophonesManufacturer(String manufacturer); 
+//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer); 
 
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophone); 
+  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones); 
 
-  public List<Saxophones> fetchAllSaxophones(int customerId); 
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);
+
+  public List<Saxophones> fetchSaxophones(SaxophonesType type); 
 }

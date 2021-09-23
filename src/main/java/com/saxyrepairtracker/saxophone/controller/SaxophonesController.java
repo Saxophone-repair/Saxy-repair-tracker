@@ -96,7 +96,7 @@ public interface SaxophonesController {
   )
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> getSaxophones();
+  List<Saxophones> fetchAllSaxophones();
   
   // @formatter:off
   @Operation(
@@ -131,7 +131,7 @@ public interface SaxophonesController {
   )
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> fetchAllSaxophones(int customerFK);
+  List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);
   
   // @formatter:off
   @Operation(
@@ -164,40 +164,40 @@ public interface SaxophonesController {
       @PathVariable int saxophonePK, 
       @Valid @RequestBody Saxophones updatedSaxophones);
   
-  // @formatter:off
-  @Operation(
-      summary = "Returns the list of Saxophones by manufacturer",
-      description = "Returns the list of Saxophones",
-      responses = {
-          @ApiResponse(
-              responseCode = "200",
-              description = "A list of Saxophones gets returned by manufacturer",
-              content = @Content(
-                  mediaType = "application/json", 
-                  schema = @Schema(implementation = Saxophones.class))),
-          @ApiResponse(
-              responseCode = "400", 
-              description = "The request parameters are invalid",  
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "404", 
-              description = "No Saxophones were found",  
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "500", 
-              description = "An unplanned error occurred.",  
-              content = @Content(mediaType = "application/json")),
-      },
-      parameters = {
-          @Parameter(name = "manufacturer", 
-              allowEmptyValue = false, 
-              required = false, 
-              description = "The Saxophone's manufacturer (Yamaha, Selmer, ect...)")
-          }
-  )
-  @GetMapping
-  @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
+//  // @formatter:off
+//  @Operation(
+//      summary = "Returns the list of Saxophones by manufacturer",
+//      description = "Returns the list of Saxophones",
+//      responses = {
+//          @ApiResponse(
+//              responseCode = "200",
+//              description = "A list of Saxophones gets returned by manufacturer",
+//              content = @Content(
+//                  mediaType = "application/json", 
+//                  schema = @Schema(implementation = Saxophones.class))),
+//          @ApiResponse(
+//              responseCode = "400", 
+//              description = "The request parameters are invalid",  
+//              content = @Content(mediaType = "application/json")),
+//          @ApiResponse(
+//              responseCode = "404", 
+//              description = "No Saxophones were found",  
+//              content = @Content(mediaType = "application/json")),
+//          @ApiResponse(
+//              responseCode = "500", 
+//              description = "An unplanned error occurred.",  
+//              content = @Content(mediaType = "application/json")),
+//      },
+//      parameters = {
+//          @Parameter(name = "manufacturer", 
+//              allowEmptyValue = false, 
+//              required = false, 
+//              description = "The Saxophone's manufacturer (Yamaha, Selmer, ect...)")
+//          }
+//  )
+//  @GetMapping
+//  @ResponseStatus(code = HttpStatus.OK)
+//  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
   
   // @formatter:off
   @Operation(

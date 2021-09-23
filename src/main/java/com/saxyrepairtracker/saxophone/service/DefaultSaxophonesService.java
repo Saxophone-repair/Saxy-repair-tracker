@@ -17,15 +17,15 @@ public class DefaultSaxophonesService implements SaxophonesService {
   @Autowired
   private SaxophonesDao saxophonesDao;
  
-  public List<Saxophones> getSaxophones() {
+  public List<Saxophones> fetchAllSaxophones() {
     // TODO Auto-generated method stub
-    return saxophonesDao.getSaxophones();
+    return saxophonesDao.fetchAllSaxophones();
   }
 
-  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return saxophonesDao.getSaxophonesBySaxophoneType(type);
-  }
+//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
+//    // TODO Auto-generated method stub
+//    return saxophonesDao.getSaxophonesBySaxophoneType(type);
+//  }
 
   public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
       SaxophonesType type) {
@@ -33,23 +33,29 @@ public class DefaultSaxophonesService implements SaxophonesService {
     return saxophonesDao.createSaxophones(customerFK, manufacturer, series, type);
   }
 
-  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
+//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
+//    // TODO Auto-generated method stub
+//    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
+//  }
+
+  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
-    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
+    return saxophonesDao.updateSaxophones(updatedSaxophones);
   }
 
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophone) {
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {
     // TODO Auto-generated method stub
-    return saxophonesDao.updateSaxophones(updatedSaxophone);
-  }
-
-  public List<Saxophones> fetchAllSaxophones(int customerId) {
-    // TODO Auto-generated method stub
-    return saxophonesDao.fetchAllSaxophones(customerId);
+    return saxophonesDao.fetchAllSaxophonesByCustomer(customerFK);
   }
 
   @Override
   public List<Saxophones> createSaxophones(Saxophones saxophones) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {
     // TODO Auto-generated method stub
     return null;
   }
