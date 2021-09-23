@@ -2,40 +2,47 @@ package com.saxyrepairtracker.saxophone.controller;
 
 import java.util.List;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
 import com.saxyrepairtracker.saxophone.entity.Status;
+import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
+import lombok.extern.slf4j.Slf4j;
 
+@RestController
+@Slf4j
 public class DefaultServiceTicketController implements ServiceTicketController{
 
+  @Autowired
+  private ServiceTicketService serviceTicketService;
+  
+  
   @Override
-  public List<ServiceTicket> fetchServiceTicketByStatus(Status Status) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<ServiceTicket> fetchServiceTicketByStatus(Status status) {
+    log.debug("status={}", status);
+    return serviceTicketService.fetchServiceTicketByStatus(status);
   }
 
   @Override
   public List<ServiceTicket> fetchAllServiceTickets() {
-    // TODO Auto-generated method stub
-    return null;
+    return serviceTicketService.fetchAllServiceTickets();
   }
 
   @Override
   public List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket) {
-    // TODO Auto-generated method stub
-    return null;
+    return serviceTicketService.createServiceTicket;
   }
 
   @Override
   public void deleteServiceTicket(int deleteId) {
-    // TODO Auto-generated method stub
-    
+    log.debug("servicePK={}", deleteId);
+    serviceTicketService.deleteServiceTicket(deleteId);
   }
 
   @Override
   public List<ServiceTicket> updateServiceTicket(int id,
       @Valid ServiceTicket updatedServiceTicket) {
-    // TODO Auto-generated method stub
-    return null;
+    return serviceTicketService.updateServiceTicket(id, updatedServiceTicket);
   }
 
 }
