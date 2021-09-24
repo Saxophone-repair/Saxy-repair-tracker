@@ -34,7 +34,7 @@ public interface ServiceTicketController {
   // @formatter:off
   @Operation(
       summary = "Returns a Service Ticket By Status",
-      description = "Returns a Employee given a first and last name",
+      description = "Returns a Service Ticket given a Status",
       responses = {
           @ApiResponse(
               responseCode = "200",
@@ -48,7 +48,7 @@ public interface ServiceTicketController {
               content = @Content(mediaType = "application/json")),
           @ApiResponse(
               responseCode = "404", 
-              description = "No Employees were found with the input criteria",  
+              description = "No Service Tickets were found with the input criteria",  
               content = @Content(mediaType = "application/json")),
           @ApiResponse(
               responseCode = "500", 
@@ -80,7 +80,7 @@ public interface ServiceTicketController {
     responses = {
         @ApiResponse(
             responseCode = "200",
-            description = "A List of all Employees is returned",
+            description = "A List of all Service Tickets is returned",
             content = @Content(
                 mediaType = "application/json", 
                 schema = @Schema(implementation = ServiceTicket.class))),
@@ -90,7 +90,7 @@ public interface ServiceTicketController {
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "404", 
-            description = "No Employees were found with the input criteria",  
+            description = "No Service Tickets were found with the input criteria",  
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "500", 
@@ -114,7 +114,7 @@ public interface ServiceTicketController {
     responses = {
         @ApiResponse(
             responseCode = "201", 
-            description = "A new Employee has been created",
+            description = "A new Service Ticket has been created",
             content = @Content(
                 mediaType = "application/json", 
                 schema = @Schema(implementation = ServiceTicket.class))),
@@ -124,7 +124,7 @@ public interface ServiceTicketController {
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "404", 
-            description = "No Employees component was not found with the input criteria",  
+            description = "No Service Tickets component was not found with the input criteria",  
             content = @Content(mediaType = "application/json")),//maybe reword
         @ApiResponse(
             responseCode = "500", 
@@ -159,7 +159,7 @@ public interface ServiceTicketController {
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "404", 
-            description = "No Employees were found with the input criteria",  
+            description = "No Service Tickets were found with the input criteria",  
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "500", 
@@ -186,7 +186,7 @@ public interface ServiceTicketController {
 //@formatter:off
 @Operation(
   summary = "Returns an updated ServiceTicket",
-  description = "Returns a Employee to update given an id",
+  description = "Returns a Service Ticket to update given an id",
   responses = {
       @ApiResponse(
           responseCode = "200",
@@ -200,7 +200,7 @@ public interface ServiceTicketController {
           content = @Content(mediaType = "application/json")),
       @ApiResponse(
           responseCode = "404", 
-          description = "No Employees were found with the input criteria",  
+          description = "No Service Tickets were found with the input criteria",  
           content = @Content(mediaType = "application/json")),
       @ApiResponse(
           responseCode = "500", 
