@@ -21,13 +21,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
 import com.saxyrepairtracker.saxophone.entity.Status;
-import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
 
 @Validated
 @RequestMapping("/serviceTickets")
@@ -35,8 +30,6 @@ import com.saxyrepairtracker.saxophone.service.ServiceTicketService;
 @Server(url = "http://localhost:8080", description = "Local server.")})
 public interface ServiceTicketController {
 
-@Autowired
-private ServiceTicketService serviceTicketService;
 
   // @formatter:off
   @Operation(
@@ -66,7 +59,7 @@ private ServiceTicketService serviceTicketService;
           @Parameter(name = "Status", 
               allowEmptyValue = false, 
               required = false, 
-              description = "The first name (i.e., 'Jojo')")
+              description = "The Status (i.e., 'Awaiting_Arrival')")
       }
   )
   //this is for gets not deletes, postmapping, deletemapping etc for the methods 
@@ -177,7 +170,7 @@ private ServiceTicketService serviceTicketService;
         @Parameter(name = "servicePK", 
             allowEmptyValue = false, 
             required = false, 
-            description = "employeePK (i.e., 3)"),
+            description = "servicePK (i.e., 3)"),
     }
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
