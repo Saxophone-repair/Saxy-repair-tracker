@@ -128,7 +128,10 @@ public class DefaultEmployeeDao implements EmployeeDao{
     // @formatter:off
     String sql = ""
         + "UPDATE "
-        + " employee SET first_name = :first_name, last_name = : last_name, pay_rate = :pay_rate WHERE employee_pk = :employee_pk";
+        + " employee SET first_name = :first_name, "
+        + "last_name = : last_name, "
+        + "pay_rate = :pay_rate "
+        + "WHERE employee_pk = :employee_pk";
     // @formatter:on
     
     Map<String, Object> params = new HashMap<>();
