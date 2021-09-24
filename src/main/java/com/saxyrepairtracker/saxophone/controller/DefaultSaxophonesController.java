@@ -45,7 +45,7 @@ public class DefaultSaxophonesController implements SaxophonesController {
   @Override
   public List<Saxophones> updateSaxophones(int saxophonePK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
-    return saxophonesService.updateSaxophones(updatedSaxophones);
+    return saxophonesService.updateSaxophones(saxophonePK, updatedSaxophones);
   }
 
 //  @Override
@@ -57,9 +57,9 @@ public class DefaultSaxophonesController implements SaxophonesController {
 
 
   @Override                                                                                    //!!!
-  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
+  public Saxophones createSaxophones(int customerFK, int serialNumber, String manufacturer, String series,
                                             SaxophonesType type) {
     // TODO Auto-generated method stub
-    return saxophonesService.createSaxophones(customerFK, manufacturer, series, type);
+    return saxophonesService.createSaxophones(customerFK, serialNumber, manufacturer, series, type);
     }
 }

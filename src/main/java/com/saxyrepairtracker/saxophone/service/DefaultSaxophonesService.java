@@ -36,10 +36,10 @@ public class DefaultSaxophonesService implements SaxophonesService {
 //    return saxophonesDao.getSaxophonesBySaxophoneType(type);
 //  }
 
-  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
+  public Saxophones createSaxophones(int customerFK, int serialNumber,  String manufacturer, String series,
       SaxophonesType type) {
     
-    return saxophonesDao.createSaxophones(customerFK, manufacturer, series, type);
+    return saxophonesDao.createSaxophones(customerFK, serialNumber, manufacturer, series, type);
   }
 
 //  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
@@ -47,9 +47,9 @@ public class DefaultSaxophonesService implements SaxophonesService {
 //    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
 //  }
 
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
+  public List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
-    return saxophonesDao.updateSaxophones(updatedSaxophones);
+    return saxophonesDao.updateSaxophones(saxophonesPK, updatedSaxophones);
   }
 
   public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {         //!!!

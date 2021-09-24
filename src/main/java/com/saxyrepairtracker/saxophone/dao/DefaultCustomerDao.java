@@ -15,15 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultCustomerDao implements CustomerDao {
   @Autowired
   private NamedParameterJdbcTemplate jdbcTemplate;
+  
+  
     // Retrieve data from database and return to service layer
-  public List<Customer> fetchCustomer(String firstName, String lastName) {
+  public List<Customer> fetchACustomer(String firstName, String lastName) {
     log.info("In customer.dao.getCustomer");
     return null;
   }
   
   
-  public List<Customer> getCustomers() {
-    log.info("In customer.dao.getCustomers");
+  public List<Customer> fetchAllCustomers() {
+    log.info("In customer.dao.fetchAllCustomers");
     
       // @formatter:off
       String sql = ""
@@ -56,20 +58,15 @@ public class DefaultCustomerDao implements CustomerDao {
     return customer;
   }
   
-  public Customer getCustomerFirstName(Customer firstName) { //?
+  public List<Customer> fetchCustomerByFirstName(String firstName) { 
     log.info("Pull customers in service layer with certain name");
-    return firstName;
+    return null;
   }
 
-  public List<Customer> fetchCustomers(String firstName, String lastName) {
+  public List<Customer> fetchMultipleCustomers(String firstName, String lastName) {
     // TODO Auto-generated method stub
     return null;
   }
 
 
-  @Override
-  public Customer getCustomerFirstName(String firstName) {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }

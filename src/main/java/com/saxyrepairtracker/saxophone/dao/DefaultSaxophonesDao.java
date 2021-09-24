@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
@@ -37,7 +40,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
               public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
                 // @formatter:off
                 return Saxophones.builder()
-                    .saxophonePK(rs.getInt("saxophones_pk"))
+                    .saxophonesPK(rs.getInt("saxophones_pk"))
                     .customerFK(rs.getInt("customer_fk"))
                     .serialNumber(rs.getInt("serial_number"))
                     .manufacturer(rs.getString("manufacturer"))
@@ -51,17 +54,68 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
 
 
   @Override
-  public List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series,
-      SaxophonesType type) {
-    // TODO Auto-generated method stub
-    return null;
+  public Saxophones createSaxophones(int customerFK, int serialNumber, 
+                      String manufacturer, String series, SaxophonesType type) {
+    // @formatter:off
+//    String sql = ""
+//        + "INSERT into saxophones "
+//        + "(customer_fk, serial_number, manufacturer, series , type) " 
+//        + "VALUES (:customer_fk, :serial_number, :manufacturer, :series, :type)" ;
+    // @formatter:on
+    
+    //INSERT INTO saxophones (customer_fk, serial_number, manufacturer, series , type) 
+    //VALUES (1, 15236654, 'Yamaha', 'Custom Z', 'TENOR');
+    
+    
+    // the first way to get everything without the saxophonePK
+//    Map<String, Object> params = new HashMap<>();
+//    params.put("customer_fk", customerFK);
+//    params.put("serial_number", serialNumber);
+//    params.put("manufacturer", manufacturer);
+//    params.put("series", series);
+//    params.put("type", type);
+//  
+//    //for if you don't want to return the saxophonePK
+//    jdbcTemplate.update(sql, params);
+//    return Saxophones.builder()
+////      .saxophonePK("saxophones_pk")
+//        .customerFK(customerFK)
+//        .serialNumber(serialNumber)
+//        .manufacturer(manufacturer)
+//        .series(series)
+//        .saxophonesType (type)
+//        .build();
+    
+    SqlParams sqlparams = new SqlParams();
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+    sqlparams.sql = ""
+        + "INSERT into saxophones "
+        + "(customer_fk, serial_number, manufacturer, type, series) " 
+        + "VALUES (:customer_fk, :serial_number, :manufacturer, :type, :series)" ;
+    sqlparams.source.addValue("customer_fk", customerFK);
+    sqlparams.source.addValue("serial_number", serialNumber);
+    sqlparams.source.addValue("manufacturer", manufacturer);
+    sqlparams.source.addValue("type", type.toString());
+    sqlparams.source.addValue("series", series);
+
+    
+
+    jdbcTemplate.update(sqlparams.sql, sqlparams.source, keyHolder);
+    return Saxophones.builder()
+        .saxophonesPK(keyHolder.getKey().intValue())
+        .customerFK(customerFK)
+        .serialNumber(serialNumber)
+        .manufacturer(manufacturer)
+        .series(series)
+        .saxophonesType(type)
+        .build();
+    
   }
 
-//  @Override
-//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
+  class SqlParams {
+    String sql;
+    MapSqlParameterSource source = new MapSqlParameterSource();
+  }
 
   @Override
   public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       //!!!
@@ -81,7 +135,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
           public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
             // @formatter:off
             return Saxophones.builder()
-                .saxophonePK(rs.getInt("saxophones_pk"))
+                .saxophonesPK(rs.getInt("saxophones_pk"))
                 .customerFK(rs.getInt("customer_fk"))
                 .serialNumber(rs.getInt("serial_number"))
                 .manufacturer(rs.getString("manufacturer"))
@@ -94,9 +148,41 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   }
 
   @Override
-  public List<Saxophones> updateSaxophones(Saxophones updatedSaxophones) {
-    // TODO Auto-generated method stub
+  public List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
+    // @formatter:off
+    String sql = ""
+        + "UPDATE saxophones "
+        + "SET "
+        + "customer_fk = :customer_fk, "
+        + "serial_number = :serial_number, "
+        + "manufacturer = :manufacturer, "
+        + "series = :series, "
+        + "type = :type "
+        + "WHERE saxophones_pk = :saxophones_pk;";
+    // @formatter:on
+    
+    // UPDATE saxophones SET
+    // customer_fk = :customerFK
+    //serial_number = :serialNumber
+    //manufacturer = :manufacturer
+    //series = :series
+    //type = :type
+    
+    
+    
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_fk", updatedSaxophones.getCustomerFK());
+    params.put("serial_number", updatedSaxophones.getSerialNumber());
+    params.put("manufacturer", updatedSaxophones.getManufacturer());
+    params.put("series", updatedSaxophones.getSeries());
+//    sqlparams.source.addValue("type", type.toString());
+    params.put("type", updatedSaxophones.getSaxophonesType().toString());
+    //There's a saxophone line under neither everything in the update part that is a mystery and needs to be deleted every time.  
+    params.put("saxophones_pk", saxophonesPK);
+    
+    jdbcTemplate.update(sql, params);
     return null;
+    
   }
 
   @Override
@@ -117,7 +203,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
           public Saxophones mapRow(ResultSet rs, int rowNum) throws SQLException {
             // @formatter:off
             return Saxophones.builder()
-                .saxophonePK(rs.getInt("saxophones_pk"))
+                .saxophonesPK(rs.getInt("saxophones_pk"))
                 .customerFK(rs.getInt("customer_fk"))
                 .serialNumber(rs.getInt("serial_number"))
                 .manufacturer(rs.getString("manufacturer"))

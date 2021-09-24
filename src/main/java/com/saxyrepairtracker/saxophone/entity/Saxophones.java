@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class Saxophones {
 
-  private int saxophonePK;
+  private int saxophonesPK;
   
   private int customerFK;
   

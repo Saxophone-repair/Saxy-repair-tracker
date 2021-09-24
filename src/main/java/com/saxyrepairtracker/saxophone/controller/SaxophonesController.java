@@ -156,12 +156,18 @@ public interface SaxophonesController {
               responseCode = "500", 
               description = "An unplanned error occurred.",  
               content = @Content(mediaType = "application/json")),
+      }, 
+          parameters = {
+              @Parameter(name = "saxophonesPK", 
+                  allowEmptyValue = false, 
+                  required = false, 
+                  description = "The Saxophones Id within our database")
       }
   )
   @PutMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Saxophones> updateSaxophones(  
-      @PathVariable int saxophonePK, 
+       int saxophonesPK, 
       @Valid @RequestBody Saxophones updatedSaxophones);
   
 
@@ -195,6 +201,10 @@ public interface SaxophonesController {
               allowEmptyValue = false, 
               required = false, 
               description = "The customer's Id within our database"),
+          @Parameter(name = "serialNumber", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The serial number on the back end of the horn"),
           @Parameter(name = "manufacturer", 
           allowEmptyValue = false, 
           required = false, 
@@ -211,5 +221,5 @@ public interface SaxophonesController {
   )
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  List<Saxophones> createSaxophones(int customerFK, String manufacturer, String series, SaxophonesType type);
+  Saxophones createSaxophones(int customerFK, int serialNumber, String manufacturer, String series, SaxophonesType type);
 }

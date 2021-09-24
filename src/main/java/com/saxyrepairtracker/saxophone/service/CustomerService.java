@@ -5,13 +5,13 @@ import com.saxyrepairtracker.saxophone.entity.Customer;
 
 public interface CustomerService {
 
-  List<Customer> fetchCustomer(String firstName, String lastName);
+  List<Customer> fetchACustomer(String firstName, String lastName);
 
-  List<Customer> getCustomers();
+  List<Customer> fetchAllCustomers();
 
   Customer createCustomer(Customer customer);
 
   Customer updateCustomer(Customer customer);
 
-  Customer getCustomerFirstName(String firstName);
+  List<Customer> fetchCustomerByFirstName(String firstName);
 }
