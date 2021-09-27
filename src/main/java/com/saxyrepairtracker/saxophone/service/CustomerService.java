@@ -13,10 +13,7 @@ public interface CustomerService {
 
   Customer createCustomer(String firstName, String lastName, String phone);                    //!!!
   
-  Customer updateCustomer(Customer updatedCustomer);
-
-
-
+  Customer updateCustomer(int customerPK, Customer updatedCustomer);                           //!!!
 
 }
 

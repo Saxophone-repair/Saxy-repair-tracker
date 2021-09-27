@@ -14,7 +14,7 @@ public interface CustomerDao {
 
   Customer createCustomer(String firstName, String lastName, String phone);                    //!!!
 
-  Customer updateCustomer(Customer customer);
+  Customer updateCustomer(int customerPK, Customer updatedCustomer);                           //!!!
 
 
 

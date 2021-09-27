@@ -12,9 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import com.saxyrepairtracker.saxophone.dao.DefaultSaxophonesDao.SqlParams;
 import com.saxyrepairtracker.saxophone.entity.Customer;
-import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -29,7 +27,7 @@ public class DefaultCustomerDao implements CustomerDao {
       // @formatter:off
       String sql = ""
           +"SELECT * "
-          + "FROM customers; ";
+          + "FROM customer;";
       // @formatter:on  
      
       Map<String, Object> params = new HashMap<>();
@@ -70,6 +68,7 @@ public class DefaultCustomerDao implements CustomerDao {
                 .customerPK(rs.getInt("customer_pk"))
                 .firstName(rs.getString("first_name"))
                 .lastName(rs.getString("last_name"))
+                .phone(rs.getString("phone"))
                 .build();
          // @formatter:on
           }});
@@ -95,6 +94,8 @@ public class DefaultCustomerDao implements CustomerDao {
             return Customer.builder()
                 .customerPK(rs.getInt("customer_pk"))
                 .firstName(rs.getString("first_name"))
+                .lastName(rs.getString("last_name"))
+                .phone(rs.getString("phone"))
                 .build();
          // @formatter:on
           }});
@@ -134,17 +135,27 @@ public class DefaultCustomerDao implements CustomerDao {
   
   
   
-  public Customer updateCustomer(Customer customer) {
-    log.info("create Customers in service layer");
-    return customer;
+  public Customer updateCustomer(int customerPK, Customer updatedCustomer) {                   //!!!
+    // @formatter:off
+    String sql = ""
+        + "UPDATE customer "
+        + "SET "
+        + "first_name = :first_name, "
+        + "last_name = :last_name, "
+        + "phone = :phone, "
+        + "WHERE customer_pk = :customer;";
+    // @formatter:on
+    
+    Map<String, Object> params = new HashMap<>();
+    params.put("first_name", updatedCustomer.getFirstName());
+    params.put("last_name", updatedCustomer.getLastName());
+    params.put("phone", updatedCustomer.getPhone());
+    
+    jdbcTemplate.update(sql, params);
+    return null;
+    
   }
-  
-
-
-//  public List<Customer> fetchMultipleCustomers(String firstName, String lastName) {
-//    // TODO Auto-generated method stub
-//    return null;
-  }
+ }
 
 
 

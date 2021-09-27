@@ -1,10 +1,13 @@
 package com.saxyrepairtracker.saxophone.controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -192,6 +195,47 @@ public interface CustomerController {
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   Customer createCustomer(String firstName, String lastName, String phone);                    //!!!
+  
+  
+  
+  
+  
+  // @formatter:off
+  @Operation(
+      summary = "updates a Customer",
+      description = "Returns the updated Customer",
+      responses = {
+          @ApiResponse(
+              responseCode = "200",
+              description = "Returns updated Customer",
+              content = @Content(
+                  mediaType = "application/json", 
+                  schema = @Schema(implementation = Customer.class))),
+          @ApiResponse(
+              responseCode = "400", 
+              description = "The request parameters are invalid",  
+              content = @Content(mediaType = "application/json")),
+          @ApiResponse(
+              responseCode = "404", 
+              description = "No Customer were found",  
+              content = @Content(mediaType = "application/json")),
+          @ApiResponse(
+              responseCode = "500", 
+              description = "An unplanned error occurred.",  
+              content = @Content(mediaType = "application/json")),
+      }, 
+          parameters = {
+              @Parameter(name = "customerPK", 
+                  allowEmptyValue = false, 
+                  required = false, 
+                  description = "The Customer's Id within our database")
+      }
+  )
+  @PutMapping
+  @ResponseStatus(code = HttpStatus.OK)
+  Customer updateCustomer(                                                                     //!!!
+       int customerPK, 
+      @Valid @RequestBody Customer updatedCustomer); 
 }
 
 

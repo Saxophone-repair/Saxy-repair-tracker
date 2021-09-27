@@ -135,7 +135,7 @@ public interface SaxophonesController {
   
   // @formatter:off
   @Operation(
-      summary = "updates a Saxophone",
+      summary = "Updates a Saxophone",
       description = "Returns the updated Saxophone",
       responses = {
           @ApiResponse(
