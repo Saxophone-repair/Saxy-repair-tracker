@@ -5,13 +5,18 @@ import com.saxyrepairtracker.saxophone.entity.Customer;
 
 public interface CustomerService {
 
-  List<Customer> fetchACustomer(String firstName, String lastName);
+  List<Customer> fetchAllCustomers();                                                          //!!!
+  
+  List<Customer> fetchACustomer(String firstName, String lastName);                            //!!!
 
-  List<Customer> fetchAllCustomers();
+  List<Customer> fetchCustomerByFirstName(String firstName);                                   //!!!
 
-  Customer createCustomer(Customer customer);
+  Customer createCustomer(String firstName, String lastName, String phone);                    //!!!
+  
+  Customer updateCustomer(Customer updatedCustomer);
 
-  Customer updateCustomer(Customer customer);
 
-  List<Customer> fetchCustomerByFirstName(String firstName);
+
+
 }
+

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.saxyrepairtracker.saxophone.dao.CustomerDao;
 import com.saxyrepairtracker.saxophone.entity.Customer;
-import com.saxyrepairtracker.saxophone.entity.Saxophones;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,35 +16,47 @@ public class DefaultCustomerService implements CustomerService{
   @Autowired
   private CustomerDao customerDao;
   
+  @Override
+  public List<Customer> fetchAllCustomers() {                                                  //!!!
+    List<Customer> customer = customerDao.fetchAllCustomers();
+    if(customer.isEmpty()) {
+      String msg = String.format("We have no customers :(");
+          throw new NoSuchElementException(msg);
+    }
+   // Collections.sort((List<Employee>) employees);
+    return customer;
+  }
+  
   @Transactional(readOnly = true)
   @Override
-  public List<Customer> fetchACustomer(String firstName, String lastName) {
+  public List<Customer> fetchACustomer(String firstName, String lastName) {                    //!!!
     log.info("Fetch Customer in service layer");
-    return customerDao.fetchACustomer(firstName, lastName);
+    
+    List<Customer> customer = customerDao.fetchACustomer(firstName, lastName);
+          if(customer.isEmpty()) {
+              String msg = String.format("No customer was found with firstName=%s and lastName=%s", firstName, lastName);
+                throw new NoSuchElementException(msg);
+    } 
+       return customer;
   }
-
-//  @Transactional(readOnly = true)
-//  @Override
-//  public List<Saxophones> fetchAllSaxophones() {                                            //!!!
-//        List<Saxophones> saxophones = saxophonesDao.fetchAllSaxophones();
-//        if(saxophones.isEmpty()) {
-//          String msg = String.format("We have no saxophones");
-//              throw new NoSuchElementException(msg);
-//        }
-//       // Collections.sort((List<Employee>) employees);
-//        return saxophones;
-//      }
   
   @Override
-  public List<Customer> fetchAllCustomers() {
-     log.info("get Customers in service layer");
-    return customerDao.fetchAllCustomers();
+  public List<Customer> fetchCustomerByFirstName(String firstName) {                           //!!!
+    log.info("Fetch Customer in service layer");
+    
+    List<Customer> customer = customerDao.fetchCustomerByFirstName(firstName);
+          if(customer.isEmpty()) {
+              String msg = String.format("No customer was found with firstName=%s", firstName);
+                throw new NoSuchElementException(msg);
+    } 
+       return customer;
   }
+  
 
   @Override
-  public Customer createCustomer(Customer customer) {
+  public Customer createCustomer (String firstName, String lastName, String phone) {           //!!!
     log.info("create Customers in service layer");
-    return customerDao.createCustomer(customer);
+    return customerDao.createCustomer (firstName, lastName, phone);
   }
 
   @Override
@@ -54,11 +65,6 @@ public class DefaultCustomerService implements CustomerService{
     return customerDao.updateCustomer(customer);
   }
 
-  @Override
-  public List<Customer> fetchCustomerByFirstName(String firstName) {
-    // TODO Auto-generated method stub
-    return customerDao.fetchCustomerByFirstName(firstName);
-  }
 
 //  @Override
 //  public Customer getCustomerFirstName(String firstName) {

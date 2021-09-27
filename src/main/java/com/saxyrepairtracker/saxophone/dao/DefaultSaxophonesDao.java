@@ -56,15 +56,6 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   @Override
   public Saxophones createSaxophones(int customerFK, int serialNumber, 
                       String manufacturer, String series, SaxophonesType type) {
-    // @formatter:off
-//    String sql = ""
-//        + "INSERT into saxophones "
-//        + "(customer_fk, serial_number, manufacturer, series , type) " 
-//        + "VALUES (:customer_fk, :serial_number, :manufacturer, :series, :type)" ;
-    // @formatter:on
-    
-    //INSERT INTO saxophones (customer_fk, serial_number, manufacturer, series , type) 
-    //VALUES (1, 15236654, 'Yamaha', 'Custom Z', 'TENOR');
     
     
     // the first way to get everything without the saxophonePK
@@ -109,7 +100,6 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
         .series(series)
         .saxophonesType(type)
         .build();
-    
   }
 
   class SqlParams {

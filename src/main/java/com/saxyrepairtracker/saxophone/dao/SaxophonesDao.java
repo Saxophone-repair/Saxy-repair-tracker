@@ -18,12 +18,12 @@ public interface SaxophonesDao {
 
 //  List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type);
 
-  Saxophones createSaxophones(int customerFK, int serialNumber, String manufacturer, String series,
+  Saxophones createSaxophones(int customerFK, int serialNumber, String manufacturer, String series, //!!!
                                               SaxophonesType type);
   
 //  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
 
-  List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones);
+  List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones);            
 
   List<Saxophones> fetchSaxophones(SaxophonesType type);                                 //!!!
   }
