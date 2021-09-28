@@ -5,4 +5,4 @@ Spring:
 logging:
   level:
     root: warn
-    '[com.promineotech]': debug
+    '[com.saxyrepairtracker]': debug
