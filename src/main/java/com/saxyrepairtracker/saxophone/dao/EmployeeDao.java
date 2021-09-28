@@ -25,7 +25,7 @@ public interface EmployeeDao {
 
   Employee createEmployee(String firstName, String lastName, BigDecimal payRate);
 
- Employee updateEmployee(int id, Employee updatedEmployee);
+ Employee updateEmployee(int employeePK, Employee updatedEmployee);
 
   //List<Employee> fetchAllEmployees();
   

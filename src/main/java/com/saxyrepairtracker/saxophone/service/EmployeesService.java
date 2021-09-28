@@ -13,7 +13,7 @@ public interface EmployeesService {
     void deleteEmployee(int deleteId);
     //May need to get rid of @Valid?
 
-    Employee updateEmployee(int employeePK, @Valid Employee updatedEmployee);
+    Employee updateEmployee(int employeePK, Employee updatedEmployee);
 
     Employee createEmployee(String firstName, String lastName, BigDecimal payRate);
 
