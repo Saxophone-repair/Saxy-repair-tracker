@@ -14,6 +14,6 @@ public interface EmployeesService {
 
     List<Employee> updateEmployee(int id, @Valid Employee updatedEmployee);
 
-    List<Employee> createEmployee(@Valid Employee newEmployee);
+    List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
 
 }

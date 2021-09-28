@@ -55,21 +55,11 @@ public class DefaultEmployeeService implements EmployeesService{
 
     //@Transactional(readOnly = false)
     @Override
-    public List<Employee> createEmployee(Employee newEmployee) {
-        log.info("The createEmployee method was called with firstName={}, lastName={} and payRate={}",
-            newEmployee.getFirstName(), newEmployee.getLastName(), newEmployee.getPayRate());
-        
-        //List<Employee> newEmployee = employeeDao.createEmployee(newEmployee);
-        
-        
-//        if(employees.isEmpty()) {
-//          String msg = String.format("No employees found with firstName=%s and lastName=%s", firstName, lastName);
-//              throw new NoSuchElementException(msg);
-        
-        
-       // Collections.sort((List<Employee>) employees);
-        return employeeDao.createEmployee(newEmployee);
-      }
+    public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+log.info("create Customers in service layer");
+return employeeDao.createEmployee(firstName, lastName, payRate);
+}
+
 
 
     //@Transactional(readOnly = false)

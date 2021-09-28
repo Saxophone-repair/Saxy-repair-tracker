@@ -86,8 +86,8 @@ public class DefaultEmployeeController implements EmployeeController{
     }
 
     @Override
-    public List<Employee> createEmployee(@Valid Employee newEmployee) {
-      return employeesService.createEmployee(newEmployee);
+    public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+      return employeesService.createEmployee(firstName, lastName, payRate);
     }
 
 //    @Override

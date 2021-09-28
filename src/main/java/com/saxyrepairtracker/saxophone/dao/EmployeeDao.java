@@ -23,7 +23,7 @@ public interface EmployeeDao {
 
   void deleteEmployee(int deleteId);
 
-  List<Employee> createEmployee(Employee newEmployee);
+  List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
 
   List<Employee> updateEmployee(int id, Employee updatedEmployee);
 

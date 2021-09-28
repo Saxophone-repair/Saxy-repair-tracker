@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -159,7 +160,7 @@ public interface EmployeeController {
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
       @PostMapping("/id")
       @ResponseStatus(code = HttpStatus.CREATED)
-      List<Employee> createEmployee(@Valid @RequestBody Employee newEmployee);
+      List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
 //@formatter:on
 
 
