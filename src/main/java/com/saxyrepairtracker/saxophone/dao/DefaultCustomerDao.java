@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -142,17 +143,26 @@ public class DefaultCustomerDao implements CustomerDao {
         + "SET "
         + "first_name = :first_name, "
         + "last_name = :last_name, "
-        + "phone = :phone, "
-        + "WHERE customer_pk = :customer;";
+        + "phone = :phone "
+        + "WHERE customer_pk = :customer_pk;";
     // @formatter:on
     
     Map<String, Object> params = new HashMap<>();
     params.put("first_name", updatedCustomer.getFirstName());
     params.put("last_name", updatedCustomer.getLastName());
     params.put("phone", updatedCustomer.getPhone());
+    params.put("customer_pk", customerPK);
     
-    jdbcTemplate.update(sql, params);
-    return null;
+  //  jdbcTemplate.update(sql, params);
+      if (jdbcTemplate.update(sql, params) == 0) {
+       throw new NoSuchElementException("update failed :( ");
+      }
+    return Customer.builder()
+        .customerPK(customerPK)
+        .firstName(updatedCustomer.getFirstName())
+        .lastName(updatedCustomer.getLastName())
+        .phone(updatedCustomer.getPhone())
+        .build();
     
   }
  }

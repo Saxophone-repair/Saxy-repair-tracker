@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -161,12 +160,16 @@ public interface SaxophonesController {
               @Parameter(name = "saxophonesPK", 
                   allowEmptyValue = false, 
                   required = false, 
-                  description = "The Saxophones Id within our database")
+                  description = "The Saxophones ID within our database") //,
+//              @Parameter(
+//                  name = "updatedSaxophones", 
+//                  required = true, 
+//                  description = "The saxophone as JSON ")  
       }
   )
   @PutMapping
   @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> updateSaxophones(  
+  Saxophones updateSaxophones(  
        int saxophonesPK, 
       @Valid @RequestBody Saxophones updatedSaxophones);
   

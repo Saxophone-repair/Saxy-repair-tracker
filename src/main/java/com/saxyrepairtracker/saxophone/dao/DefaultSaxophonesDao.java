@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -138,7 +139,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   }
 
   @Override
-  public List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
+  public Saxophones updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
     // @formatter:off
     String sql = ""
         + "UPDATE saxophones "
@@ -151,15 +152,6 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
         + "WHERE saxophones_pk = :saxophones_pk;";
     // @formatter:on
     
-    // UPDATE saxophones SET
-    // customer_fk = :customerFK
-    //serial_number = :serialNumber
-    //manufacturer = :manufacturer
-    //series = :series
-    //type = :type
-    
-    
-    
     Map<String, Object> params = new HashMap<>();
     params.put("customer_fk", updatedSaxophones.getCustomerFK());
     params.put("serial_number", updatedSaxophones.getSerialNumber());
@@ -170,8 +162,20 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
     //There's a saxophone line under neither everything in the update part that is a mystery and needs to be deleted every time.  
     params.put("saxophones_pk", saxophonesPK);
     
-    jdbcTemplate.update(sql, params);
-    return null;
+   // jdbcTemplate.update(sql, params);
+   
+    //can be done on creates or inserts to check everything works properly
+      if (jdbcTemplate.update(sql, params) == 0) {
+      throw new NoSuchElementException("update failed :( ");
+     }
+    return Saxophones.builder()
+        .saxophonesPK(saxophonesPK)
+        .customerFK(updatedSaxophones.getCustomerFK())
+        .serialNumber(updatedSaxophones.getSerialNumber())
+        .manufacturer(updatedSaxophones.getManufacturer())
+        .series(updatedSaxophones.getSeries())
+        .saxophonesType(updatedSaxophones.getSaxophonesType())
+        .build();
     
   }
 

@@ -23,7 +23,7 @@ public interface SaxophonesDao {
   
 //  List<Saxophones> getSaxophonesManufacturer(String manufacturer);
 
-  List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones);            
+  Saxophones updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones);            
 
   List<Saxophones> fetchSaxophones(SaxophonesType type);                                 //!!!
   }

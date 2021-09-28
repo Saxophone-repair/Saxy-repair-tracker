@@ -47,7 +47,7 @@ public class DefaultSaxophonesService implements SaxophonesService {
 //    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
 //  }
 
-  public List<Saxophones> updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
+  public Saxophones updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
     return saxophonesDao.updateSaxophones(saxophonesPK, updatedSaxophones);
   }

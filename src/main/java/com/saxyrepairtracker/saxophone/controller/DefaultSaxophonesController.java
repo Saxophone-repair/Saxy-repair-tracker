@@ -43,9 +43,9 @@ public class DefaultSaxophonesController implements SaxophonesController {
   }
   
   @Override
-  public List<Saxophones> updateSaxophones(int saxophonePK, Saxophones updatedSaxophones) {
+  public Saxophones updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
-    return saxophonesService.updateSaxophones(saxophonePK, updatedSaxophones);
+    return saxophonesService.updateSaxophones(saxophonesPK, updatedSaxophones);
   }
 
 //  @Override

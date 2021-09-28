@@ -17,7 +17,7 @@ public interface SaxophonesService {
 
 //  public List<Saxophones> getSaxophonesManufacturer(String manufacturer); 
 
-  public List<Saxophones> updateSaxophones(int saxophonePK, Saxophones updatedSaxophones); 
+  public Saxophones updateSaxophones(int saxophonePK, Saxophones updatedSaxophones); 
 
   public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);   //!!!
 

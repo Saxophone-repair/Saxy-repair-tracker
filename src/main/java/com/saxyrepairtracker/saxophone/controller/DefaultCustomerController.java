@@ -41,7 +41,7 @@ public Customer createCustomer(String firstName, String lastName, String phone) 
 
 @Override
 public Customer updateCustomer(int customerPK, @Valid Customer updatedCustomer) {              //!!!
-  return null;
+  return customerService.updateCustomer(customerPK, updatedCustomer);
 }
     
  
