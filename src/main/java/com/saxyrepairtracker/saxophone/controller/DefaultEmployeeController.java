@@ -86,7 +86,7 @@ public class DefaultEmployeeController implements EmployeeController{
     }
 
     @Override
-    public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+    public Employee createEmployee(String firstName, String lastName, BigDecimal payRate) {
       return employeesService.createEmployee(firstName, lastName, payRate);
     }
 
@@ -96,7 +96,7 @@ public class DefaultEmployeeController implements EmployeeController{
 //    }
 //    
     @Override
-    public List<Employee> updateEmployee(int id, @Valid Employee updatedEmployee) {
-      return employeesService.updateEmployee(id, updatedEmployee);
+    public Employee updateEmployee(int employeePK, @Valid Employee updatedEmployee) {
+      return employeesService.updateEmployee(employeePK, updatedEmployee);
     }
 }

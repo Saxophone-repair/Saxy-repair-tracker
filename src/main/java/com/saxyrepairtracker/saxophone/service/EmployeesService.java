@@ -11,9 +11,10 @@ public interface EmployeesService {
     List<Employee> fetchAllEmployees();
 
     void deleteEmployee(int deleteId);
+    //May need to get rid of @Valid?
 
-    List<Employee> updateEmployee(int id, @Valid Employee updatedEmployee);
+    Employee updateEmployee(int employeePK, @Valid Employee updatedEmployee);
 
-    List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
+    Employee createEmployee(String firstName, String lastName, BigDecimal payRate);
 
 }

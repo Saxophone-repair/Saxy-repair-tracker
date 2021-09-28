@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import com.saxyrepairtracker.saxophone.dao.DefaultEmployeeCreateRD.SqlParams;
+import com.saxyrepairtracker.saxophone.entity.Customer;
 //import org.springframework.stereotype.Service;
 import com.saxyrepairtracker.saxophone.entity.Employee;
 import lombok.extern.slf4j.Slf4j;
@@ -124,11 +125,12 @@ public class DefaultEmployeeDao implements EmployeeDao{
   }
 
   @Override
-  public List<Employee> updateEmployee(int id, Employee updatedEmployee) {
+  public Employee updateEmployee(int employeePK, Employee updatedEmployee) {
     // @formatter:off
     String sql = ""
-        + "UPDATE "
-        + " employee SET first_name = :first_name, "
+        + "UPDATE employee "
+        + "SET "
+        + "first_name = :first_name, "
         + "last_name = : last_name, "
         + "pay_rate = :pay_rate "
         + "WHERE employee_pk = :employee_pk";
@@ -138,21 +140,18 @@ public class DefaultEmployeeDao implements EmployeeDao{
     params.put("first_name", updatedEmployee.getFirstName());
     params.put("last_name", updatedEmployee.getLastName());
     params.put("pay_rate", updatedEmployee.getPayRate());
-    params.put("employee_pk", id);
+    params.put("employee_pk", employeePK);
     
-    return jdbcTemplate.query(sql, params, 
-        new RowMapper<>() {
-          @Override
-          public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-         // @formatter:off
-            return Employee.builder()
-                .employeePK(rs.getInt("employee_pk"))
-                .firstName(rs.getString("first_name"))
-                .lastName(rs.getString("last_name"))
-                .payRate(rs.getBigDecimal("pay_rate"))
-                .build();
-         // @formatter:on
-          }});
-  }
-
+    if (jdbcTemplate.update(sql, params) == 0) {
+      throw new NoSuchElementException("update failed :( ");
+     }
+   return Employee.builder()
+       .employeePK(employeePK)
+       .firstName(updatedEmployee.getFirstName())
+       .lastName(updatedEmployee.getLastName())
+       .payRate(updatedEmployee.getPayRate())
+       .build();
+   
+ }
 }
+

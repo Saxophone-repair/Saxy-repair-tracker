@@ -159,7 +159,7 @@ public interface EmployeeController {
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
       @PostMapping("/id")
       @ResponseStatus(code = HttpStatus.CREATED)
-      List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate);
+      Employee createEmployee(String firstName, String lastName, BigDecimal payRate);
 //@formatter:on
 
 
@@ -235,7 +235,7 @@ public interface EmployeeController {
           responseCode = "500", 
           description = "An unplanned error occurred.",  
           content = @Content(mediaType = "application/json"))
-  }
+  },
   /*
         parameters = {
         @Parameter(name = "firstName", 
@@ -251,13 +251,19 @@ public interface EmployeeController {
         required = false, 
         description = "Pay rate (i.e., '15')")
         */
+  parameters = {
+      @Parameter(name = "employeePK", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The Employee's Id within our database")
+}
   
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
 @PutMapping("/{id}")
 @ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
-List<Employee> updateEmployee(
-  @PathVariable int id, 
+Employee updateEmployee(
+  @PathVariable int employeePK, 
   @Valid @RequestBody Employee updatedEmployee);
   /*
   @RequestParam(required = false)

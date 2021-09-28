@@ -55,7 +55,7 @@ public class DefaultEmployeeService implements EmployeesService{
 
     //@Transactional(readOnly = false)
     @Override
-    public List<Employee> createEmployee(String firstName, String lastName, BigDecimal payRate) {
+    public Employee createEmployee(String firstName, String lastName, BigDecimal payRate) {
 log.info("create Customers in service layer");
 return employeeDao.createEmployee(firstName, lastName, payRate);
 }
@@ -77,8 +77,9 @@ return employeeDao.createEmployee(firstName, lastName, payRate);
     //This could mimic the create method 
    // @Transactional(readOnly = false)
     @Override
-    public List<Employee> updateEmployee(int id, Employee updatedEmployee) {
-      return employeeDao.updateEmployee(id, updatedEmployee);
+    public Employee updateEmployee(int employeePK, Employee updatedEmployee) {
+      log.info("updates Employee in service layer");
+      return employeeDao.updateEmployee(employeePK, updatedEmployee);
     }
 
   }
