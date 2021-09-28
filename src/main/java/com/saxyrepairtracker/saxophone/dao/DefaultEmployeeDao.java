@@ -9,8 +9,12 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import com.saxyrepairtracker.saxophone.dao.DefaultEmployeeCreateRD.SqlParams;
 //import org.springframework.stereotype.Service;
 import com.saxyrepairtracker.saxophone.entity.Employee;
 import lombok.extern.slf4j.Slf4j;
@@ -78,37 +82,33 @@ public class DefaultEmployeeDao implements EmployeeDao{
          // @formatter:on
           }});
   }
-  @Override
-  public List<Employee> createEmployee(Employee newEmployee) {
-    // @formatter:off
-    String sql = ""
-        + "INSERT "
-        + "INTO employee ("
-        + "first_name, last_name, pay_rate"
-        + ") VALUES("
-        +" :first_name, :last_name, :pay_rate)";
-    // @formatter:on
+  
+  public Employee createEmployee(String firstName, String lastName, BigDecimal payRate) {            //!!!
+    SqlParams sqlparams = new SqlParams();
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+    sqlparams.sql = ""
+        + "INSERT into employee "
+        + "(first_name, last_name, pay_rate)" 
+        + "VALUES (:first_name, :last_name, :pay_rate)" ;
+    sqlparams.source.addValue("first_name", firstName);
+    sqlparams.source.addValue("last_name", lastName);
+    sqlparams.source.addValue("pay_rate", payRate);
     
-    Map<String, Object> params = new HashMap<>();
-    params.put("first_name", newEmployee.getFirstName());
-    params.put("last_name", newEmployee.getLastName());
-    params.put("pay_rate", newEmployee.getPayRate());
-    
-    return jdbcTemplate.query(sql, params, 
-        new RowMapper<>() {
-          @Override
-          public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-         // @formatter:off
-            return Employee.builder()
-                .employeePK(rs.getInt("employee_pk"))
-                .firstName(rs.getString("first_name"))
-                .lastName(rs.getString("last_name"))
-                .payRate(rs.getBigDecimal("pay_rate"))
-                .build();
-         // @formatter:on
-          }});
 
+    jdbcTemplate.update(sqlparams.sql, sqlparams.source, keyHolder);
+    return Employee.builder()
+        .employeePK(keyHolder.getKey().intValue())
+        .firstName(firstName)
+        .lastName(lastName)
+        .payRate(payRate)
+        .build();
   }
+
+  class SqlParams {
+    String sql;
+    MapSqlParameterSource source = new MapSqlParameterSource();
+  }
+  
   @Override
   public void deleteEmployee(int deleteId) {
     // @formatter:off
