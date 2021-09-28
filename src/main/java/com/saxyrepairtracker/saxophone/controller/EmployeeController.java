@@ -139,8 +139,7 @@ public interface EmployeeController {
             responseCode = "500", 
             description = "An unplanned error occurred.",  
             content = @Content(mediaType = "application/json"))
-    }
-    /*,
+    },
     parameters = {
         @Parameter(name = "firstName", 
             allowEmptyValue = false, 
@@ -154,7 +153,7 @@ public interface EmployeeController {
           allowEmptyValue = false, 
           required = false, 
           description = "Pay rate (i.e., '15')")
-    }*/
+    }
     
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
