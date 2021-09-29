@@ -216,8 +216,4 @@ List<ServiceTicket> updateServiceTicket(
   @Valid @RequestBody ServiceTicket updatedServiceTicket);
 
 //@formatter:on
-
-
 }
-
-

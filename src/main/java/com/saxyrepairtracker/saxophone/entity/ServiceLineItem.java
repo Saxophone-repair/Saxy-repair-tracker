@@ -24,7 +24,7 @@ public class ServiceLineItem {
   
   private boolean isComplete;
   
-  private BigDecimal hours;
+  private BigDecimal timeForRepair;
   
   private BigDecimal cost;
   
