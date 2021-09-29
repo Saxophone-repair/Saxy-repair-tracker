@@ -67,8 +67,8 @@ public interface CustomerController {
   
   // @formatter:off
   @Operation( //!!!
-      summary = "Returns all customers",
-      description = "Returns all customers",
+      summary = "Return a customer",
+      description = "Returns a customer given their first and last name",
       responses = {
           @ApiResponse(
               responseCode = "200",
