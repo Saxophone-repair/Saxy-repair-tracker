@@ -41,7 +41,7 @@ public class DefaultServiceTicketController implements ServiceTicketController{
   }
 
   @Override
-  public List<ServiceTicket> updateServiceTicket(int id,
+  public ServiceTicket updateServiceTicket(int id,
       @Valid ServiceTicket updatedServiceTicket) {
     return serviceTicketService.updateServiceTicket(id, updatedServiceTicket);
   }

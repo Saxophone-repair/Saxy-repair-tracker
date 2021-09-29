@@ -240,7 +240,7 @@ public interface ServiceTicketController {
 
 @PutMapping("/{id}")
 @ResponseStatus(code = HttpStatus.OK) 
-List<ServiceTicket> updateServiceTicket(
+ServiceTicket updateServiceTicket(
   @PathVariable int id, 
   @Valid @RequestBody ServiceTicket updatedServiceTicket);
 
