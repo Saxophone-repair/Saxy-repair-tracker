@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
@@ -11,10 +12,11 @@ public interface ServiceTicketDao {
 
   List<ServiceTicket> fetchAllServiceTickets();
 
-  List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket);
+ ServiceTicket createServiceTicket(int customerFK, String description, Status status,
+      BigDecimal estimatedCost, BigDecimal actualCost);
 
   void deleteServiceTicket(int deleteId);
 
-  List<ServiceTicket> updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
+  ServiceTicket updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
 
 }

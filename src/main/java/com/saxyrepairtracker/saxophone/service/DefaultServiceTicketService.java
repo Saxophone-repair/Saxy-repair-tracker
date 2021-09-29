@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
@@ -52,19 +53,14 @@ public class DefaultServiceTicketService implements ServiceTicketService{
   }
 
   @Override
-  public List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket) {
+  public ServiceTicket createServiceTicket(int customerFK, String description, Status status,
+      BigDecimal estimatedCost, BigDecimal actualCost) {
         log.info("The createServiceTicket method was called with "
             + "customerFK={}, description={}, status={}, "
-            + "estimatedCost={} and actualCost={}",
-            newServiceTicket.getCustomerFK(), 
-            newServiceTicket.getDescription(),
-            newServiceTicket.getStatus(),
-            newServiceTicket.getEstimatedCost(),
-            newServiceTicket.getActualCost());
-        
-        
+            + "estimatedCost={} and actualCost={}");
        // Collections.sort((List<Employee>) employees);
-        return serviceTicketDao.createServiceTicket(newServiceTicket);
+        return serviceTicketDao.createServiceTicket(customerFK, description, status,
+            estimatedCost, actualCost);
       }
   @Override
   public void deleteServiceTicket(int deleteId) {
@@ -80,7 +76,7 @@ public class DefaultServiceTicketService implements ServiceTicketService{
   
 
   @Override
-  public List<ServiceTicket> updateServiceTicket(int id,
+  public ServiceTicket updateServiceTicket(int id,
       @Valid ServiceTicket updatedServiceTicket) {
       return serviceTicketDao.updateServiceTicket(id, updatedServiceTicket);
     }

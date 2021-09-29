@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
@@ -12,11 +13,14 @@ public interface ServiceTicketService {
 
   List<ServiceTicket> fetchAllServiceTickets();
 
-  List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket);
+  //List<ServiceTicket> createServiceTicket(@Valid ServiceTicket newServiceTicket);
 
   void deleteServiceTicket(int deleteId);
 
-  List<ServiceTicket> updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
+ ServiceTicket updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
+
+  ServiceTicket createServiceTicket(int customerFK, String description, Status status,
+      BigDecimal estimatedCost, BigDecimal actualCost);
   
 }
 

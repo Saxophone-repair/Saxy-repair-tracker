@@ -1,5 +1,6 @@
 package com.saxyrepairtracker.saxophone.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -130,12 +131,35 @@ public interface ServiceTicketController {
             responseCode = "500", 
             description = "An unplanned error occurred.",  
             content = @Content(mediaType = "application/json"))
+    },
+    parameters = {
+        @Parameter(name = "customerFK", 
+            allowEmptyValue = false, 
+            required = false, 
+            description = "The customer id (i.e., '1,2,3')"),
+        @Parameter(name = "description", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "The description (i.e., 'Reason they came there')"),
+         @Parameter(name = "status", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "A status (i.e., 'AWAITING_ARRIVAL etc')"),
+        @Parameter(name = "estimatedCost", 
+        allowEmptyValue = false, 
+        required = false, 
+        description = "estimatedCost (i.e., '135')"),
+        @Parameter(name = "actualCost", 
+        allowEmptyValue = true, //cuz null?
+        required = false, 
+        description = "actual Cost can be null (i.e., '152')")
     }
     
 )
       @PostMapping("/id")
       @ResponseStatus(code = HttpStatus.CREATED)
-      List<ServiceTicket> createServiceTicket(@Valid @RequestBody ServiceTicket newServiceTicket);
+      ServiceTicket createServiceTicket(int customerFK, String description, Status status, 
+          BigDecimal estimatedCost, BigDecimal actualCost);
 //@formatter:on
 
 
@@ -206,7 +230,12 @@ public interface ServiceTicketController {
           responseCode = "500", 
           description = "An unplanned error occurred.",  
           content = @Content(mediaType = "application/json"))
-  }
+  }, parameters = {
+      @Parameter(name = "id", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The Service Ticket's Id within our database")
+}
 )
 
 @PutMapping("/{id}")
