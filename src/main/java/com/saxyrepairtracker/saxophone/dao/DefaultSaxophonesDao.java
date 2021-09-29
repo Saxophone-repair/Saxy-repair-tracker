@@ -159,7 +159,6 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
     params.put("series", updatedSaxophones.getSeries());
 //    sqlparams.source.addValue("type", type.toString());
     params.put("type", updatedSaxophones.getSaxophonesType().toString());
-    //There's a saxophone line under neither everything in the update part that is a mystery and needs to be deleted every time.  
     params.put("saxophones_pk", saxophonesPK);
     
    // jdbcTemplate.update(sql, params);

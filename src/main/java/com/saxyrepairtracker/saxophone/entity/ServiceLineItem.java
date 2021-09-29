@@ -20,7 +20,7 @@ public class ServiceLineItem {
   
   private String description;
   
-  private ServiceLineItemStatus ServiceLineItemStatus;
+  private ServiceLineItemStatus serviceLineItemStatus;
   
   private boolean isComplete;
   

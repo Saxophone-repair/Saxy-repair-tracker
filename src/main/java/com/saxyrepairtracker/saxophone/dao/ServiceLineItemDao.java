@@ -15,9 +15,7 @@ public interface ServiceLineItemDao {
       ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
       BigDecimal cost);
   
-  public ServiceLineItem updateServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost);
+  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem);
   
   public List<ServiceLineItem> fetchAServiceLineItemByStatus(
       ServiceLineItemStatus ServiceLineItemStatus);

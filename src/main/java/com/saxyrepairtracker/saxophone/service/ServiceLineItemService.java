@@ -15,9 +15,7 @@ public interface ServiceLineItemService {
       ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
       BigDecimal cost);
   
-  ServiceLineItem updateServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost);
+  ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem);
   
   List<ServiceLineItem> fetchAServiceLineItemByStatus(ServiceLineItemStatus ServiceLineItemStatus);
 }

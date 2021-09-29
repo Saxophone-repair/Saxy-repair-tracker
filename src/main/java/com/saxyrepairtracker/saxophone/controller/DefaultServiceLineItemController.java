@@ -34,11 +34,8 @@ public class DefaultServiceLineItemController implements ServiceLineItemControll
   }
 
   @Override
-  public ServiceLineItem updateServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost) {
-    return serviceLineItemService.updateServiceLineItem(serviceFK, employeeFK, description,
-      ServiceLineItemStatus, isComplete, timeForRepair, cost);
+  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem) {
+    return serviceLineItemService.updateServiceLineItem(serviceLineItemPK, updatedItem);
   }
 
   @Override
