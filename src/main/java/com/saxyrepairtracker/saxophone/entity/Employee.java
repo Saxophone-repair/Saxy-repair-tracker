@@ -17,7 +17,7 @@ public class Employee {
   private String lastName;
   private BigDecimal payRate;
 //So Json ignore the PK in it
-@JsonIgnore
+// @JsonIgnore
 public int getEmployeePK() {
   return employeePK;
 }

@@ -50,7 +50,7 @@ public class DefaultServiceTicketController implements ServiceTicketController{
   public ServiceTicket createServiceTicket(int customerFK, String description, Status status,
       BigDecimal estimatedCost, BigDecimal actualCost) {
     return serviceTicketService.createServiceTicket(customerFK, description, status,
-         estimatedCost, actualCost);;
+         estimatedCost, actualCost);
   }
 
 }

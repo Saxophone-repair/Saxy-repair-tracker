@@ -157,7 +157,7 @@ public interface EmployeeController {
     
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
-      @PostMapping("/id")
+      @PostMapping
       @ResponseStatus(code = HttpStatus.CREATED)
       Employee createEmployee(String firstName, String lastName, BigDecimal payRate);
 //@formatter:on
@@ -260,10 +260,10 @@ public interface EmployeeController {
   
 )
 //this is for gets not deletes, postmapping, deletemapping etc for the methods 
-@PutMapping("/{id}")
+@PutMapping
 @ResponseStatus(code = HttpStatus.OK) //this may need to be tweaked a tad 
 Employee updateEmployee(
-  @PathVariable int employeePK, 
+  int employeePK, 
   @Valid @RequestBody Employee updatedEmployee);
   /*
   @RequestParam(required = false)
