@@ -9,7 +9,7 @@ import com.saxyrepairtracker.saxophone.entity.Employee;
 //interfaces need unimplemented methods that will 
 public interface EmployeeDao {
   //Should be fetchAnEmployee fix/rename later
-  List<Employee> fetchEmployees(String firstName, String lastName);
+  List<Employee> fetchEmployees(String firstName, String lastName, BigDecimal payRate);
   //fetchEmployees orangize by order
   //List<Employees> fetchEmployeesInOrder() 
   //Does it need parameters if it will just fetch the name -no 

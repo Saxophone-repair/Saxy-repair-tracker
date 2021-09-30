@@ -65,7 +65,11 @@ public interface EmployeeController {
           @Parameter(name = "lastName", 
           allowEmptyValue = false, 
           required = false, 
-          description = "The last name (i.e., 'Mel')")
+          description = "The last name (i.e., 'Mel')"),
+          @Parameter(name = "payRate", 
+          allowEmptyValue = false, 
+          required = false, 
+          description = "The last name (i.e., '23, 12,35')")
       }
   )
   //this is for gets not deletes, postmapping, deletemapping etc for the methods 
@@ -76,7 +80,9 @@ public interface EmployeeController {
       String firstName, 
       //@Pattern(regexp = "[\\w\\s]*")
       @RequestParam(required = false)
-      String lastName);
+      String lastName,
+      @RequestParam(required = false)
+      BigDecimal payRate);
   //@formatter:on
 
 
