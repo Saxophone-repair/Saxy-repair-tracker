@@ -76,9 +76,9 @@ public class DefaultServiceTicketService implements ServiceTicketService{
   
 
   @Override
-  public ServiceTicket updateServiceTicket(int id,
+  public ServiceTicket updateServiceTicket(int servicePK,
       @Valid ServiceTicket updatedServiceTicket) {
-      return serviceTicketDao.updateServiceTicket(id, updatedServiceTicket);
+      return serviceTicketDao.updateServiceTicket(servicePK, updatedServiceTicket);
     }
 
   }

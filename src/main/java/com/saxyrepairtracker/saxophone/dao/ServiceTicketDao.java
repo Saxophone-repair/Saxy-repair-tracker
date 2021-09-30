@@ -17,6 +17,6 @@ public interface ServiceTicketDao {
 
   void deleteServiceTicket(int deleteId);
 
-  ServiceTicket updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
+  ServiceTicket updateServiceTicket(int servicePK, @Valid ServiceTicket updatedServiceTicket);
 
 }

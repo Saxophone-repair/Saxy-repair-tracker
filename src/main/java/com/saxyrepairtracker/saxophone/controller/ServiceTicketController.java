@@ -156,7 +156,7 @@ public interface ServiceTicketController {
     }
     
 )
-      @PostMapping("/id")
+      @PostMapping("/Create")
       @ResponseStatus(code = HttpStatus.CREATED)
       ServiceTicket createServiceTicket(int customerFK, String description, Status status, 
           BigDecimal estimatedCost, BigDecimal actualCost);
@@ -231,17 +231,17 @@ public interface ServiceTicketController {
           description = "An unplanned error occurred.",  
           content = @Content(mediaType = "application/json"))
   }, parameters = {
-      @Parameter(name = "id", 
+      @Parameter(name = "servicePK", 
           allowEmptyValue = false, 
           required = false, 
           description = "The Service Ticket's Id within our database")
 }
 )
 
-@PutMapping("/{id}")
+@PutMapping
 @ResponseStatus(code = HttpStatus.OK) 
 ServiceTicket updateServiceTicket(
-  @PathVariable int id, 
+ int servicePK, 
   @Valid @RequestBody ServiceTicket updatedServiceTicket);
 
 //@formatter:on

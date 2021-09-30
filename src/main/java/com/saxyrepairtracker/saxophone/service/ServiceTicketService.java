@@ -17,7 +17,7 @@ public interface ServiceTicketService {
 
   void deleteServiceTicket(int deleteId);
 
- ServiceTicket updateServiceTicket(int id, @Valid ServiceTicket updatedServiceTicket);
+ ServiceTicket updateServiceTicket(int servicePK, @Valid ServiceTicket updatedServiceTicket);
 
   ServiceTicket createServiceTicket(int customerFK, String description, Status status,
       BigDecimal estimatedCost, BigDecimal actualCost);

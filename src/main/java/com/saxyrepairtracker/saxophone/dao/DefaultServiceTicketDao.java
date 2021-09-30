@@ -94,27 +94,19 @@ public class DefaultServiceTicketDao implements ServiceTicketDao{
     SqlParams sqlparams = new SqlParams();
     KeyHolder keyHolder = new GeneratedKeyHolder();
     sqlparams.sql = ""
-        + "INSERT INTO service_ticket ("
-        + "service_pk, customer_fk, description, "
-        + "status, estimated_cost, actual_cost"
-        + ") VALUES("
-        +" :service_pk, :customer_fk, :description"
+        + "INSERT INTO service_ticket "
+        + "(customer_fk, description, "
+        + "status, estimated_cost, actual_cost) VALUES"
+        + "(:customer_fk, :description,"
         + ":status, :estimated_cost, :actual_cost)";
     //sqlparams.source.addValue("service_pk", servicePK);
     sqlparams.source.addValue("customer_fk", customerFK);
     sqlparams.source.addValue("description", description);
-    sqlparams.source.addValue("status", status);
+    sqlparams.source.addValue("status", status.toString());
     sqlparams.source.addValue("estimated_cost", estimatedCost);
     sqlparams.source.addValue("actual_cost", actualCost);
     // @formatter:on
     
-//    Map<String, Object> params = new HashMap<>();
-//    params.put("service_pk", newServiceTicket.getServicePK());
-//    params.put("customer_fk", newServiceTicket.getCustomerFK());
-//    params.put("description", newServiceTicket.getDescription());
-//    params.put("status", newServiceTicket.getStatus());
-//    params.put("estimated_cost", newServiceTicket.getEstimatedCost());
-//    params.put("actual_cost", newServiceTicket.getActualCost());
     
     jdbcTemplate.update(sqlparams.sql, sqlparams.source, keyHolder);
     return ServiceTicket.builder()
@@ -147,32 +139,33 @@ public class DefaultServiceTicketDao implements ServiceTicketDao{
   }
 
   @Override
-  public ServiceTicket updateServiceTicket(int id,
+  public ServiceTicket updateServiceTicket(int servicePK,
       @Valid ServiceTicket updatedServiceTicket) {
     // @formatter:off
     String sql = ""
         + "UPDATE service_ticket "
-        + "SET"
+        + "SET "
         + "customer_fk = :customer_fk, "
         + "description = :description, "
         + "status = :status, "
         + "estimated_cost = :estimated_cost, "
-        + "actual_cost = :actual_cost,"
-        + "WHERE service_pk = :service_pk";
+        + "actual_cost = :actual_cost "
+        + "WHERE service_pk = :service_pk; ";
     // @formatter:on
     
     Map<String, Object> params = new HashMap<>();
     params.put("customer_fk", updatedServiceTicket.getCustomerFK());
     params.put("description", updatedServiceTicket.getDescription());
-    params.put("status", updatedServiceTicket.getStatus());
+    params.put("status", updatedServiceTicket.getStatus().toString());
     params.put("estimated_cost", updatedServiceTicket.getEstimatedCost());
     params.put("actual_cost", updatedServiceTicket.getActualCost());
+    params.put("service_pk", servicePK);
     
     if (jdbcTemplate.update(sql, params) == 0) {
       throw new NoSuchElementException("update failed :( ");
      }
        return ServiceTicket.builder()
-           .servicePK(id)
+           .servicePK(servicePK)
            .customerFK(updatedServiceTicket.getCustomerFK())
            .description(updatedServiceTicket.getDescription())
            .status(updatedServiceTicket.getStatus())
