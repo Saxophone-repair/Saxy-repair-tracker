@@ -12,28 +12,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ServiceLineItem {
 
-  private int serviceLineItemPK;
+  private int lineItemPK; 
   
   private int serviceFK;
   
+  private int saxophonesFK; 
+  
   private int employeeFK;
+   
+  private BigDecimal laborHours;
   
-  private String description;
+  private RepairType repairType;
   
-  private ServiceLineItemStatus serviceLineItemStatus;
+ // private boolean isComplete; delete all of this
   
-  private boolean isComplete;
+ // private BigDecimal partCost; // implement
   
-  private BigDecimal timeForRepair;
+  // private BigDeciaml additionalFees;   implement
   
-  private BigDecimal cost;
-  
-//  5.) Service Line Items
-//  Number:          <Service Ticket Number>
-//  Order/Line Item: 1 (Sequential number per ticket for each line item)
-//  Technician:      Who is doing the work.
-//  Action/Task:     Replaced Z key from part 234324-34 located in inventory.
-//  Is Complete:     Done (boolean) 
-//  Hours:           1.5h
-//  Cost:            $234 <Is this just parts, or the does it include labor?
+  private BigDecimal totalCost;
+
 }

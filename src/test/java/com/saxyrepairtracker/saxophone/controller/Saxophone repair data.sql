@@ -50,10 +50,12 @@ line_item_pk int unsigned NOT NULL AUTO_INCREMENT,
 service_fk int unsigned NOT NULL,    -- unsigned = 0 to 4294967294
 saxophones_fk int unsigned NOT NULL, -- signed  = -2147483647 to 2147483647
 employee_fk int unsigned,
+-- comments varchar(400), --
 labor_hours decimal(2, 2),
-repair_type enum('CLEANING', 'TUNE-UP', 'OVERHAUL', 'RESTORATION', 'REPAIR'),
+repair_type enum('CLEANING', 'TUNE_UP', 'OVERHAUL', 'RESTORATION', 'REPAIR'),
 part_cost decimal(9, 2),
 additional_fees decimal (9, 2),
+total_cost decimal(9, 2),
 PRIMARY KEY (line_item_pk),
 FOREIGN KEY (employee_fk) REFERENCES employee(employee_pk),
 FOREIGN KEY (saxophones_fk) REFERENCES saxophones(saxophones_pk),

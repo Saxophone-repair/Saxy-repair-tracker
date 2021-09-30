@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItem;
-import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
+import com.saxyrepairtracker.saxophone.entity.RepairType;
 import lombok.extern.slf4j.Slf4j;
 import com.saxyrepairtracker.saxophone.dao.ServiceLineItemDao;
 
@@ -39,23 +39,23 @@ public class DefaultServiceLineItemService implements ServiceLineItemService {
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost) {
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
+      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+      BigDecimal totalCost) {
     log.info("create Service Line Item in service layer");
-    return serviceLineItemDao.createServiceLineItem(serviceFK, employeeFK, description, 
-        ServiceLineItemStatus, isComplete, timeForRepair, cost);
+    return serviceLineItemDao.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, description, 
+        RepairType, isComplete, laborHours, totalCost);
   }
 
   @Override
-  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem) {
+  public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem) {
     log.info("updates Service Line Item in service layer");
-        return serviceLineItemDao.updateServiceLineItem(serviceLineItemPK, updatedItem);
+        return serviceLineItemDao.updateServiceLineItem(lineItemPK, updatedItem);
   }
 
   @Override
   public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      ServiceLineItemStatus serviceLineItemStatus) {
+      RepairType serviceLineItemStatus) {
     log.info("Fetch Service Line Item in service layer");
     List<ServiceLineItem> serviceLineItem = serviceLineItemDao.fetchAServiceLineItemByStatus(serviceLineItemStatus);
           if(serviceLineItem.isEmpty()) {

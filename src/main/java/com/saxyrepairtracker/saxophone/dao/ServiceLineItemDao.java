@@ -3,7 +3,7 @@ package com.saxyrepairtracker.saxophone.dao;
 import java.math.BigDecimal;
 import java.util.List;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItem;
-import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
+import com.saxyrepairtracker.saxophone.entity.RepairType;
 
 public interface ServiceLineItemDao {
 
@@ -11,12 +11,12 @@ public interface ServiceLineItemDao {
   
   public List<ServiceLineItem> fetchAServiceLineItem(int serviceFK);
   
-  public ServiceLineItem createServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost);
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
+      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+      BigDecimal totalCost);
   
-  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem);
+  public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem);
   
   public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      ServiceLineItemStatus ServiceLineItemStatus);
+      RepairType RepairType);
 }

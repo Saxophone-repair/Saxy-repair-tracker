@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItem;
-import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
+import com.saxyrepairtracker.saxophone.entity.RepairType;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -42,14 +42,15 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
           public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
             // @formatter:off
             return ServiceLineItem.builder()
-                .serviceLineItemPK(rs.getInt("service_line_item_pk"))
+                .lineItemPK(rs.getInt("line_item_pk"))
                 .serviceFK(rs.getInt("service_fk"))
+                .saxophonesFK(rs.getInt("saxophones_fk"))
                 .employeeFK(rs.getInt("employee_fk"))
-                .description(rs.getString("description"))
-                .serviceLineItemStatus(ServiceLineItemStatus.valueOf(rs.getString("description")))
-                .isComplete(rs.getBoolean("is_complete"))
-                .timeForRepair(rs.getBigDecimal("time_for_repair"))
-                .cost(rs.getBigDecimal("cost"))
+              //  .description(rs.getString("description"))
+                .repairType(RepairType.valueOf(rs.getString("description")))
+//                .isComplete(rs.getBoolean("is_complete"))
+                .laborHours(rs.getBigDecimal("labor_hours"))
+                .totalCost(rs.getBigDecimal("total_cost"))
                 .build();
             // @formatter:on
           }});
@@ -73,14 +74,15 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
           public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
           // @formatter:off
           return ServiceLineItem.builder()
-              .serviceLineItemPK(rs.getInt("service_line_item_pk"))
+              .lineItemPK(rs.getInt("line_item_pk"))
               .serviceFK(rs.getInt("service_fk"))
+              .saxophonesFK(rs.getInt("saxophones_fk"))
               .employeeFK(rs.getInt("employee_fk"))
-              .description(rs.getString("description"))
-              .serviceLineItemStatus(ServiceLineItemStatus.valueOf(rs.getString("service_line_item_status")))
-              .isComplete(rs.getBoolean(rowNum))
-              .timeForRepair(rs.getBigDecimal("time_for_repair"))
-              .cost(rs.getBigDecimal("cost)"))
+//              .description(rs.getString("description"))
+              .repairType(RepairType.valueOf(rs.getString("repair_type")))
+//              .isComplete(rs.getBoolean(rowNum))
+              .laborHours(rs.getBigDecimal("labor_hours"))
+              .totalCost(rs.getBigDecimal("total_cost)"))
               .build();
        // @formatter:on
           }
@@ -89,38 +91,40 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost) {
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
+      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+      BigDecimal totalCost) {
     
     SqlParams sqlparams = new SqlParams();
     KeyHolder keyHolder = new GeneratedKeyHolder();
     sqlparams.sql = ""
         + "INSERT into service_line_item "
-        + "(service_fk, employee_fk, description, service_line_item_status, "
-        +                                "is_complete, time_for_repair, cost) " 
-        + "VALUES (:service_fk, :employee_fk, :description, :service_line_item_status, "
-        +                                ":is_complete, :time_for_repair, :cost)" ;
+        + "(service_fk, saxophones_fk, employee_fk, description, repair_type, "
+        +                                "is_complete, labor_hours, cost) " 
+        + "VALUES (:service_fk, :saxophones_fk, :employee_fk, :description, :repair_type, "
+        +                                ":is_complete, :labor_hours, :cost)" ;
     sqlparams.source.addValue("service_fk", serviceFK);
+    sqlparams.source.addValue("saxophones_fk", saxophonesFK);
     sqlparams.source.addValue("employee_fk", employeeFK);
     sqlparams.source.addValue("description", description);
-    sqlparams.source.addValue("service_line_item_status", ServiceLineItemStatus.toString());
+    sqlparams.source.addValue("repair_type", RepairType.toString());
     sqlparams.source.addValue("is_complete", isComplete);
-    sqlparams.source.addValue("time_for_repair", timeForRepair);
-    sqlparams.source.addValue("cost", cost);
+    sqlparams.source.addValue("labor_hours", laborHours);
+    sqlparams.source.addValue("total_cost", totalCost);
 
     
 
     jdbcTemplate.update(sqlparams.sql, sqlparams.source, keyHolder);
     return ServiceLineItem.builder()
-        .serviceLineItemPK(keyHolder.getKey().intValue())
+        .lineItemPK(keyHolder.getKey().intValue())
         .serviceFK(serviceFK)
+        .saxophonesFK(saxophonesFK)
         .employeeFK(employeeFK)
-        .description(description)
-        .serviceLineItemStatus(ServiceLineItemStatus)
-        .isComplete(isComplete)
-        .timeForRepair(timeForRepair)
-        .cost(cost)
+//        .description(description)
+        .repairType(RepairType)
+//        .isComplete(isComplete)
+        .laborHours(laborHours)
+        .totalCost(totalCost)
         .build();
   }
 
@@ -131,58 +135,60 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
 
 
   @Override
-  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem) {
+  public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem) {
     // @formatter:off
     String sql = ""
         + "UPDATE service_line_item "
         + "SET "
         + "service_fk = :service_fk, "
+        + "saxophones_fk = :saxophones_fk"
         + "employee_fk = :employee_fk, "
         + "description = :description, "
-        + "service_line_item_status = :service_line_item_status, "
+        + "repair_type = :repair_type, "
         + "is_complete = :is_complete, "
-        + "time_for_repair = :time_for_repair, "
+        + "labor_hours = :labor_hours, "
         + "cost = :cost "
-        + "WHERE service_line_item_pk = :service_line_item_pk;";
+        + "WHERE line_item_pk = :line_item_pk;";
     // @formatter:on
         
         Map<String, Object> params = new HashMap<>();
         params.put("service_fk", updatedItem.getServiceFK());
+        params.put("service_fk", updatedItem.getSaxophonesFK());
         params.put("employee_fk", updatedItem.getEmployeeFK());
-        params.put("description", updatedItem.getDescription());
-        params.put("service_line_item_status", updatedItem.getServiceLineItemStatus().toString());
-        params.put("is_complete", updatedItem.isComplete());
-        params.put("time_for_repair", updatedItem.getTimeForRepair());
-        params.put("cost", updatedItem.getCost());
-        params.put("service_line_item_pk", serviceLineItemPK);    
+//        params.put("description", updatedItem.getDescription());
+        params.put("repair_type", updatedItem.getRepairType().toString());
+//        params.put("is_complete", updatedItem.isComplete());
+        params.put("labor_hours", updatedItem.getLaborHours());
+        params.put("total_cost", updatedItem.getTotalCost());
+        params.put("line_item_pk", lineItemPK);    
     
         
     if (jdbcTemplate.update(sql, params) == 0) {
     throw new NoSuchElementException("update failed :( ");
    }
     return ServiceLineItem.builder()
-        .serviceLineItemPK(serviceLineItemPK)
+        .lineItemPK(lineItemPK)
         .serviceFK(updatedItem.getServiceFK())
         .employeeFK(updatedItem.getEmployeeFK())
-        .description(updatedItem.getDescription())
-        .serviceLineItemStatus(updatedItem.getServiceLineItemStatus())
-        .isComplete(updatedItem.isComplete())
-        .timeForRepair(updatedItem.getTimeForRepair())
-        .cost(updatedItem.getCost())
+//        .description(updatedItem.getDescription())
+        .repairType(updatedItem.getRepairType())
+//        .isComplete(updatedItem.isComplete())
+        .laborHours(updatedItem.getLaborHours())
+        .totalCost(updatedItem.getTotalCost())
         .build();
   }
 
   @Override
   public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      ServiceLineItemStatus ServiceLineItemStatus) {
+      RepairType RepairType) {
     // @formatter:off
     String sql = ""
         + "FROM service_line_item "
-        + "WHERE service_line_item_status = :service_line_item_status ";
+        + "WHERE repair_type = :repair_type ";
     // @formatter:on
 
     Map<String, Object> params = new HashMap<>();
-    params.put("service_repair_item_status", ServiceLineItemStatus.toString());
+    params.put("service_repair_item_status", RepairType.toString());
     
     return jdbcTemplate.query(sql,  params, 
         new RowMapper<>() {
@@ -190,14 +196,14 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
           // @formatter:off
           return ServiceLineItem.builder()
-              .serviceLineItemPK(rs.getInt("service_line_item_pk"))
+              .lineItemPK(rs.getInt("line_item_pk"))
               .serviceFK(rs.getInt("service_fk"))
               .employeeFK(rs.getInt("employee_fk"))
-              .description(rs.getString("description"))
-              .serviceLineItemStatus(ServiceLineItemStatus.valueOf(rs.getString("service_line_item_status")))
-              .isComplete(rs.getBoolean(rowNum))
-              .timeForRepair(rs.getBigDecimal("time_for_repair"))
-              .cost(rs.getBigDecimal("cost)"))
+//              .description(rs.getString("description"))
+              .repairType(RepairType.valueOf(rs.getString("repair_type")))
+//              .isComplete(rs.getBoolean(rowNum))
+              .laborHours(rs.getBigDecimal("labor_hours"))
+              .totalCost(rs.getBigDecimal("total_cost)"))
               .build();
           // @formatter:on
         }

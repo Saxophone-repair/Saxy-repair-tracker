@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItem;
-import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
+import com.saxyrepairtracker.saxophone.entity.RepairType;
 import com.saxyrepairtracker.saxophone.service.ServiceLineItemService;
 
 @RestController
@@ -26,21 +26,21 @@ public class DefaultServiceLineItemController implements ServiceLineItemControll
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int employeeFK, String description,
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair,
-      BigDecimal cost) {
-    return serviceLineItemService.createServiceLineItem(serviceFK, employeeFK, description,
-        ServiceLineItemStatus, isComplete, timeForRepair, cost);
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
+      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+      BigDecimal totalCost) {
+    return serviceLineItemService.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, description,
+        RepairType, isComplete, laborHours, totalCost);
   }
 
   @Override
-  public ServiceLineItem updateServiceLineItem(int serviceLineItemPK, ServiceLineItem updatedItem) {
-    return serviceLineItemService.updateServiceLineItem(serviceLineItemPK, updatedItem);
+  public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem) {
+    return serviceLineItemService.updateServiceLineItem(lineItemPK, updatedItem);
   }
 
   @Override
-  public List<ServiceLineItem> fetchAServiceLineItemByStatus(ServiceLineItemStatus ServiceLineItemStatus) {
-    return serviceLineItemService.fetchAServiceLineItemByStatus(ServiceLineItemStatus);
+  public List<ServiceLineItem> fetchAServiceLineItemByStatus(RepairType RepairType) {
+    return serviceLineItemService.fetchAServiceLineItemByStatus(RepairType);
   }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItem;
-import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
+import com.saxyrepairtracker.saxophone.entity.RepairType;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -134,6 +134,10 @@ public interface ServiceLineItemController {
               allowEmptyValue = false, 
               required = false, 
               description = "The Service ticket number"),
+          @Parameter(name = "saxophoneFK", 
+              allowEmptyValue = false, 
+              required = false, 
+              description = "The saxophone tied to the ticket"),
           @Parameter(name = "employeeFK", 
               allowEmptyValue = false, 
               required = false, 
@@ -150,36 +154,23 @@ public interface ServiceLineItemController {
               allowEmptyValue = false, 
               required = false, 
               description = "Is the repair completed or not"),
-          @Parameter(name = "timeForRepair", 
+          @Parameter(name = "laborHours", 
               allowEmptyValue = false, 
               required = false, 
               description = "The time spent working on the saxophone."),
-          @Parameter(name = "cost", 
+          @Parameter(name = "totalCost", 
           allowEmptyValue = true, 
           required = false, 
-          description = "The cost of the repair")
+          description = "The total cost of the repair")
           }
-//      private int serviceLineItemPK;
-//      
-//      private int serviceFK;
-//      
-//      private int employeeFK;
-//      
-//      private String description;
-//      
-//      private ServiceLineItemStatus ServiceLineItemStatus;
-//      
-//      private boolean isComplete;
-//      
-//      private BigDecimal hours;
-//      
-//      private BigDecimal cost;
+
+  
   )
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  ServiceLineItem createServiceLineItem (int serviceFK, int employeeFK, String description, 
-      ServiceLineItemStatus ServiceLineItemStatus, boolean isComplete, BigDecimal timeForRepair, 
-      BigDecimal cost);                    //!!!
+  ServiceLineItem createServiceLineItem (int serviceFK, int saxophonesFK, int employeeFK, String description, 
+      RepairType RepairType, boolean isComplete, BigDecimal laborHours, 
+      BigDecimal totalCost);                    //!!!
   
   
   
@@ -210,7 +201,7 @@ public interface ServiceLineItemController {
               content = @Content(mediaType = "application/json")),
       },
       parameters = {
-            @Parameter(name = "serviceLineItemPK",
+            @Parameter(name = "lineItemPK",
               allowEmptyValue = false,
               required = false,
               description = "The key for the service item") //,
@@ -234,19 +225,19 @@ public interface ServiceLineItemController {
 //              allowEmptyValue = false, 
 //              required = false, 
 //              description = "Is the repair completed or not"),
-//          @Parameter(name = "timeForRepair", 
+//          @Parameter(name = "laborHours", 
 //              allowEmptyValue = false, 
 //              required = false, 
 //              description = "The time spent working on the saxophone."),
-//          @Parameter(name = "cost", 
+//          @Parameter(name = "totalCost", 
 //          allowEmptyValue = false, 
 //          required = false, 
-//          description = "The cost of the repair")
+//          description = "The totalCost of the repair")
           }
       )
       @PutMapping
       @ResponseStatus(code = HttpStatus.OK)
-      ServiceLineItem updateServiceLineItem (int serviceLineItemPK, ServiceLineItem updatedItem);      
+      ServiceLineItem updateServiceLineItem (int lineItemPK, ServiceLineItem updatedItem);      
 
   
   
@@ -288,6 +279,6 @@ public interface ServiceLineItemController {
   @ResponseStatus(code = HttpStatus.OK)
   List<ServiceLineItem> fetchAServiceLineItemByStatus(                                                               //!!!
       @RequestParam(required = false)
-      ServiceLineItemStatus ServiceLineItemStatus);    
+      RepairType RepairType);    
   
 }
