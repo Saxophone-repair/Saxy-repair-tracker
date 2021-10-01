@@ -47,7 +47,7 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
                 .saxophonesFK(rs.getInt("saxophones_fk"))
                 .employeeFK(rs.getInt("employee_fk"))
                 .laborHours(rs.getBigDecimal("labor_hours"))
-                .repairType(RepairType.valueOf(rs.getString("description")))
+                .repairType(RepairType.valueOf(rs.getString("repair_type")))
                 .partCost(rs.getBigDecimal("part_cost"))
                 .additionalFees(rs.getBigDecimal("additional_fees"))
                 .totalCost(rs.getBigDecimal("total_cost"))
@@ -79,7 +79,7 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
                 .saxophonesFK(rs.getInt("saxophones_fk"))
                 .employeeFK(rs.getInt("employee_fk"))
                 .laborHours(rs.getBigDecimal("labor_hours"))
-                .repairType(RepairType.valueOf(rs.getString("description")))
+                .repairType(RepairType.valueOf(rs.getString("repair_type")))
                 .partCost(rs.getBigDecimal("part_cost"))
                 .additionalFees(rs.getBigDecimal("additional_fees"))
                 .totalCost(rs.getBigDecimal("total_cost"))
@@ -179,37 +179,37 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         .build();
   }
 
-  @Override
-  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      RepairType RepairType) {
-    // @formatter:off
-    String sql = ""
-        + "FROM service_line_item "
-        + "WHERE repair_type = :repair_type ";
-    // @formatter:on
-
-    Map<String, Object> params = new HashMap<>();
-    params.put("service_repair_item_status", RepairType.toString());
-    
-    return jdbcTemplate.query(sql,  params, 
-        new RowMapper<>() {
-        @Override
-        public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
-          // @formatter:off
-          return ServiceLineItem.builder()
-              .lineItemPK(rs.getInt("line_item_pk"))
-              .serviceFK(rs.getInt("service_fk"))
-              .saxophonesFK(rs.getInt("saxophones_fk"))
-              .employeeFK(rs.getInt("employee_fk"))
-              .laborHours(rs.getBigDecimal("labor_hours"))
-              .repairType(RepairType.valueOf(rs.getString("repair_type")))
-              .partCost(rs.getBigDecimal("part_cost"))
-              .additionalFees(rs.getBigDecimal("additional_fees"))
-              .totalCost(rs.getBigDecimal("total_cost)"))
-              .build();
-          // @formatter:on
-        }
-    
-      });
-    }
+//  @Override
+//  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
+//      RepairType RepairType) {
+//    // @formatter:off
+//    String sql = ""
+//        + "FROM service_line_item "
+//        + "WHERE repair_type = :repair_type ";
+//    // @formatter:on
+//
+//    Map<String, Object> params = new HashMap<>();
+//    params.put("service_repair_item_status", RepairType.toString());
+//    
+//    return jdbcTemplate.query(sql,  params, 
+//        new RowMapper<>() {
+//        @Override
+//        public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
+//          // @formatter:off
+//          return ServiceLineItem.builder()
+//              .lineItemPK(rs.getInt("line_item_pk"))
+//              .serviceFK(rs.getInt("service_fk"))
+//              .saxophonesFK(rs.getInt("saxophones_fk"))
+//              .employeeFK(rs.getInt("employee_fk"))
+//              .laborHours(rs.getBigDecimal("labor_hours"))
+//              .repairType(RepairType.valueOf(rs.getString("repair_type")))
+//              .partCost(rs.getBigDecimal("part_cost"))
+//              .additionalFees(rs.getBigDecimal("additional_fees"))
+//              .totalCost(rs.getBigDecimal("total_cost)"))
+//              .build();
+//          // @formatter:on
+//        }
+//    
+//      });
+//    }
 }

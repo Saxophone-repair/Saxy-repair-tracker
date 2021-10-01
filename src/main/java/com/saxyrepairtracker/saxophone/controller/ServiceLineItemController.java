@@ -134,7 +134,7 @@ public interface ServiceLineItemController {
               allowEmptyValue = false, 
               required = false, 
               description = "The Service ticket number"),
-          @Parameter(name = "saxophoneFK", 
+          @Parameter(name = "saxophonesFK", 
               allowEmptyValue = false, 
               required = false, 
               description = "The saxophone tied to the ticket"),
@@ -142,22 +142,14 @@ public interface ServiceLineItemController {
               allowEmptyValue = false, 
               required = false, 
               description = "The employee working on the saxophone"),
-          @Parameter(name = "description", 
-              allowEmptyValue = false, 
-              required = false, 
-              description = "The description talking about what it's in for."),
-          @Parameter(name = "serviceLineItemStatus", 
-              allowEmptyValue = false, 
-              required = false, 
-              description = "Status of the repair"),
-          @Parameter(name = "isComplete", 
-              allowEmptyValue = false, 
-              required = false, 
-              description = "Is the repair completed or not"),
           @Parameter(name = "laborHours", 
               allowEmptyValue = false, 
               required = false, 
               description = "The time spent working on the saxophone."),
+//          @Parameter(name = "repairType", 
+//              allowEmptyValue = false, 
+//              required = false, 
+//              description = "The work needed on the saxophone"),
           @Parameter(name = "partCost", 
               allowEmptyValue = false, 
               required = false, 
@@ -167,9 +159,9 @@ public interface ServiceLineItemController {
               required = false, 
               description = "Any additional costs for the repair"),
           @Parameter(name = "totalCost", 
-          allowEmptyValue = true, 
-          required = false, 
-          description = "The total cost of the repair")
+              allowEmptyValue = true, 
+              required = false, 
+              description = "The total cost of the repair")
           }
 
   
@@ -177,7 +169,7 @@ public interface ServiceLineItemController {
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   ServiceLineItem createServiceLineItem (int serviceFK, int saxophonesFK, int employeeFK,  
-      BigDecimal laborHours,  RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
+      BigDecimal laborHours,  RepairType repairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost);                    //!!!
   
   
@@ -213,34 +205,6 @@ public interface ServiceLineItemController {
               allowEmptyValue = false,
               required = false,
               description = "The key for the service item") //,
-//          @Parameter(name = "serviceFK", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "The Service ticket number"),
-//          @Parameter(name = "employeeFK", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "The employee working on the saxophone"),
-//          @Parameter(name = "description", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "The description talking about what it's in for."),
-//          @Parameter(name = "serviceLineItemStatus", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "Status of the repair"),
-//          @Parameter(name = "isComplete", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "Is the repair completed or not"),
-//          @Parameter(name = "laborHours", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "The time spent working on the saxophone."),
-//          @Parameter(name = "totalCost", 
-//          allowEmptyValue = false, 
-//          required = false, 
-//          description = "The totalCost of the repair")
           }
       )
       @PutMapping
@@ -252,41 +216,41 @@ public interface ServiceLineItemController {
   
   
   
-  // @formatter:off
-  @Operation( //!!!
-      summary = "Return a Service Line Item by current status",
-      description = "Returns a service line item based on it's status",
-      responses = {
-          @ApiResponse(
-              responseCode = "200",
-              description = "A service line item is returned",
-              content = @Content(
-                  mediaType = "application/json", 
-                  schema = @Schema(implementation = ServiceLineItem.class))),
-          @ApiResponse(
-              responseCode = "400", 
-              description = "The request parameters are invalid",  
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "404", 
-              description = "No Customers found",  
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "500", 
-              description = "An unplanned error occurred.",  
-              content = @Content(mediaType = "application/json")),
-      },
-      parameters = {
-          @Parameter(name = "serviceLineItemStatus", 
-              allowEmptyValue = false, 
-              required = false, 
-              description = "Status of the repair"),
-        }
-  )
-  @GetMapping("/status")
-  @ResponseStatus(code = HttpStatus.OK)
-  List<ServiceLineItem> fetchAServiceLineItemByStatus(                                                               //!!!
-      @RequestParam(required = false)
-      RepairType RepairType);    
+//  // @formatter:off
+//  @Operation( //!!!
+//      summary = "Return a Service Line Item by current status",
+//      description = "Returns a service line item based on it's status",
+//      responses = {
+//          @ApiResponse(
+//              responseCode = "200",
+//              description = "A service line item is returned",
+//              content = @Content(
+//                  mediaType = "application/json", 
+//                  schema = @Schema(implementation = ServiceLineItem.class))),
+//          @ApiResponse(
+//              responseCode = "400", 
+//              description = "The request parameters are invalid",  
+//              content = @Content(mediaType = "application/json")),
+//          @ApiResponse(
+//              responseCode = "404", 
+//              description = "No Customers found",  
+//              content = @Content(mediaType = "application/json")),
+//          @ApiResponse(
+//              responseCode = "500", 
+//              description = "An unplanned error occurred.",  
+//              content = @Content(mediaType = "application/json")),
+//      },
+//      parameters = {
+//          @Parameter(name = "serviceLineItemStatus", 
+//              allowEmptyValue = false, 
+//              required = false, 
+//              description = "Status of the repair"),
+//        }
+//  )
+//  @GetMapping("/status")
+//  @ResponseStatus(code = HttpStatus.OK)
+//  List<ServiceLineItem> fetchAServiceLineItemByStatus(                                                               //!!!
+//      @RequestParam(required = false)
+//      RepairType RepairType);    
   
 }

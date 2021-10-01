@@ -53,17 +53,17 @@ public class DefaultServiceLineItemService implements ServiceLineItemService {
         return serviceLineItemDao.updateServiceLineItem(lineItemPK, updatedItem);
   }
 
-  @Override
-  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      RepairType serviceLineItemStatus) {
-    log.info("Fetch Service Line Item in service layer");
-    List<ServiceLineItem> serviceLineItem = serviceLineItemDao.fetchAServiceLineItemByStatus(serviceLineItemStatus);
-          if(serviceLineItem.isEmpty()) {
-              String msg = String.format("No Service Line Items were found with serviceLineItemStatus=%s", 
-                  serviceLineItemStatus);
-                throw new NoSuchElementException(msg);
-    } 
-       return serviceLineItem;
-  }
+//  @Override
+//  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
+//      RepairType serviceLineItemStatus) {
+//    log.info("Fetch Service Line Item in service layer");
+//    List<ServiceLineItem> serviceLineItem = serviceLineItemDao.fetchAServiceLineItemByStatus(serviceLineItemStatus);
+//          if(serviceLineItem.isEmpty()) {
+//              String msg = String.format("No Service Line Items were found with serviceLineItemStatus=%s", 
+//                  serviceLineItemStatus);
+//                throw new NoSuchElementException(msg);
+//    } 
+//       return serviceLineItem;
+//  }
 
 }

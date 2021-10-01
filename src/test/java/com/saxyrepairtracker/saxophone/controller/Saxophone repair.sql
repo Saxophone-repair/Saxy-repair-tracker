@@ -57,7 +57,7 @@ labor_hours decimal(2, 2),
 repair_type enum('CLEANING', 'TUNE-UP', 'OVERHAUL', 'RESTORATION', 'REPAIR'),
 part_cost decimal(9, 2),
 additional_fees decimal (9, 2),
-
+total_cost decimal(9, 2),
 PRIMARY KEY (line_item_pk),
 FOREIGN KEY (employee_fk) REFERENCES employee(employee_pk),
 FOREIGN KEY (saxophones_fk) REFERENCES saxophones(saxophones_pk),

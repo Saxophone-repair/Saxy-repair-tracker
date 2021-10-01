@@ -17,6 +17,6 @@ public interface ServiceLineItemDao {
   
   public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem);
   
-  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
-      RepairType RepairType);
+//  public List<ServiceLineItem> fetchAServiceLineItemByStatus(
+//      RepairType RepairType);
 }

@@ -17,5 +17,5 @@ public interface ServiceLineItemService {
   
   ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem);
   
-  List<ServiceLineItem> fetchAServiceLineItemByStatus(RepairType RepairType);
+//  List<ServiceLineItem> fetchAServiceLineItemByStatus(RepairType RepairType);
 }

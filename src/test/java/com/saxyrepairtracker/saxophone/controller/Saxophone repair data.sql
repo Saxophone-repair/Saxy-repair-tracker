@@ -50,8 +50,7 @@ line_item_pk int unsigned NOT NULL AUTO_INCREMENT,
 service_fk int unsigned NOT NULL,    -- unsigned = 0 to 4294967294
 saxophones_fk int unsigned NOT NULL, -- signed  = -2147483647 to 2147483647
 employee_fk int unsigned,
--- comments varchar(400), --
-labor_hours decimal(2, 2),
+labor_hours decimal(7, 2),
 repair_type enum('CLEANING', 'TUNE_UP', 'OVERHAUL', 'RESTORATION', 'REPAIR'),
 part_cost decimal(9, 2),
 additional_fees decimal (9, 2),
@@ -110,4 +109,14 @@ INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost) V
 INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost, actual_cost) VALUES (7, 'cleaning', 'PICKED_UP', '25', '25');
 INSERT INTO service_ticket ( customer_fk, description, status, estimated_cost, actual_cost) VALUES (1, 'key bent fell off', 'READY_FOR_PICKUP', '85', '115');
 
+INSERT INTO service_line_item (service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, part_cost, additional_fees, total_cost) 
+VALUES (1, 1, 1, 1, 'CLEANING', 12.00, 13.00, 25.00);
+INSERT INTO service_line_item (service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, part_cost, additional_fees, total_cost) 
+VALUES (2, 5, 3, 1, 'TUNE_UP', 22.00, 34.00, 56.00);
+INSERT INTO service_line_item (service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, part_cost, additional_fees, total_cost) 
+VALUES (3, 3, 2, 7, 'OVERHAUL', 150.00, 45.00, 195.00);
+INSERT INTO service_line_item (service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, part_cost, additional_fees, total_cost) 
+VALUES (4, 2, 4, 9, 'RESTORATION', 120.00, 124.00, 244.00);
+INSERT INTO service_line_item (service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, part_cost, additional_fees, total_cost) 
+VALUES (5, 4, 6, 2, 'REPAIR', 20.00, 34.00, 54.00);
 SELECT * FROM saxophones;
