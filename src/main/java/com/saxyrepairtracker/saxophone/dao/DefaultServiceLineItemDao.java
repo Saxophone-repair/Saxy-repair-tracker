@@ -46,10 +46,10 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
                 .serviceFK(rs.getInt("service_fk"))
                 .saxophonesFK(rs.getInt("saxophones_fk"))
                 .employeeFK(rs.getInt("employee_fk"))
-              //  .description(rs.getString("description"))
-                .repairType(RepairType.valueOf(rs.getString("description")))
-//                .isComplete(rs.getBoolean("is_complete"))
                 .laborHours(rs.getBigDecimal("labor_hours"))
+                .repairType(RepairType.valueOf(rs.getString("description")))
+                .partCost(rs.getBigDecimal("part_cost"))
+                .additionalFees(rs.getBigDecimal("additional_fees"))
                 .totalCost(rs.getBigDecimal("total_cost"))
                 .build();
             // @formatter:on
@@ -73,43 +73,43 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
           @Override
           public ServiceLineItem mapRow(ResultSet rs, int rowNum) throws SQLException {
           // @formatter:off
-          return ServiceLineItem.builder()
-              .lineItemPK(rs.getInt("line_item_pk"))
-              .serviceFK(rs.getInt("service_fk"))
-              .saxophonesFK(rs.getInt("saxophones_fk"))
-              .employeeFK(rs.getInt("employee_fk"))
-//              .description(rs.getString("description"))
-              .repairType(RepairType.valueOf(rs.getString("repair_type")))
-//              .isComplete(rs.getBoolean(rowNum))
-              .laborHours(rs.getBigDecimal("labor_hours"))
-              .totalCost(rs.getBigDecimal("total_cost)"))
-              .build();
-       // @formatter:on
+            return ServiceLineItem.builder()
+                .lineItemPK(rs.getInt("line_item_pk"))
+                .serviceFK(rs.getInt("service_fk"))
+                .saxophonesFK(rs.getInt("saxophones_fk"))
+                .employeeFK(rs.getInt("employee_fk"))
+                .laborHours(rs.getBigDecimal("labor_hours"))
+                .repairType(RepairType.valueOf(rs.getString("description")))
+                .partCost(rs.getBigDecimal("part_cost"))
+                .additionalFees(rs.getBigDecimal("additional_fees"))
+                .totalCost(rs.getBigDecimal("total_cost"))
+                .build();
+            // @formatter:on
           }
       });
           
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
-      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK,
+      BigDecimal laborHours, RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost) {
     
     SqlParams sqlparams = new SqlParams();
     KeyHolder keyHolder = new GeneratedKeyHolder();
     sqlparams.sql = ""
         + "INSERT into service_line_item "
-        + "(service_fk, saxophones_fk, employee_fk, description, repair_type, "
-        +                                "is_complete, labor_hours, cost) " 
-        + "VALUES (:service_fk, :saxophones_fk, :employee_fk, :description, :repair_type, "
-        +                                ":is_complete, :labor_hours, :cost)" ;
+        + "(service_fk, saxophones_fk, employee_fk, labor_hours, repair_type, "
+        +                                "part_cost, additional_fees, total_cost) " 
+        + "VALUES (:service_fk, :saxophones_fk, :employee_fk, :labor_hours, :repair_type, "
+        +                                ":part_cost, :additional_fees, :total_cost)" ;
     sqlparams.source.addValue("service_fk", serviceFK);
     sqlparams.source.addValue("saxophones_fk", saxophonesFK);
     sqlparams.source.addValue("employee_fk", employeeFK);
-    sqlparams.source.addValue("description", description);
-    sqlparams.source.addValue("repair_type", RepairType.toString());
-    sqlparams.source.addValue("is_complete", isComplete);
     sqlparams.source.addValue("labor_hours", laborHours);
+    sqlparams.source.addValue("repair_type", RepairType.toString());
+    sqlparams.source.addValue("part_cost", partCost);
+    sqlparams.source.addValue("additional_fees", additionalFees);
     sqlparams.source.addValue("total_cost", totalCost);
 
     
@@ -120,10 +120,10 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         .serviceFK(serviceFK)
         .saxophonesFK(saxophonesFK)
         .employeeFK(employeeFK)
-//        .description(description)
-        .repairType(RepairType)
-//        .isComplete(isComplete)
         .laborHours(laborHours)
+        .repairType(RepairType)
+        .partCost(partCost)
+        .additionalFees(additionalFees)
         .totalCost(totalCost)
         .build();
   }
@@ -143,11 +143,11 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         + "service_fk = :service_fk, "
         + "saxophones_fk = :saxophones_fk"
         + "employee_fk = :employee_fk, "
-        + "description = :description, "
-        + "repair_type = :repair_type, "
-        + "is_complete = :is_complete, "
         + "labor_hours = :labor_hours, "
-        + "cost = :cost "
+        + "repair_type = :repair_type, "
+        + "part_cost = :part_cost"
+        + "additional_fees = :additional_fees"
+        + "total_cost = :total_cost "
         + "WHERE line_item_pk = :line_item_pk;";
     // @formatter:on
         
@@ -155,10 +155,10 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         params.put("service_fk", updatedItem.getServiceFK());
         params.put("service_fk", updatedItem.getSaxophonesFK());
         params.put("employee_fk", updatedItem.getEmployeeFK());
-//        params.put("description", updatedItem.getDescription());
-        params.put("repair_type", updatedItem.getRepairType().toString());
-//        params.put("is_complete", updatedItem.isComplete());
         params.put("labor_hours", updatedItem.getLaborHours());
+        params.put("repair_type", updatedItem.getRepairType().toString());
+        params.put("part_cost", updatedItem.getPartCost());
+        params.put("additional_fees", updatedItem.getAdditionalFees());
         params.put("total_cost", updatedItem.getTotalCost());
         params.put("line_item_pk", lineItemPK);    
     
@@ -169,11 +169,12 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
     return ServiceLineItem.builder()
         .lineItemPK(lineItemPK)
         .serviceFK(updatedItem.getServiceFK())
+        .saxophonesFK(updatedItem.getSaxophonesFK())
         .employeeFK(updatedItem.getEmployeeFK())
-//        .description(updatedItem.getDescription())
-        .repairType(updatedItem.getRepairType())
-//        .isComplete(updatedItem.isComplete())
         .laborHours(updatedItem.getLaborHours())
+        .repairType(updatedItem.getRepairType())
+        .partCost(updatedItem.getPartCost())
+        .additionalFees(updatedItem.getAdditionalFees())
         .totalCost(updatedItem.getTotalCost())
         .build();
   }
@@ -198,11 +199,12 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
           return ServiceLineItem.builder()
               .lineItemPK(rs.getInt("line_item_pk"))
               .serviceFK(rs.getInt("service_fk"))
+              .saxophonesFK(rs.getInt("saxophones_fk"))
               .employeeFK(rs.getInt("employee_fk"))
-//              .description(rs.getString("description"))
-              .repairType(RepairType.valueOf(rs.getString("repair_type")))
-//              .isComplete(rs.getBoolean(rowNum))
               .laborHours(rs.getBigDecimal("labor_hours"))
+              .repairType(RepairType.valueOf(rs.getString("repair_type")))
+              .partCost(rs.getBigDecimal("part_cost"))
+              .additionalFees(rs.getBigDecimal("additional_fees"))
               .totalCost(rs.getBigDecimal("total_cost)"))
               .build();
           // @formatter:on

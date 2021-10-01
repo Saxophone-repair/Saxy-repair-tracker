@@ -158,6 +158,14 @@ public interface ServiceLineItemController {
               allowEmptyValue = false, 
               required = false, 
               description = "The time spent working on the saxophone."),
+          @Parameter(name = "partCost", 
+              allowEmptyValue = false, 
+              required = false, 
+              description = "The cost of replacement parts"),
+          @Parameter(name = "additionalFees", 
+              allowEmptyValue = false, 
+              required = false, 
+              description = "Any additional costs for the repair"),
           @Parameter(name = "totalCost", 
           allowEmptyValue = true, 
           required = false, 
@@ -168,8 +176,8 @@ public interface ServiceLineItemController {
   )
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  ServiceLineItem createServiceLineItem (int serviceFK, int saxophonesFK, int employeeFK, String description, 
-      RepairType RepairType, boolean isComplete, BigDecimal laborHours, 
+  ServiceLineItem createServiceLineItem (int serviceFK, int saxophonesFK, int employeeFK,  
+      BigDecimal laborHours,  RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost);                    //!!!
   
   

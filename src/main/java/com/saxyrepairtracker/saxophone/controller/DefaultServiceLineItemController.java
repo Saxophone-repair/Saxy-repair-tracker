@@ -26,11 +26,11 @@ public class DefaultServiceLineItemController implements ServiceLineItemControll
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
-      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, 
+      BigDecimal laborHours, RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost) {
-    return serviceLineItemService.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, description,
-        RepairType, isComplete, laborHours, totalCost);
+    return serviceLineItemService.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, 
+        laborHours, RepairType, partCost, additionalFees, totalCost);
   }
 
   @Override

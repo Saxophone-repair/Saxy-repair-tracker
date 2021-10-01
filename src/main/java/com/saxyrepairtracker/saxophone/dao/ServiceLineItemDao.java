@@ -11,8 +11,8 @@ public interface ServiceLineItemDao {
   
   public List<ServiceLineItem> fetchAServiceLineItem(int serviceFK);
   
-  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
-      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, 
+      BigDecimal laborHours, RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost);
   
   public ServiceLineItem updateServiceLineItem(int lineItemPK, ServiceLineItem updatedItem);

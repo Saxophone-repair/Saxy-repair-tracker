@@ -39,12 +39,12 @@ public class DefaultServiceLineItemService implements ServiceLineItemService {
   }
 
   @Override
-  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, String description,
-      RepairType RepairType, boolean isComplete, BigDecimal laborHours,
+  public ServiceLineItem createServiceLineItem(int serviceFK, int saxophonesFK, int employeeFK, 
+      BigDecimal laborHours, RepairType RepairType, BigDecimal partCost, BigDecimal additionalFees,
       BigDecimal totalCost) {
     log.info("create Service Line Item in service layer");
-    return serviceLineItemDao.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, description, 
-        RepairType, isComplete, laborHours, totalCost);
+    return serviceLineItemDao.createServiceLineItem(serviceFK, saxophonesFK, employeeFK, laborHours, 
+        RepairType, partCost, additionalFees, totalCost);
   }
 
   @Override

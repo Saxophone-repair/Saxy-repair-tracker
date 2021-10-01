@@ -23,12 +23,10 @@ public class ServiceLineItem {
   private BigDecimal laborHours;
   
   private RepairType repairType;
+    
+  private BigDecimal partCost; // implement
   
- // private boolean isComplete; delete all of this
-  
- // private BigDecimal partCost; // implement
-  
-  // private BigDeciaml additionalFees;   implement
+  private BigDecimal additionalFees;  
   
   private BigDecimal totalCost;
 
