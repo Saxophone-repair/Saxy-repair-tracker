@@ -141,19 +141,19 @@ public class DefaultServiceLineItemDao implements ServiceLineItemDao {
         + "UPDATE service_line_item "
         + "SET "
         + "service_fk = :service_fk, "
-        + "saxophones_fk = :saxophones_fk"
+        + "saxophones_fk = :saxophones_fk, "
         + "employee_fk = :employee_fk, "
         + "labor_hours = :labor_hours, "
         + "repair_type = :repair_type, "
-        + "part_cost = :part_cost"
-        + "additional_fees = :additional_fees"
+        + "part_cost = :part_cost, "
+        + "additional_fees = :additional_fees, "
         + "total_cost = :total_cost "
         + "WHERE line_item_pk = :line_item_pk;";
     // @formatter:on
         
         Map<String, Object> params = new HashMap<>();
         params.put("service_fk", updatedItem.getServiceFK());
-        params.put("service_fk", updatedItem.getSaxophonesFK());
+        params.put("saxophones_fk", updatedItem.getSaxophonesFK());
         params.put("employee_fk", updatedItem.getEmployeeFK());
         params.put("labor_hours", updatedItem.getLaborHours());
         params.put("repair_type", updatedItem.getRepairType().toString());
