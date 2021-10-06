@@ -53,9 +53,9 @@ public class DefaultEmployeeController implements EmployeeController{
   
   //change to employee not fetchemployee 
   @Override
-  public List<Employee> fetchEmployees(String firstName, String lastName, BigDecimal payRate) {
-    log.debug("firstName={}, lastName={}, payRate={}", firstName, lastName, payRate);
-    return employeesService.fetchEmployees(firstName, lastName, payRate);
+  public List<Employee> fetchEmployees(String firstName, String lastName) {
+    log.debug("firstName={}, lastName={}", firstName, lastName);
+    return employeesService.fetchEmployees(firstName, lastName);
   }
  
   //Get All Employees 

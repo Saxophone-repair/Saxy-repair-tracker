@@ -26,20 +26,20 @@ public class DefaultEmployeeDao implements EmployeeDao{
   @Autowired 
   private NamedParameterJdbcTemplate jdbcTemplate;
   @Override
-  public List<Employee> fetchEmployees(String firstName, String lastName, BigDecimal payRate) {
-    log.debug("DAO: first name={}, last name={}, pay rate={}", firstName, lastName, payRate);
+  public List<Employee> fetchEmployees(String firstName, String lastName) {
+    log.debug("DAO: first name={}, last name={}, firstName, lastName");
     
  // @formatter:off
     String sql = ""
         + "SELECT * "
         + "FROM employee "
-        + "WHERE first_name = :first_name, last_name = :last_name AND pay_rate = :pay_rate";
+        + "WHERE first_name = :first_name AND last_name = :last_name";
     // @formatter:on
     
     Map<String, Object> params = new HashMap<>();
     params.put("first_name", firstName);
     params.put("last_name", lastName);
-    params.put("pay_rate", payRate);
+//    params.put("pay_rate", payRate);
     
     return jdbcTemplate.query(sql, params, 
         new RowMapper<>() {
@@ -50,7 +50,6 @@ public class DefaultEmployeeDao implements EmployeeDao{
                 .employeePK(rs.getInt("employee_pk"))
                 .firstName(rs.getString("first_name"))
                 .lastName(rs.getString("last_name"))
-                .payRate(rs.getBigDecimal("pay_rate"))
                 .build();
          // @formatter:on
           }});

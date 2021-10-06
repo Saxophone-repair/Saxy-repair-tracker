@@ -20,15 +20,15 @@ public class DefaultEmployeeService implements EmployeesService{
 
     @Transactional(readOnly = true)
     @Override
-    public List<Employee> fetchEmployees(String firstName, String lastName, BigDecimal payRate) {
-      log.info("The fetchEmployees method was called with firstName={} lastName={} and payRate={}",
+    public List<Employee> fetchEmployees(String firstName, String lastName) {
+      log.info("The fetchEmployees method was called with firstName={} lastName={}",
           firstName, lastName);
       
-      List<Employee> employees = employeeDao.fetchEmployees(firstName, lastName, payRate);
+      List<Employee> employees = employeeDao.fetchEmployees(firstName, lastName);
       
       
       if(employees.isEmpty()) {
-        String msg = String.format("No employees found with firstName=%s and lastName=%s", firstName, lastName, payRate);
+        String msg = String.format("No employees found with firstName=%s and lastName=%s", firstName, lastName);
             throw new NoSuchElementException(msg);
       }
       
