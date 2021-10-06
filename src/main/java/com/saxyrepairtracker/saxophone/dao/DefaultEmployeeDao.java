@@ -50,10 +50,11 @@ public class DefaultEmployeeDao implements EmployeeDao{
                 .employeePK(rs.getInt("employee_pk"))
                 .firstName(rs.getString("first_name"))
                 .lastName(rs.getString("last_name"))
+                .payRate(rs.getBigDecimal("pay_rate"))
                 .build();
          // @formatter:on
           }});
-
+//Above builder allowed for the payrate to be properly taken 
   }
 //new functions implemented in here 
   //May not always need a rowmapper i.e. in delete 

@@ -54,7 +54,7 @@ public class DefaultCustomerDao implements CustomerDao {
             }});
     }
   
-  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+  public class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
     @Override
     public Customer extractData(ResultSet rs) 
         throws SQLException, DataAccessException {

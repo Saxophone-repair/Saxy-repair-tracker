@@ -9,24 +9,25 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import com.saxyrepairtracker.saxophone.dao.DefaultEmployeeDao.SqlParams;
-import com.saxyrepairtracker.saxophone.entity.Employee;
+import com.saxyrepairtracker.saxophone.entity.Customer;
 import com.saxyrepairtracker.saxophone.entity.ServiceTicket;
 import com.saxyrepairtracker.saxophone.entity.Status;
 import lombok.extern.slf4j.Slf4j;
-
 @Component
 @Slf4j
 public class DefaultServiceTicketDao implements ServiceTicketDao{
   @Autowired 
   private NamedParameterJdbcTemplate jdbcTemplate;
-  
+  //private CustomerDao customerDao = new CustomerDao();
+  private DefaultCustomerDao defaultCustomerDao = new DefaultCustomerDao(); 
   @Override
   public List<ServiceTicket> fetchServiceTicketByStatus(Status status) {
     log.debug("DAO: status={}", status);
@@ -58,7 +59,46 @@ public class DefaultServiceTicketDao implements ServiceTicketDao{
           }
     });    
   }
-
+  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+   // @Override
+    public Customer extractData(ResultSet rs) 
+        throws SQLException, DataAccessException {
+      rs.next();
+      // @formatter:off
+      return Customer.builder()
+          .customerPK(rs.getInt("customer_pk"))
+          .firstName(rs.getString("first_name"))
+          .lastName(rs.getString("last_name"))
+          .phone(rs.getString("phone"))
+          .build();
+      // @formatter:on
+    }
+  } 
+  
+  protected Customer fetchCustomerByPK(int customerPK) {
+    //@formatter:off
+    String sql = ""
+          +"SELECT * "
+          + "FROM customers "
+          + "WHERE customer_pk = :customer_pk";
+    // @formatter:on
+ 
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_pk", customerPK);
+  
+    return 
+        jdbcTemplate.query(sql,params, new CustomerResultSetExtractor());
+  }
+ 
+  
+//  return ServiceTicket.builder()
+//      .servicePK(rs.getInt("service_pk"))
+//      .customerFK(rs.getInt("customer_fk"))
+//      .description(rs.getString("description"))
+//      .status(Status.valueOf(rs.getString("status")))
+//      .estimatedCost(rs.getBigDecimal("estimated_cost"))
+//      .actualCost(rs.getBigDecimal("actual_cost"))
+//      .build();
   @Override
   public List<ServiceTicket> fetchAllServiceTickets() {
     // @formatter:off
