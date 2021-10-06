@@ -10,10 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-//@RequestMapping("/saxophone/saxophone") //?
 
 public class DefaultSaxophonesController implements SaxophonesController {
 
+  //Default Saxophones Controller implements everything from the Saxophone Controller interface.
+  //From here, it hands it off to to the service layer.
 
   @Autowired
   private SaxophonesService saxophonesService;
@@ -23,22 +24,16 @@ public class DefaultSaxophonesController implements SaxophonesController {
     log.debug("'type={}'", type);
     return saxophonesService.fetchSaxophones(type);
   }
-  
-//  @Override
-//  public List<Employee> fetchEmployees(String firstName, String lastName) {
-//    log.debug("firstName={}, lastName={}", firstName, lastName);
-//    return employeesService.fetchEmployees(firstName, lastName);
-//  }
 
   
   
   @Override
-  public List<Saxophones> fetchAllSaxophones() {                                               //!!!
+  public List<Saxophones> fetchAllSaxophones() {                                               
     return saxophonesService.fetchAllSaxophones();
     }
   
   @Override
-  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       //!!!
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       
     return saxophonesService.fetchAllSaxophonesByCustomer(customerFK);
   }
   
@@ -48,18 +43,9 @@ public class DefaultSaxophonesController implements SaxophonesController {
     return saxophonesService.updateSaxophones(saxophonesPK, updatedSaxophones);
   }
 
-//  @Override
-//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
-//    // TODO Auto-generated method stub
-//    return saxophonesService.getSaxophonesManufacturer(manufacturer);
-//  }
-
-
-
-  @Override                                                                                    //!!!
+  @Override                                                                                    
   public Saxophones createSaxophones(int customerFK, int serialNumber, String manufacturer, String series,
                                             SaxophonesType type) {
-    // TODO Auto-generated method stub
     return saxophonesService.createSaxophones(customerFK, serialNumber, manufacturer, series, type);
     }
 }

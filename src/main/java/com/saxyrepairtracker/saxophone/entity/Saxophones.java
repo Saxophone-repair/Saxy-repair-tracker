@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Saxophones {
+  
+  //begins the process by labeling what the different variables can be within the Saxophones table
 
   private int saxophonesPK;
   
@@ -23,27 +25,6 @@ public class Saxophones {
   
   private SaxophonesType saxophonesType;
   
-//  @JsonIgnore
-//  private List<Customer> customer;
-//
-//  public List<Saxophones> updateSaxophones(int customerFK, String series, String manufacturer) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-//
-//  public List<Saxophones> createSaxophones(Saxophones saxophones) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-//
-//  public List<Saxophones> getSaxophones() {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-//
-//  public List<Saxophones> getSaxophones(String manufacturer2) {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
+
   
 }

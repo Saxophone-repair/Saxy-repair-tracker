@@ -18,10 +18,13 @@ public class DefaultSaxophonesService implements SaxophonesService {
 
   @Autowired
   private SaxophonesDao saxophonesDao;
+  
+  //Default Saxophones Service implements everything that's brought over from the Saxophones Service interface
+  //Once it runs through all of the commands, it hands it off to the Dao layer.
  
   @Transactional(readOnly = true)
   @Override
-  public List<Saxophones> fetchAllSaxophones() {                                            //!!!
+  public List<Saxophones> fetchAllSaxophones() {                                            
         List<Saxophones> saxophones = saxophonesDao.fetchAllSaxophones();
         if(saxophones.isEmpty()) {
           String msg = String.format("We have no saxophones");
@@ -31,21 +34,11 @@ public class DefaultSaxophonesService implements SaxophonesService {
         return saxophones;
       }
 
-//  public List<Saxophones> getSaxophonesBySaxophoneType(SaxophonesType type) {
-//    // TODO Auto-generated method stub
-//    return saxophonesDao.getSaxophonesBySaxophoneType(type);
-//  }
-
   public Saxophones createSaxophones(int customerFK, int serialNumber,  String manufacturer, String series,
       SaxophonesType type) {
     
     return saxophonesDao.createSaxophones(customerFK, serialNumber, manufacturer, series, type);
   }
-
-//  public List<Saxophones> getSaxophonesManufacturer(String manufacturer) {
-//    // TODO Auto-generated method stub
-//    return saxophonesDao.getSaxophonesManufacturer(manufacturer);
-//  }
 
   public Saxophones updateSaxophones(int saxophonesPK, Saxophones updatedSaxophones) {
     // TODO Auto-generated method stub
@@ -70,7 +63,7 @@ public class DefaultSaxophonesService implements SaxophonesService {
 
   @Transactional(readOnly = true)
   @Override
-  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                     //!!!
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                     
     log.info("The fetchSaxophones method was called with 'type={}'", type);
          List<Saxophones> saxophones = saxophonesDao.fetchSaxophones(type);
           if(saxophones.isEmpty()) {
@@ -80,19 +73,5 @@ public class DefaultSaxophonesService implements SaxophonesService {
          // Collections.sort((List<Employee>) employees);
           return saxophones;
   }
-  
-//  @Transactional(readOnly = true)
-//  @Override
-//  public List<Employee> fetchEmployees(String firstName, String lastName) {
-//    log.info("The fetchEmployees method was called with firstName={} and lastName={}",
-//        firstName, lastName);
-//    List<Employee> employees = employeeDao.fetchEmployees(firstName, lastName);
-//    if(employees.isEmpty()) {
-//      String msg = String.format("No employees found with firstName=%s and lastName=%s", firstName, lastName);
-//          throw new NoSuchElementException(msg);
-//    }
-//   // Collections.sort((List<Employee>) employees);
-//    return employees;
-//  }
  
 }

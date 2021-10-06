@@ -24,15 +24,20 @@ public class DefaultCustomerDao implements CustomerDao {
   @Autowired
   private NamedParameterJdbcTemplate jdbcTemplate;
   
+  //Lastly, we take everything from the Customer Dao interface and implement it all here.
+  
   public List<Customer> fetchAllCustomers() {                                                  //!!!
     log.info("In customer.dao.fetchAllCustomers");
     
+    //sql code for the command
       // @formatter:off
       String sql = ""
           +"SELECT * "
           + "FROM customer;";
       // @formatter:on  
-     
+    
+    //creates a map of objects and then returns with a builder throwing together all of 
+    //the information you want to output from the sql database.
       Map<String, Object> params = new HashMap<>();
       return jdbcTemplate.query(sql,
           new RowMapper<Customer>() {
@@ -65,6 +70,8 @@ public class DefaultCustomerDao implements CustomerDao {
     }
   } 
   
+  // allows customer to be called from other databases without being allowed to edit the Customer Database, 
+  //just read the one customer pk they entered in to see.
   protected Customer fetchCustomerByPK(int customerPK) {
     //@formatter:off
     String sql = ""
@@ -162,6 +169,7 @@ public class DefaultCustomerDao implements CustomerDao {
         .build();
   }
 
+  //This is needed in order to fully implement the create function. 
   class SqlParams {
     String sql;
     MapSqlParameterSource source = new MapSqlParameterSource();

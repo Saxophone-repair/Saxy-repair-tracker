@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
+  
+  //begins the process by labeling what the different variables can be within the Customer table
 
   private int customerPK;
   

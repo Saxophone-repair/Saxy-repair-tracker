@@ -28,6 +28,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
     @Server(url = "http://localhost:8080", description = "Local server.")})
 public interface CustomerController {
 
+  //Customer Controller interface then talks to the Default Customer Controller class.
 
   // @formatter:off
   @Operation(

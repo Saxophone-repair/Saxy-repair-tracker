@@ -23,9 +23,11 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   @Autowired
   private NamedParameterJdbcTemplate jdbcTemplate;
       //Retrieve data from database and returns to service layer
+  //Implements the SaxophonesDao interface, and begins to finish all of the commands up before it
+  //sends them to swagger potentially when called upon. 
     
-@Override //!!!
-  public List<Saxophones> fetchAllSaxophones() {                                              //!!!
+@Override 
+  public List<Saxophones> fetchAllSaxophones() {                                              
     log.info("In saxophones.dao.fetchAllSaxophones");
     
         // @formatter:off
@@ -57,6 +59,9 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   @Override
   public Saxophones createSaxophones(int customerFK, int serialNumber, 
                       String manufacturer, String series, SaxophonesType type) {
+
+    
+// -----------------------------------DON'T DELETE-------------------------------------------------
     
     
     // the first way to get everything without the saxophonePK
@@ -109,7 +114,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   }
 
   @Override
-  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       //!!!
+  public List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK) {                       
     // @formatter:off
     String sql = ""
         + "SELECT * "
@@ -157,7 +162,6 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
     params.put("serial_number", updatedSaxophones.getSerialNumber());
     params.put("manufacturer", updatedSaxophones.getManufacturer());
     params.put("series", updatedSaxophones.getSeries());
-//    sqlparams.source.addValue("type", type.toString());
     params.put("type", updatedSaxophones.getSaxophonesType().toString());
     params.put("saxophones_pk", saxophonesPK);
     
@@ -179,7 +183,7 @@ public class DefaultSaxophonesDao implements SaxophonesDao {
   }
 
   @Override
-  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                               //!!!
+  public List<Saxophones> fetchSaxophones(SaxophonesType type) {                               
     // @formatter:off
     String sql = ""
         + "SELECT * "

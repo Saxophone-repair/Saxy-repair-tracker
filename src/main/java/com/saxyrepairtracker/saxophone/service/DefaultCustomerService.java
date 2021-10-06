@@ -16,6 +16,9 @@ public class DefaultCustomerService implements CustomerService{
   @Autowired
   private CustomerDao customerDao;
   
+  //Default Customer Service class implements everything from the Customer Service interface.
+  //Next it all get's handed off to the Customer Data Access Object (Dao).
+  
   @Override
   public List<Customer> fetchAllCustomers() {                                                  //!!!
     List<Customer> customer = customerDao.fetchAllCustomers();

@@ -29,6 +29,9 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 public interface SaxophonesController {
 
+  //Saxophones Controller interface begins the implementations from the Saxophones entity before
+  //it hands off to the default saxophones controller.
+  
   // @formatter:off
   @Operation(
       summary = "Returns the list of Saxophones by type",
@@ -62,7 +65,7 @@ public interface SaxophonesController {
   )
   @GetMapping("/fetch saxophones")
   @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> fetchSaxophones(                                                            //!!!
+  List<Saxophones> fetchSaxophones(                                                            
       @RequestParam(required = false)
         SaxophonesType type
       );
@@ -95,7 +98,7 @@ public interface SaxophonesController {
   )
   @GetMapping("/all")
   @ResponseStatus(code = HttpStatus.OK)
-  List<Saxophones> fetchAllSaxophones();                                                       //!!!
+  List<Saxophones> fetchAllSaxophones();                                                       
   
   // @formatter:off
   @Operation(
@@ -129,7 +132,7 @@ public interface SaxophonesController {
       }
   )
   @GetMapping("/fetch all saxophones within a customer ID")
-  @ResponseStatus(code = HttpStatus.OK)                                                        //!!!
+  @ResponseStatus(code = HttpStatus.OK)                                                        
   List<Saxophones> fetchAllSaxophonesByCustomer(@RequestParam(required = false) int customerFK);
   
   // @formatter:off

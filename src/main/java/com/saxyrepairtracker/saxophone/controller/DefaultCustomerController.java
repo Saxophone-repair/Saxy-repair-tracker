@@ -13,7 +13,8 @@ import com.saxyrepairtracker.saxophone.service.CustomerService;
 
 public class DefaultCustomerController implements CustomerController {
 
-//public class GigController {
+// Default Customer Controller takes information from the Customer Controller and then implements in.
+  //Afterwards, it is then handed off to the Customer Service interface.
     
     @Autowired
     private CustomerService customerService;

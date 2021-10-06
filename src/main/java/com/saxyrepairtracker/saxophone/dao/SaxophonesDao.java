@@ -6,6 +6,9 @@ import com.saxyrepairtracker.saxophone.entity.SaxophonesType;
 
 public interface SaxophonesDao {
   
+  //SaxophonesDao takes everything from the service layer and begins to implement it.
+  //Afterwards, passes it off to the default Saxophone Dao.
+  
   List<Saxophones> fetchAllSaxophonesByCustomer(int customerFK);                        //!!!
   
 //  List<Saxophones> getSaxophonesByType(SaxophonesType type, int customerFK);
