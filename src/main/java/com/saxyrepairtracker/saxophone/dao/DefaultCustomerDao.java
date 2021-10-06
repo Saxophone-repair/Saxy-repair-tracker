@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -46,6 +48,39 @@ public class DefaultCustomerDao implements CustomerDao {
               // @formatter:on
             }});
     }
+  
+  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+    @Override
+    public Customer extractData(ResultSet rs) 
+        throws SQLException, DataAccessException {
+      rs.next();
+      // @formatter:off
+      return Customer.builder()
+          .customerPK(rs.getInt("customer_pk"))
+          .firstName(rs.getString("first_name"))
+          .lastName(rs.getString("last_name"))
+          .phone(rs.getString("phone"))
+          .build();
+      // @formatter:on
+    }
+  } 
+  
+  protected Customer fetchCustomerByPK(int customerPK) {
+    //@formatter:off
+    String sql = ""
+          +"SELECT * "
+          + "FROM customers "
+          + "WHERE customer_pk = :customer_pk";
+    // @formatter:on
+ 
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_pk", customerPK);
+  
+    return 
+        jdbcTemplate.query(sql,params, new CustomerResultSetExtractor());
+  }
+ 
+  
   
     // Retrieve data from database and return to service layer
   public List<Customer> fetchACustomer(String firstName, String lastName) {                    //!!!
