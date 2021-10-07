@@ -56,7 +56,7 @@ public class DefaultEmployeeService implements EmployeesService{
     //@Transactional(readOnly = false)
     @Override
     public Employee createEmployee(String firstName, String lastName, BigDecimal payRate) {
-log.info("create Customers in service layer");
+log.info("create Employees in service layer");
 return employeeDao.createEmployee(firstName, lastName, payRate);
 }
 
