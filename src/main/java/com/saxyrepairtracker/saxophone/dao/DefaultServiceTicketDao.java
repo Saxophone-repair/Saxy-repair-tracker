@@ -26,8 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultServiceTicketDao implements ServiceTicketDao{
   @Autowired 
   private NamedParameterJdbcTemplate jdbcTemplate;
-  //private CustomerDao customerDao = new CustomerDao();
-  private DefaultCustomerDao defaultCustomerDao = new DefaultCustomerDao(); 
+  //private DefaultCustomerDao defaultCustomerDao = new DefaultCustomerDao(); 
   @Override
   public List<ServiceTicket> fetchServiceTicketByStatus(Status status) {
     log.debug("DAO: status={}", status);
