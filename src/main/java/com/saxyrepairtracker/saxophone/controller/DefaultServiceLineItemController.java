@@ -38,9 +38,4 @@ public class DefaultServiceLineItemController implements ServiceLineItemControll
     return serviceLineItemService.updateServiceLineItem(lineItemPK, updatedItem);
   }
 
-//  @Override
-//  public List<ServiceLineItem> fetchAServiceLineItemByStatus(RepairType RepairType) {
-//    return serviceLineItemService.fetchAServiceLineItemByStatus(RepairType);
-//  }
-
 }

@@ -29,6 +29,8 @@ import io.swagger.v3.oas.annotations.servers.Server;
     @Server(url = "http://localhost:8080", description = "Local server.")})
 public interface ServiceLineItemController {
 
+  //Begins by telling
+  
   // @formatter:off
   @Operation(
       summary = "Returns a list of Service line items",
@@ -57,7 +59,7 @@ public interface ServiceLineItemController {
   )
   @GetMapping("/all")
   @ResponseStatus(code = HttpStatus.OK)
-  List<ServiceLineItem> fetchAllServiceLineItems(                                                            //!!!
+  List<ServiceLineItem> fetchAllServiceLineItems(                                                            
     );
  
   
@@ -66,7 +68,7 @@ public interface ServiceLineItemController {
   
   
   // @formatter:off
-  @Operation( //!!!
+  @Operation( 
       summary = "Return a Service Line Item",
       description = "Returns a service line item after given the service ticket",
       responses = {
@@ -98,7 +100,7 @@ public interface ServiceLineItemController {
   )
   @GetMapping("/An item")
   @ResponseStatus(code = HttpStatus.OK)
-  List<ServiceLineItem> fetchAServiceLineItem(                                                               //!!!
+  List<ServiceLineItem> fetchAServiceLineItem(                                                               
       @RequestParam(required = false)
       int serviceFK);    
 
@@ -172,7 +174,7 @@ public interface ServiceLineItemController {
   @ResponseStatus(code = HttpStatus.CREATED)
   ServiceLineItem createServiceLineItem (int serviceFK, int saxophonesFK, int employeeFK,  
       BigDecimal laborHours,  RepairType repairType, BigDecimal partCost, BigDecimal additionalFees,
-      BigDecimal totalCost);                    //!!!
+      BigDecimal totalCost);                    
   
   
   
@@ -213,47 +215,5 @@ public interface ServiceLineItemController {
       @ResponseStatus(code = HttpStatus.OK)
       ServiceLineItem updateServiceLineItem (int lineItemPK, 
           @Valid @RequestBody ServiceLineItem updatedItem);      
-
-  
-  
-  
-  
-  
-//  // @formatter:off
-//  @Operation( //!!!
-//      summary = "Return a Service Line Item by current status",
-//      description = "Returns a service line item based on it's status",
-//      responses = {
-//          @ApiResponse(
-//              responseCode = "200",
-//              description = "A service line item is returned",
-//              content = @Content(
-//                  mediaType = "application/json", 
-//                  schema = @Schema(implementation = ServiceLineItem.class))),
-//          @ApiResponse(
-//              responseCode = "400", 
-//              description = "The request parameters are invalid",  
-//              content = @Content(mediaType = "application/json")),
-//          @ApiResponse(
-//              responseCode = "404", 
-//              description = "No Customers found",  
-//              content = @Content(mediaType = "application/json")),
-//          @ApiResponse(
-//              responseCode = "500", 
-//              description = "An unplanned error occurred.",  
-//              content = @Content(mediaType = "application/json")),
-//      },
-//      parameters = {
-//          @Parameter(name = "serviceLineItemStatus", 
-//              allowEmptyValue = false, 
-//              required = false, 
-//              description = "Status of the repair"),
-//        }
-//  )
-//  @GetMapping("/status")
-//  @ResponseStatus(code = HttpStatus.OK)
-//  List<ServiceLineItem> fetchAServiceLineItemByStatus(                                                               //!!!
-//      @RequestParam(required = false)
-//      RepairType RepairType);    
   
 }

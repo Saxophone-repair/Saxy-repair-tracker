@@ -20,7 +20,7 @@ public class DefaultCustomerService implements CustomerService{
   //Next it all get's handed off to the Customer Data Access Object (Dao).
   
   @Override
-  public List<Customer> fetchAllCustomers() {                                                  //!!!
+  public List<Customer> fetchAllCustomers() {                                                  
     List<Customer> customer = customerDao.fetchAllCustomers();
     if(customer.isEmpty()) {
       String msg = String.format("We have no customers :(");
@@ -32,7 +32,7 @@ public class DefaultCustomerService implements CustomerService{
   
   @Transactional(readOnly = true)
   @Override
-  public List<Customer> fetchACustomer(String firstName, String lastName) {                    //!!!
+  public List<Customer> fetchACustomer(String firstName, String lastName) {                    
     log.info("Fetch Customer in service layer");
     
     List<Customer> customer = customerDao.fetchACustomer(firstName, lastName);
@@ -44,7 +44,7 @@ public class DefaultCustomerService implements CustomerService{
   }
   
   @Override
-  public List<Customer> fetchCustomerByFirstName(String firstName) {                           //!!!
+  public List<Customer> fetchCustomerByFirstName(String firstName) {                           
     log.info("Fetch Customer in service layer");
     
     List<Customer> customer = customerDao.fetchCustomerByFirstName(firstName);
@@ -57,12 +57,12 @@ public class DefaultCustomerService implements CustomerService{
   
 
   @Override
-  public Customer createCustomer (String firstName, String lastName, String phone) {           //!!!
+  public Customer createCustomer (String firstName, String lastName, String phone) {           
     log.info("create Customers in service layer");
     return customerDao.createCustomer (firstName, lastName, phone);
   }
 
-  public Customer updateCustomer(int customerPK, Customer updatedCustomer) {                   //!!!
+  public Customer updateCustomer(int customerPK, Customer updatedCustomer) {                   
     log.info("updates Customer in service layer");
     return customerDao.updateCustomer(customerPK, updatedCustomer);
   }

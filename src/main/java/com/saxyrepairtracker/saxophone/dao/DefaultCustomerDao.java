@@ -26,7 +26,7 @@ public class DefaultCustomerDao implements CustomerDao {
   
   //Lastly, we take everything from the Customer Dao interface and implement it all here.
   
-  public List<Customer> fetchAllCustomers() {                                                  //!!!
+  public List<Customer> fetchAllCustomers() {                                                  
     log.info("In customer.dao.fetchAllCustomers");
     
     //sql code for the command
@@ -90,7 +90,7 @@ public class DefaultCustomerDao implements CustomerDao {
   
   
     // Retrieve data from database and return to service layer
-  public List<Customer> fetchACustomer(String firstName, String lastName) {                    //!!!
+  public List<Customer> fetchACustomer(String firstName, String lastName) {                    
     // @formatter:off
     String sql = ""
         + "SELECT * "
@@ -118,7 +118,7 @@ public class DefaultCustomerDao implements CustomerDao {
 
   }
   
-  public List<Customer> fetchCustomerByFirstName(String firstName) {                           //!!!
+  public List<Customer> fetchCustomerByFirstName(String firstName) {                           
     // @formatter:off
     String sql = ""
         + "SELECT * "
@@ -148,7 +148,7 @@ public class DefaultCustomerDao implements CustomerDao {
   
  
 
-  public Customer createCustomer(String firstName, String lastName, String phone) {            //!!!
+  public Customer createCustomer(String firstName, String lastName, String phone) {            
     SqlParams sqlparams = new SqlParams();
     KeyHolder keyHolder = new GeneratedKeyHolder();
     sqlparams.sql = ""
@@ -179,7 +179,7 @@ public class DefaultCustomerDao implements CustomerDao {
   
   
   
-  public Customer updateCustomer(int customerPK, Customer updatedCustomer) {                   //!!!
+  public Customer updateCustomer(int customerPK, Customer updatedCustomer) {                   
     // @formatter:off
     String sql = ""
         + "UPDATE customer "
