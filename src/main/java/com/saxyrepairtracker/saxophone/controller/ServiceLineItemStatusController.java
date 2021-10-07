@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
-@RequestMapping("/serviceitemstatus")
+@RequestMapping("/serviceLineItemStatus")
 @OpenAPIDefinition(info = @Info(title = "Service Item Line Item Status"), servers = {
     @Server(url = "http://localhost:8080", description = "Local server.")})
 
