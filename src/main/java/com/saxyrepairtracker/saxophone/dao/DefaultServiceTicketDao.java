@@ -47,14 +47,22 @@ public class DefaultServiceTicketDao implements ServiceTicketDao{
             @Override
             public ServiceTicket mapRow(ResultSet rs, int rowNum) throws SQLException {
            // @formatter:off
-              return ServiceTicket.builder()
-                  .servicePK(rs.getInt("service_pk"))
-                  .customerFK(rs.getInt("customer_fk"))
-                  .description(rs.getString("description"))
-                  .status(Status.valueOf(rs.getString("status")))
-                  .estimatedCost(rs.getBigDecimal("estimated_cost"))
-                  .actualCost(rs.getBigDecimal("actual_cost"))
-                  .build();
+            return ServiceTicket.builder()
+            .servicePK(rs.getInt("service_pk"))
+            .customerFK(rs.getInt("customer_fk"))
+            .description(rs.getString("description"))
+            .status(Status.valueOf(rs.getString("status")))
+            .estimatedCost(rs.getBigDecimal("estimated_cost"))
+            .actualCost(rs.getBigDecimal("actual_cost"))
+            .build();
+//              return ServiceTicket.builder()
+//                  .servicePK(rs.getInt("service_pk"))
+//                  .customerFK(fetchCustomerByPK(rs.getInt("customer_fk")))
+//                  .description(rs.getString("description"))
+//                  .status(Status.valueOf(rs.getString("status")))
+//                  .estimatedCost(rs.getBigDecimal("estimated_cost"))
+//                  .actualCost(rs.getBigDecimal("actual_cost"))
+//                  .build();
            // @formatter:on
           }
     });    
