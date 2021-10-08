@@ -91,7 +91,7 @@ public interface ServiceLineItemStatusController {
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "404", 
-            description = "No Employees were found with the input criteria",  
+            description = "No Service Ticket Line Statuses were found with the input criteria",  
             content = @Content(mediaType = "application/json")),
         @ApiResponse(
             responseCode = "500", 
