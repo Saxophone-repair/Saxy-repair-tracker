@@ -39,7 +39,6 @@ public class DefaultServiceLineItemStatusDao implements ServiceLineItemStatusDao
        Map<String, Object> params = new HashMap<>();
        params.put("update_pk", updatePK);
        params.put("service_fk", serviceFK);
-//       params.put("pay_rate", payRate);
        
        return jdbcTemplate.query(sql, params, 
            new RowMapper<>() {
@@ -49,7 +48,7 @@ public class DefaultServiceLineItemStatusDao implements ServiceLineItemStatusDao
                return ServiceLineItemStatus.builder()
                    .updatePK(rs.getInt("update_pk"))
                    .serviceFK(rs.getInt("service_fk"))
-                   .updatePK(rs.getInt("line_item_fk "))
+                   .lineItemFK(rs.getInt("line_item_fk"))
                    .updates(rs.getString("updates"))
                    .updateTime(rs.getTimestamp("update_time"))
                    .build();
@@ -74,7 +73,7 @@ public class DefaultServiceLineItemStatusDao implements ServiceLineItemStatusDao
             return ServiceLineItemStatus.builder()
                 .updatePK(rs.getInt("update_pk"))
                 .serviceFK(rs.getInt("service_fk"))
-                .lineItemFK(rs.getInt("line_item_fk "))
+                .lineItemFK(rs.getInt("line_item_fk"))
                 .updates(rs.getString("updates"))
                 .updateTime(rs.getTimestamp("update_time"))
                 .build();
@@ -83,7 +82,7 @@ public class DefaultServiceLineItemStatusDao implements ServiceLineItemStatusDao
   }
 
   @Override
-  public ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK,
+  public ServiceLineItemStatus createServiceLineItemStatus(int serviceFK,
       int lineItemFK, String updates) {
     SqlParams sqlparams = new SqlParams();
     KeyHolder keyHolder = new GeneratedKeyHolder();

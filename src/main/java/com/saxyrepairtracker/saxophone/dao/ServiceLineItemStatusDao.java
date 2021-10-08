@@ -10,7 +10,10 @@ public interface ServiceLineItemStatusDao {
 
   List<ServiceLineItemStatus> fetchAllServiceTicketLineStatuses();
 
-  ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK, int lineItemFK,
+//  ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK, int lineItemFK,
+//      String updates);
+  
+  ServiceLineItemStatus createServiceLineItemStatus(int serviceFK, int lineItemFK,
       String updates);
 
   ServiceLineItemStatus updateServiceLineItemStatus(int updatePK,

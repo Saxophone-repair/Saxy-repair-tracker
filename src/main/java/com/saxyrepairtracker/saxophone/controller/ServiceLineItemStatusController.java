@@ -106,8 +106,7 @@ public interface ServiceLineItemStatusController {
 
 
 //POST
-//Create Method CreateEmployees
-//createEmployee
+
 // @formatter:off
 @Operation(
     summary = "Returns a new Service Ticket Line Item Status",
@@ -133,10 +132,10 @@ public interface ServiceLineItemStatusController {
             content = @Content(mediaType = "application/json"))
     },
     parameters = {
-        @Parameter(name = "updatePK", 
-            allowEmptyValue = false, 
-            required = false, 
-            description = "The updatePK (i.e., '1,2,3')"),
+//        @Parameter(name = "updatePK", 
+//            allowEmptyValue = false, 
+//            required = false, 
+//            description = "The updatePK (i.e., '1,2,3')"),
         @Parameter(name = "serviceFK", 
         allowEmptyValue = false, 
         required = false, 
@@ -156,7 +155,7 @@ public interface ServiceLineItemStatusController {
       @PostMapping
       @ResponseStatus(code = HttpStatus.CREATED)
 ServiceLineItemStatus createServiceLineItemStatus
-(int updatePK, int serviceFK, int lineItemFK, String updates);
+(int serviceFK, int lineItemFK, String updates);
 //@formatter:on
 
 

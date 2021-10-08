@@ -150,8 +150,8 @@ public interface ServiceTicketController {
         required = false, 
         description = "estimatedCost (i.e., '135')"),
         @Parameter(name = "actualCost", 
-        allowEmptyValue = true, //cuz null?
-        required = false, 
+        allowEmptyValue = true, //Will not make it null this will be fixed with further development
+        required = true, 
         description = "actual Cost can be null (i.e., '152')")
     }
     

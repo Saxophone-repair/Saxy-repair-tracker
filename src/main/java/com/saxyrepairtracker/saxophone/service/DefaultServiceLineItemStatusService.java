@@ -52,10 +52,10 @@ public class DefaultServiceLineItemStatusService implements ServiceLineItemStatu
   }
 
   @Override
-  public ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK,
+  public ServiceLineItemStatus createServiceLineItemStatus(int serviceFK,
       int lineItemFK, String updates) {
     log.info("create ServiceLineItemStatus in service layer");
-    return serviceLineItemStatusDao.createServiceLineItemStatus(updatePK, serviceFK, lineItemFK, updates);
+    return serviceLineItemStatusDao.createServiceLineItemStatus(serviceFK, lineItemFK, updates);
     }
 
   @Override

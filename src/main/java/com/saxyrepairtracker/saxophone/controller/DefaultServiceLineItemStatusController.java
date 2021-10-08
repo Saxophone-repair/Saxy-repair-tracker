@@ -3,9 +3,11 @@ package com.saxyrepairtracker.saxophone.controller;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import com.saxyrepairtracker.saxophone.entity.ServiceLineItemStatus;
 import com.saxyrepairtracker.saxophone.service.ServiceLineItemStatusService;
 
+@RestController 
 public class DefaultServiceLineItemStatusController implements ServiceLineItemStatusController{
 
   @Autowired
@@ -19,11 +21,18 @@ public class DefaultServiceLineItemStatusController implements ServiceLineItemSt
     return serviceLineItemStatusService.fetchAllServiceTicketLineStatuses();
   }
 
+//  @Override
+//  public ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK,
+//      int lineItemFK, String updates) {
+//    return serviceLineItemStatusService.createServiceLineItemStatus(updatePK, serviceFK, lineItemFK, updates);
+//  }
+//  
   @Override
-  public ServiceLineItemStatus createServiceLineItemStatus(int updatePK, int serviceFK,
+  public ServiceLineItemStatus createServiceLineItemStatus(int serviceFK,
       int lineItemFK, String updates) {
-    return serviceLineItemStatusService.createServiceLineItemStatus(updatePK, serviceFK, lineItemFK, updates);
+    return serviceLineItemStatusService.createServiceLineItemStatus(serviceFK, lineItemFK, updates);
   }
+  
   @Override
   public ServiceLineItemStatus updateServiceLineItemStatus(int updatePK,
       @Valid ServiceLineItemStatus updatedServiceLineItemStatus) {
